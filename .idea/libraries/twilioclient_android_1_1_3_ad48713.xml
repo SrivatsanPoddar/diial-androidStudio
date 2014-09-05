@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="twilioclient-android-1.1.3-ad48713">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/twilioclient-android-1.1.3-ad48713.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

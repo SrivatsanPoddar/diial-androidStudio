@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+    android:ordering="sequentially" >
+    
+
+    <objectAnimator
+    android:duration="100000"
+        android:propertyName="textColor"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
+        android:valueFrom="#000000"
+        android:valueTo="#FF0000"
+        android:valueType="intType"
+         />
+    
+</set>
+<!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/animator/calling_blink.xml -->

@@ -1,0 +1,80 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.SrivatsanPoddar.helpp.LogActivity"
+    tools:ignore="MergeRootFrame" >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call Log"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Company:"
+        android:id="@+id/company_name_log"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Date:"
+        android:id="@+id/date_log"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Duration:"
+        android:id="@+id/duration_log"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Call Path:"
+        android:id="@+id/call_path_log"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Saved Info:"
+        android:id="@+id/saved_info_log"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="214dp"
+        android:id="@+id/stored_info_list" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal"
+        android:onClick="toSearch"/>
+</LinearLayout>

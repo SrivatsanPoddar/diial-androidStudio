@@ -3,15 +3,30 @@
     android:id="@+id/twilio_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    
+    android:keepScreenOn="true"
     android:gravity="center_horizontal"
     android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/calling_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="please hold..."
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+
 
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/hangupButton" >
+        android:layout_above="@+id/hangupButton"
+        android:layout_below="@+id/calling_indicator"
+        android:layout_marginTop="5dp">
 
         <LinearLayout
             android:animateLayoutChanges="true"
@@ -23,19 +38,59 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:orientation="vertical" >
-            
-                <TextView
-                    android:id="@+id/calling_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
-                    android:text="calling..."
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-                
+
         </LinearLayout>
     </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/snake_game"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/calling_indicator"
+        android:layout_above="@+id/hangupButton">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffffff">
+
+            <TextView
+                android:id="@+id/text"
+                android:text="@string/snake_layout_text_text"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center_horizontal"
+                android:textColor="#ff000000"
+                android:textSize="24sp"/>
+
+
+            <TextView
+                android:id="@+id/live_score"
+                android:text="@string/live_score_text"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="#C4D5E0"
+                android:textSize="18sp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="15dp"/>
+
+        </RelativeLayout>
+
+        <com.SrivatsanPoddar.helpp.SnakeView
+            android:id="@+id/snake"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tileSize="24"
+            />
+
+
+
+    </FrameLayout>
 
     <ImageButton
         android:id="@+id/hangupButton"
@@ -56,6 +111,19 @@
         android:layout_toLeftOf="@+id/hangupButton"
         android:background="@android:color/transparent"
         android:scaleType="centerInside"
-        android:src="@drawable/send_digit" />
+        android:src="@drawable/send_digit_xml"
+        android:layout_marginRight="10dp" />
+
+    <ToggleButton
+        android:id="@+id/speaker_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerInside"
+        android:background="@drawable/speaker_phone_button_xml"
+        android:layout_below="@+id/scrollView1"
+        android:textOn=""
+        android:textOff=""
+        android:layout_toRightOf="@+id/hangupButton"
+        android:layout_marginLeft="10dp" />
 
 </RelativeLayout>

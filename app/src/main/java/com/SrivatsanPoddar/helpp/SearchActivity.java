@@ -31,6 +31,8 @@ import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -54,6 +56,8 @@ public class SearchActivity extends Activity
     private ArrayList<Node> path = new ArrayList<Node>();
     private static final String TAG = "SearchActivity";
     private Call thisCall;
+    private String device_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -66,7 +70,8 @@ public class SearchActivity extends Activity
         actionBar.setHomeButtonEnabled(true);        
         EditText searchText = (EditText) findViewById(R.id.search_text);
         Style.toOpenSans(this, searchText, "light");
-        
+
+        device_id = Secure.getString(this.getApplicationContext().getContentResolver(),Secure.ANDROID_ID);
         // Check if this activity was started clicking of non-root node. If so,
         // find and display children of that node
         if (extras != null)
@@ -90,7 +95,7 @@ public class SearchActivity extends Activity
         else
         {
             thisCall = new Call();
-            thisCall.device_id = Secure.getString(this.getApplicationContext().getContentResolver(),Secure.ANDROID_ID);
+            thisCall.device_id = this.device_id;
             nodes = Splash.loadedNodes;
             if (state == null)
             {
@@ -99,19 +104,31 @@ public class SearchActivity extends Activity
             }
         }
     }
-    
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_activity_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         
         Log.e("Menu Item Id", item.getItemId()+"");
-        
+        Intent intent;
         switch (item.getItemId()) {
+
             case android.R.id.home:
                 //Do stuff
-                Intent intent = new Intent(this, SearchActivity.class);
+                intent = new Intent(this, SearchActivity.class);
                 startActivity(intent);
                 
                 return true;
+            case R.id.call_log:
+                intent = new Intent(this, LogListActivity.class);
+                intent.putExtra("device_id", this.device_id);
+                startActivity(intent);
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -241,10 +258,10 @@ public class SearchActivity extends Activity
 
                 //Create string representing the path of the chosen nodes
                 for (Node n : ((SearchActivity) getActivity()).path) {
-                    stringPath = stringPath + " --> " + n.toString();
+                    stringPath = stringPath + " " + ((SearchActivity) getActivity()).getApplicationContext().getString(R.string.right_arrow) + " " + n.toString();
                 }
-                //stringPath = stringPath + " --> " + chosenNode.toString();
-                stringPath = stringPath.substring(4);  //Cut-off initial arrow from string display
+                //stringPath = stringPath + " &#8594; " + chosenNode.toString();
+                stringPath = stringPath.substring(2);  //Cut-off initial arrow from string display
 
                 //Set current time as start of call
                 TimeZone UTC = TimeZone.getTimeZone("UTC");

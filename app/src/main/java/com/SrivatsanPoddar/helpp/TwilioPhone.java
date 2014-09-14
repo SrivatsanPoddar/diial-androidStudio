@@ -8,6 +8,7 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import android.content.Context;
+import android.media.AudioManager;
 import android.util.Log;
 
 import com.twilio.client.Connection;
@@ -22,12 +23,14 @@ public class TwilioPhone implements Twilio.InitListener, Callback<CallToken>
     private Connection connection;
     private boolean toConnect = false;
     private String company_id;
-    
-    public TwilioPhone(Context context, String mCompany_id) {
+    private Context context;
+
+    public TwilioPhone(Context myContext, String mCompany_id) {
         if(Twilio.isInitialized()) {
             Twilio.shutdown();
             
         }
+        context = myContext;
         Twilio.initialize(context,  this);
         company_id = mCompany_id;
     }
@@ -88,6 +91,8 @@ public class TwilioPhone implements Twilio.InitListener, Callback<CallToken>
         parameters.put("To", company_id);
         Log.e("Making call with parameters:", parameters.toString());
         connection = device.connect(parameters, null);
+        AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+        audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
       if (connection == null)
           Log.e(TAG,"Failed to create a new connection");
 //        if (device != null) {
@@ -106,6 +111,8 @@ public class TwilioPhone implements Twilio.InitListener, Callback<CallToken>
         if (connection != null) {
             connection.disconnect();
             connection = null;
+            AudioManager audioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+            audioManager.setMode(AudioManager.MODE_NORMAL);
         }
     }
         

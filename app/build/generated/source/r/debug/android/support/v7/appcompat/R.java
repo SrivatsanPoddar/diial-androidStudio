@@ -80,8 +80,8 @@ public final class R {
 		public static final int listPreferredItemPaddingRight = 0x7f010028;
 		public static final int logo = 0x7f010045;
 		public static final int navigationMode = 0x7f01003f;
-		public static final int paddingEnd = 0x7f01006f;
-		public static final int paddingStart = 0x7f01006e;
+		public static final int paddingEnd = 0x7f010070;
+		public static final int paddingStart = 0x7f01006f;
 		public static final int panelMenuListTheme = 0x7f01006c;
 		public static final int panelMenuListWidth = 0x7f01006b;
 		public static final int popupMenuStyle = 0x7f01006a;
@@ -136,7 +136,7 @@ public final class R {
 		public static final int abc_split_action_bar_is_narrow = 0x7f060005;
 	}
 	public static final class color {
-		public static final int abc_search_url_text_holo = 0x7f070004;
+		public static final int abc_search_url_text_holo = 0x7f070005;
 		public static final int abc_search_url_text_normal = 0x7f070000;
 		public static final int abc_search_url_text_pressed = 0x7f070001;
 		public static final int abc_search_url_text_selected = 0x7f070002;
@@ -343,7 +343,7 @@ public final class R {
 		public static final int abc_search_dropdown_item_icons_2line = 0x7f030015;
 		public static final int abc_search_view = 0x7f030016;
 		public static final int abc_simple_decor = 0x7f030017;
-		public static final int support_simple_spinner_dropdown_item = 0x7f030022;
+		public static final int support_simple_spinner_dropdown_item = 0x7f030024;
 	}
 	public static final class string {
 		public static final int abc_action_bar_home_description = 0x7f0b0000;
@@ -608,7 +608,7 @@ public final class R {
 		public static final int Theme_panelMenuListTheme = 4;
 		public static final int Theme_panelMenuListWidth = 3;
 		public static final int Theme_popupMenuStyle = 2;
-		public static final int[] View = { 0x010100da, 0x7f01006e, 0x7f01006f };
+		public static final int[] View = { 0x010100da, 0x7f01006f, 0x7f010070 };
 		public static final int View_android_focusable = 0;
 		public static final int View_paddingEnd = 2;
 		public static final int View_paddingStart = 1;

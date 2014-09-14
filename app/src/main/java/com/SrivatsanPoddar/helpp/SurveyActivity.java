@@ -154,7 +154,7 @@ public class SurveyActivity extends Activity implements ListView.OnItemClickList
         @Override
         public void success(Call result, Response arg1)
         {
-            Log.e("Call Post successfully posted with result:", result.toString());
+            Log.e("Call Post successfully posted with result:", "woo");
             // TODO Auto-generated method stub
             
         }

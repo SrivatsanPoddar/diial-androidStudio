@@ -31,7 +31,8 @@ public class CustomListAdapter<T> extends ArrayAdapter<T>
 
         Style.toOpenSans(getContext(), displayText, "light");
         displayText.setAutoLinkMask(Linkify.ALL);
-        displayText.setText(nodes[position].toString());
+        //displayText.setText(nodes[position].toString());
+        displayText.setText(displayText.getText());
 //        Style.toOpenSans(getContext(), expiration, "light");
 //        Style.toOpenSans(getContext(), storeName, "light");
         return(row);

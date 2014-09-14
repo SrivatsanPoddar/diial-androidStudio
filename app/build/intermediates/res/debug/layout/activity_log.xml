@@ -4,16 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.SrivatsanPoddar.helpp.LogActivity"
-    tools:ignore="MergeRootFrame" >
+    tools:ignore="MergeRootFrame"
+    android:weightSum="1">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Call Log"
-        android:id="@+id/textView"
+        android:id="@+id/call_log_title"
         android:layout_gravity="center_horizontal"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:layout_marginTop="10dp" />
 
     <TextView
@@ -24,7 +25,7 @@
         android:id="@+id/company_name_log"
         android:layout_marginTop="7dp"
         android:layout_marginLeft="5dp"
-        android:textSize="20dp" />
+        android:textSize="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,7 +35,7 @@
         android:id="@+id/date_log"
         android:layout_marginTop="7dp"
         android:layout_marginLeft="5dp"
-        android:textSize="20dp" />
+        android:textSize="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,7 +45,7 @@
         android:id="@+id/duration_log"
         android:layout_marginTop="7dp"
         android:layout_marginLeft="5dp"
-        android:textSize="20dp" />
+        android:textSize="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,7 +55,7 @@
         android:id="@+id/call_path_log"
         android:layout_marginTop="7dp"
         android:layout_marginLeft="5dp"
-        android:textSize="20dp" />
+        android:textSize="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -68,7 +69,8 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="214dp"
-        android:id="@+id/stored_info_list" />
+        android:id="@+id/stored_info_list"
+        android:layout_weight="0.75" />
 
     <Button
         android:layout_width="wrap_content"

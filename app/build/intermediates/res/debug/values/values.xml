@@ -88,6 +88,7 @@
     <color name="abc_search_url_text_normal">#7fa87f</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
     <color name="abc_search_url_text_selected">@android:color/black</color>
+    <color name="background">#FFFFFF</color>
     <color name="black_overlay">#66000000</color>
     <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/attrs.xml -->
     <eat-comment />
@@ -490,6 +491,9 @@
         <!-- Drawable used as a background for selected list items. -->
         <attr name="listChoiceBackgroundIndicator" format="reference" />
     </declare-styleable>
+    <declare-styleable name="TileView">
+        <attr name="tileSize" format="integer" />
+    </declare-styleable>
     <declare-styleable name="View">
 
         <!-- Sets the padding, in pixels, of the start edge; see {@link android.R.attr#padding}. -->
@@ -567,15 +571,25 @@
     <string name="abc_searchview_description_voice">Voice search</string>
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
-    <string name="app_name">Liine</string>
+    <string name="action_call_log">Call Log</string>
+    <string name="app_name">diial</string>
     <string name="crash_toast_text">The application has crashed--please try again.</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="error">We can\'t access the internet.\nPlease reconnect and try again.</string>
     <string name="error_logo">:(</string>
     <string name="google_text">More results from Google</string>
+    <string name="high_score_text">New High Score!</string>
+    <string name="live_score_text">Score: 0  </string>
+    <string name="mode_lose_prefix">Your Score:  </string>
+    <string name="mode_lose_suffix">\n\nSwipe ↑ To Play Again</string>
+    <string name="mode_pause">Paused\n\nSwipe ↑ To Resume</string>
+    <string name="mode_ready">Swipe ↑ to Play Snake\n While you Wait</string>
+    <string name="old_high_score_text">\nHigh Score:</string>
     <string name="question_display_text">How was our Service?</string>
+    <string name="right_arrow">→</string>
     <string name="search_text">type to begin search...</string>
+    <string name="snake_layout_text_text"></string>
     <string name="survey_intro">Help Us Improve Our Service!</string>
     <string name="title_activity_log">LogActivity</string>
     <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles.xml -->
@@ -595,6 +609,7 @@
 
     <style name="CustomActionBarTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowBackground">@color/background</item>
     </style>
     <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles.xml -->
     <eat-comment />

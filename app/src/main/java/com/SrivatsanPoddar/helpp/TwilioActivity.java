@@ -1,6 +1,7 @@
 package com.SrivatsanPoddar.helpp;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import de.tavendo.autobahn.WebSocketConnection;
 import de.tavendo.autobahn.WebSocketException;
@@ -17,6 +18,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -26,16 +28,22 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.StyleSpan;
 import android.text.util.Linkify;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 
@@ -54,6 +62,17 @@ public class TwilioActivity extends Activity implements View.OnClickListener
     private Call thisCall;
     ValueAnimator callingAnimation;
     private ArrayList<String> stored_information = new ArrayList<String>(5);
+    private boolean speakerPhoneOn = false;
+
+    //Snake
+    private SnakeView mSnakeView;
+    private static final int SWIPE_MIN_DISTANCE = 80;
+    private static final int SWIPE_MAX_OFF_PATH = 250;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 150;
+    private GestureDetector gestureDetector;
+    View.OnTouchListener gestureListener;
+
+    private static String ICICLE_KEY = "snake-view";
 
     @Override
     public void onCreate(Bundle bundle)
@@ -88,9 +107,16 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         
         ImageButton sendDigit = (ImageButton)findViewById(R.id.send_digit);
         sendDigit.setOnClickListener(this);
-        
-        //TextView callingIndicator = (TextView) findViewById(R.id.calling_indicator);
-        callingAnimation = ObjectAnimator.ofInt(findViewById(R.id.calling_indicator),  "textColor",  Color.rgb(0x00, 0x00, 0x00), Color.rgb(0xB2, 0xBE, 0xFF));
+
+        ToggleButton speakerPhone = (ToggleButton) findViewById(R.id.speaker_button);
+        speakerPhone.setOnClickListener(this);
+
+        TextView callingIndicator = (TextView) findViewById(R.id.calling_indicator);
+        Style.toOpenSans(this, callingIndicator,"light");
+
+        TextView snakeText = (TextView) findViewById(R.id.text);
+        Style.toOpenSans(this,snakeText,"light");
+        callingAnimation = ObjectAnimator.ofInt(callingIndicator,  "textColor",  Color.rgb(0x00, 0x00, 0x00), Color.rgb(0xC4, 0xD5, 0xE0));
         callingAnimation.setDuration(1000);
         callingAnimation.setRepeatCount(ValueAnimator.INFINITE);
         callingAnimation.setRepeatMode(ValueAnimator.REVERSE);
@@ -106,9 +132,52 @@ public class TwilioActivity extends Activity implements View.OnClickListener
 //        
 //        Button sendMessage = (Button) findViewById(R.id.send_message);
 //        sendMessage.setOnClickListener(this);
-        
+
+       // setContentView(R.layout.snake_layout);
+
+        mSnakeView = (SnakeView) findViewById(R.id.snake);
+        mSnakeView.setTextView((TextView) findViewById(R.id.text));
+
+        if (bundle == null) {
+            // We were just launched -- set up a new game
+            mSnakeView.setMode(SnakeView.READY);
+        } else {
+            // We are being restored
+            Bundle map = bundle.getBundle(ICICLE_KEY);
+            if (map != null) {
+                mSnakeView.restoreState(map);
+            } else {
+                mSnakeView.setMode(SnakeView.PAUSE);
+            }
+        }
+
+        // Gesture detection
+        gestureDetector = new GestureDetector(this, new MyGestureDetector());
+        gestureListener = new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector.onTouchEvent(event);
+            }
+        };
+
+        //RelativeLayout twilioLayout = (RelativeLayout) findViewById(R.id.twilio_layout);
+        mSnakeView.setOnClickListener(this);
+        mSnakeView.setOnTouchListener(gestureListener);
+
     }
- 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Pause the game along with the activity
+        mSnakeView.setMode(SnakeView.PAUSE);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        //Store the game state
+        outState.putBundle(ICICLE_KEY, mSnakeView.saveState());
+    }
+
     @Override
     public void onClick(View view)
     {
@@ -131,6 +200,18 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         else if (view.getId() == R.id.send_digit) {
             Log.e("Send digit pushed","woo");
             phone.sendDigit();
+        }
+        else if (view.getId() == R.id.speaker_button) {
+            Log.e("Speaker phone toggled", "woo");
+            speakerPhoneOn = !speakerPhoneOn;
+            if (speakerPhoneOn) {
+                AudioManager audioManager = (AudioManager)getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+                audioManager.setSpeakerphoneOn(true);
+            }
+            else {
+                AudioManager audioManager = (AudioManager)getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+                audioManager.setSpeakerphoneOn(false);
+            }
         }
 //        else if (view.getId() == R.id.send_message) {
 //            String messageToSend = numberField.getText().toString();
@@ -202,7 +283,10 @@ public class TwilioActivity extends Activity implements View.OnClickListener
                      //Start the vibration
                      Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
                      //start vibration with repeated count, use -1 if you don't want to repeat the vibration
-                     vibrator.vibrate(pattern, -1);   
+                     vibrator.vibrate(pattern, -1);
+                     FrameLayout snakeGame = (FrameLayout) findViewById(R.id.snake_game);
+                     ViewGroup parentOfSnake = (ViewGroup) (snakeGame.getParent());
+                     parentOfSnake.removeView(snakeGame);
                  }
                  
 //                 if(m.message != null) {
@@ -218,12 +302,28 @@ public class TwilioActivity extends Activity implements View.OnClickListener
                  }
                  //If a link was sent by the caller, then show a clickable link
                  else if (m.request_format != null && m.request_format.equals("link")) {
+                    String sentURL = m.message;
 
+                     //Check if the URL is an image retrievable by Square Picasso, if so, then display that image...
+                    String[] imageFileExtensions =  new String[] {"jpg", "png", "gif","jpeg"};
+                    boolean isImage = false;
+                     for (String extension : imageFileExtensions)
+                     {
+                        if (sentURL.toLowerCase().endsWith(extension))
+                        {
+                            isImage = true;
+                            break;
+                        }
+                     }
+
+                     if (isImage) {
+                         TwilioActivity.this.addPicture(sentURL);
+
+                     }
+                     else {
                          TwilioActivity.this.addLink(m);  //Add instructions, text field and button UI
-
+                     }
                  }
-                 
-                 
               }
 
               @Override
@@ -237,7 +337,36 @@ public class TwilioActivity extends Activity implements View.OnClickListener
            Log.d(TAG, e.toString());
         }
      }
-    
+
+    //Adds a picture if sent by agent
+    public void addPicture(String sentURL) {
+
+        long pattern[]={0,50,50,50};
+        //Start the vibration
+        Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        //start vibration with repeated count, use -1 if you don't want to repeat the vibration
+        vibrator.vibrate(pattern, -1);
+
+        Log.e("Picture detected with URL: ", sentURL);
+        final LinearLayout toAdd = new LinearLayout(TwilioActivity.this);
+        toAdd.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams linLayoutParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+
+        ImageView imageView = new ImageView(TwilioActivity.this);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(5,5,5,5);
+        imageView.setLayoutParams(new LayoutParams(lp));
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageView.setAdjustViewBounds(true);
+        Picasso.with(TwilioActivity.this.getApplicationContext()).load(sentURL).into(imageView);
+
+        toAdd.addView(imageView);
+        variableLayout.addView(toAdd,0);
+
+
+
+    }
+
     //Adds a clickable link to the UI
     public void addLink(ChatMessage m) {
 
@@ -249,6 +378,7 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         vibrator.vibrate(pattern, -1);  
         
         String displayText = m.message;  //Extract the link URL
+
         String linkDescription = m.request_type;  
         if ((linkDescription != null) && !linkDescription.isEmpty()) {
             displayText = linkDescription + ": " + displayText;
@@ -257,7 +387,9 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         final SpannableStringBuilder sb = new SpannableStringBuilder(displayText);
 
         final StyleSpan bss = new StyleSpan(android.graphics.Typeface.BOLD); // Span to make text bold
-        sb.setSpan(bss, 0, linkDescription.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE); // make first 4 characters Bold
+        if (linkDescription != null) {
+            sb.setSpan(bss, 0, linkDescription.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE); // make first 4 characters Bold
+        }
 
 
         final LinearLayout toAdd = new LinearLayout(TwilioActivity.this);
@@ -274,7 +406,7 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         linkView.setAutoLinkMask(Linkify.ALL);
         linkView.setText(sb);
         toAdd.addView(linkView, linkParams);
-        variableLayout.addView(toAdd);
+        variableLayout.addView(toAdd,0);
         
     }
     
@@ -302,7 +434,7 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         instructionsParams.setMargins(20, 20, 20, 5);
 
         TextView instructions = new TextView(TwilioActivity.this);
-        Style.toOpenSans(this, instructions, "light");
+        Style.toOpenSans(this, instructions, "bold");
         instructions.setGravity(Gravity.CENTER_HORIZONTAL);
         
         instructions.setText(m.message);
@@ -353,6 +485,38 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         });
         
         toAdd.addView(horizontalLayout, horizontalLayoutParams);
-        variableLayout.addView(toAdd);
+        variableLayout.addView(toAdd,0);
     }
+
+    class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            Log.e("Fling detected", "woo");
+            try {
+                if(e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+                    //Toast.makeText(Snake.this, "Up Swipe", Toast.LENGTH_SHORT).show();
+                    mSnakeView.giveSwipe("up");
+                }  else if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+                    //Toast.makeText(Snake.this, "Down Swipe", Toast.LENGTH_SHORT).show();
+                    mSnakeView.giveSwipe("down");
+                }
+                else if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                    //Toast.makeText(Snake.this, "Left Swipe", Toast.LENGTH_SHORT).show();
+                    mSnakeView.giveSwipe("left");
+                }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                    //Toast.makeText(Snake.this, "Right Swipe", Toast.LENGTH_SHORT).show();
+                    mSnakeView.giveSwipe("right");
+                }
+            } catch (Exception e) {
+                // nothing
+            }
+            return false;
+        }
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+    }
+
 }

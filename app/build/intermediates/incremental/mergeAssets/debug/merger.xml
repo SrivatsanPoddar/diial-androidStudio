@@ -4,8 +4,8 @@
     <dataSet config="20.0.0" >
         <source path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\assets" />
     </dataSet>
-    <dataSet config="19.1.0" >
-        <source path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\assets" />
+    <dataSet config="20.0.0" >
+        <source path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\assets" />
     </dataSet>
     <dataSet config="main" >
         <source path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\assets" >

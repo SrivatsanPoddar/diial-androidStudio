@@ -45,7 +45,7 @@
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <!-- Description of the choose target button in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] -->
     <string name="abc_shareactionprovider_share_with">Share with</string>
-    <string name="app_name">Liine</string>
+    <string name="app_name">diial</string>
     <string name="survey_intro">Help Us Improve Our Service!</string>
     <string name="question_display_text">How was our Service?</string>
     <string name="search_text">type to begin search...</string>
@@ -56,5 +56,15 @@
     <string name="title_activity_log">LogActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="action_call_log">Call Log</string>
 
+    <string name="mode_ready">Swipe &#8593; to Play Snake\n While you Wait</string>
+    <string name="mode_pause">Paused\n\nSwipe &#8593; To Resume</string>
+    <string name="mode_lose_prefix">Your Score:  </string>
+    <string name="mode_lose_suffix">\n\nSwipe &#8593; To Play Again</string>
+    <string name="old_high_score_text">\nHigh Score:</string>
+    <string name="high_score_text">New High Score!</string>
+    <string name="live_score_text">Score: 0  </string>
+    <string name="right_arrow">&#8594;</string>
+    <string name="snake_layout_text_text"></string>
 </resources>

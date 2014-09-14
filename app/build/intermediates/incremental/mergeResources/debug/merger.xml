@@ -8425,13 +8425,63 @@ false
                 qualifiers=""
                 type="drawable" />
             <file
+                name="ic_menu_find_holo_dark"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\drawable\ic_menu_find_holo_dark.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="list_view"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\drawable\list_view.png"
+                qualifiers=""
+                type="drawable" />
+            <file
                 name="main_icon"
                 path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\drawable\main_icon.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="send_digit"
-                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\drawable\send_digit.png"
+                name="send_digits"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\drawable\send_digits.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="send_digit_pushed"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\drawable\send_digit_pushed.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="send_digit_xml"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\drawable\send_digit_xml.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="snake_body"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\drawable\snake_body.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="snake_border"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\drawable\snake_border.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="snake_head"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\drawable\snake_head.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="speaker_phone"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\drawable\speaker_phone.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="speaker_phone_button_xml"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\drawable\speaker_phone_button_xml.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="speaker_phone_pushed"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\drawable\speaker_phone_pushed.png"
                 qualifiers=""
                 type="drawable" />
             <file
@@ -10025,8 +10075,18 @@ false
                 qualifiers=""
                 type="layout" />
             <file
+                name="log_list_activity"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\layout\log_list_activity.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 name="search_list_row"
                 path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\layout\search_list_row.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="snake_layout"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\layout\snake_layout.xml"
                 qualifiers=""
                 type="layout" />
             <file
@@ -10062,6 +10122,11 @@ false
             <file
                 name="search"
                 path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\menu\search.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="search_activity_actions"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\menu\search_activity_actions.xml"
                 qualifiers=""
                 type="menu" />
             <file
@@ -10250,6 +10315,13 @@ false
                 <attr
                     name="actionModeBackground"
                     format="reference" />
+
+                <declare-styleable name="TileView" >
+                    <attr
+                        name="tileSize"
+                        format="integer" />
+                </declare-styleable>
+
                 <attr
                     name="actionBarWidgetTheme"
                     format="reference" />
@@ -10861,6 +10933,8 @@ true
                 </color>
                 <color name="black_overlay" >#66000000
                 </color>
+                <color name="background" >#FFFFFF
+                </color>
             </file>
             <file
                 path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\values\config.xml"
@@ -10968,21 +11042,11 @@ false
                 qualifiers="" >
                 <string name="question_display_text" >How was our Service?
                 </string>
-                <string name="abc_action_bar_home_description" >Navigate home
-                </string>
-                <string name="abc_action_menu_overflow_description" >More options
-                </string>
-                <string name="abc_activity_chooser_view_see_all" >See all
+                <string name="live_score_text" >Score: 0  
                 </string>
                 <string name="crash_toast_text" >The application has crashed--please try again.
                 </string>
-                <string name="abc_shareactionprovider_share_with" >Share with
-                </string>
                 <string name="error" >We can\'t access the internet.\nPlease reconnect and try again.
-                </string>
-                <string name="dummy_button" >Dummy Button
-                </string>
-                <string name="app_name" >Liine
                 </string>
                 <string name="survey_intro" >Help Us Improve Our Service!
                 </string>
@@ -10992,25 +11056,54 @@ false
                 </string>
                 <string name="abc_searchview_description_clear" >Clear query
                 </string>
-                <string name="abc_searchview_description_query" >Search query
-                </string>
+                <string name="snake_layout_text_text" ></string>
                 <string name="abc_activitychooserview_choose_application" >Choose an app
                 </string>
                 <string name="abc_action_mode_done" >Done
                 </string>
-                <string name="search_text" >type to begin search...
+                <string name="old_high_score_text" >\nHigh Score:
                 </string>
-                <string name="abc_shareactionprovider_share_with_application" >Share with %s
+                <string name="mode_pause" >Paused\n\nSwipe ↑ To Resume
+                </string>
+                <string name="high_score_text" >New High Score!
+                </string>
+                <string name="search_text" >type to begin search...
                 </string>
                 <string name="google_text" >More results from Google
                 </string>
                 <string name="abc_searchview_description_submit" >Submit query
                 </string>
-                <string name="title_activity_log" >LogActivity
-                </string>
                 <string name="error_logo" >:(
                 </string>
                 <string name="abc_searchview_description_voice" >Voice search
+                </string>
+                <string name="mode_ready" >Swipe ↑ to Play Snake\n While you Wait
+                </string>
+                <string name="abc_action_bar_home_description" >Navigate home
+                </string>
+                <string name="abc_action_menu_overflow_description" >More options
+                </string>
+                <string name="abc_activity_chooser_view_see_all" >See all
+                </string>
+                <string name="right_arrow" >→
+                </string>
+                <string name="abc_shareactionprovider_share_with" >Share with
+                </string>
+                <string name="dummy_button" >Dummy Button
+                </string>
+                <string name="app_name" >diial
+                </string>
+                <string name="abc_searchview_description_query" >Search query
+                </string>
+                <string name="action_call_log" >Call Log
+                </string>
+                <string name="abc_shareactionprovider_share_with_application" >Share with %s
+                </string>
+                <string name="mode_lose_suffix" >\n\nSwipe ↑ To Play Again
+                </string>
+                <string name="title_activity_log" >LogActivity
+                </string>
+                <string name="mode_lose_prefix" >Your Score:  
                 </string>
                 <string name="dummy_content" >DUMMY\nCONTENT
                 </string>
@@ -12011,6 +12104,9 @@ true
                     parent="@android:style/Theme.Holo.Light.DarkActionBar" >
                     <item name="android:actionBarStyle">
 @style/MyActionBar
+                    </item>
+                    <item name="android:windowBackground">
+@color/background
                     </item>
                 </style>
             </file>

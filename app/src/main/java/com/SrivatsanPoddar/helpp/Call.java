@@ -20,4 +20,10 @@ public class Call implements Serializable
     public Node[] call_path;
     public ArrayList<String> stored_information;
     public String call_path_string;
+    public int[] call_path_id; //Call path represented by Node ID
+    public String company_name;  //For retrieval when inner join on database call
+
+    public String toString() {
+        return call_path_string;
+    }
 }

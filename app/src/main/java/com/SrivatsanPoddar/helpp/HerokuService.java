@@ -1,12 +1,14 @@
 package com.SrivatsanPoddar.helpp;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import retrofit.Callback;
 import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Path;
+import retrofit.http.QueryMap;
 
 public interface HerokuService
 {
@@ -24,5 +26,7 @@ public interface HerokuService
     
     @POST("/call")
     void addCall(@Body Call call, Callback<Call> cb);
-    
+
+    @GET("/calls")
+    void getCallLog(@QueryMap Map<String, String> options, Callback<Calls> cb);
 }

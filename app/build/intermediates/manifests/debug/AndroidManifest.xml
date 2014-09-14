@@ -53,6 +53,10 @@
             android:name="com.SrivatsanPoddar.helpp.TwilioActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="com.SrivatsanPoddar.helpp.LogListActivity"
+            android:label="@string/app_name" >
+        </activity>
 
         <service
             android:name="com.twilio.client.TwilioClientService"
@@ -60,7 +64,7 @@
 
         <activity
             android:name="com.SrivatsanPoddar.helpp.LogActivity"
-            android:label="@string/title_activity_log" >
+            android:label="@string/app_name" >
         </activity>
     </application>
 

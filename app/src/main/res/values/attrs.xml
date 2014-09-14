@@ -16,6 +16,7 @@
 -->
 <resources>
 
+
     <!--
          Many app-specific attributes are declared in this file.
          Unless otherwise specified, they are intended to be set within
@@ -26,6 +27,11 @@
          read by the app.
     -->
     <eat-comment />
+
+
+    <declare-styleable name="TileView">
+        <attr name="tileSize" format="integer" />
+    </declare-styleable>
 
     <!--
          These attributes are meant to be specified and customized by the app.

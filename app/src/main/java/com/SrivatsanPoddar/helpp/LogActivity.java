@@ -50,16 +50,23 @@ public class LogActivity extends Activity {
         TextView date_log = (TextView) findViewById(R.id.date_log);
         TextView duration_log = (TextView) findViewById(R.id.duration_log);
         TextView call_path_log = (TextView) findViewById(R.id.call_path_log);
+        TextView call_log_title = (TextView) findViewById(R.id.call_log_title);
+
         Style.toOpenSans(this,company_name,"light");
         Style.toOpenSans(this,date_log,"light");
         Style.toOpenSans(this,duration_log,"light");
         Style.toOpenSans(this,call_path_log,"light");
+        Style.toOpenSans(this,call_log_title,"bold");
 
         final StyleSpan bss = new StyleSpan(android.graphics.Typeface.BOLD); // Span to make text bold
 
         final SpannableStringBuilder sb = new SpannableStringBuilder("HELLOO");
 
-        this.setBoldLabel(company_name, thisCall.call_path[0].toString());
+        if (thisCall.call_path != null)
+            this.setBoldLabel(company_name, thisCall.call_path[0].toString());
+        else
+            this.setBoldLabel(company_name, thisCall.company_name);
+
         this.setBoldLabel(call_path_log, thisCall.call_path_string);
         TimeZone UTC = TimeZone.getTimeZone("UTC");
         SimpleDateFormat dfUTC = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);

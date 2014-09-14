@@ -82,6 +82,7 @@
     <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="support-v4-20.0.0" level="project" />
     <orderEntry type="library" exported="" name="jackson-core-asl-1.9.7" level="project" />
+    <orderEntry type="library" exported="" name="picasso-2.3.4" level="project" />
     <orderEntry type="library" exported="" name="twilioclient-android-1.1.3-ad48713" level="project" />
     <orderEntry type="library" exported="" name="acra-4.5.0" level="project" />
     <orderEntry type="library" exported="" name="retrofit-1.6.1" level="project" />

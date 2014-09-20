@@ -161,7 +161,16 @@ public class SearchActivity extends Activity
         {
             super.onActivityCreated(savedInstanceState);
             final SearchActivity act = (SearchActivity) getActivity();
-            fragNodes = act.nodes;
+
+            // Concatenate favorites to top of list if not in tree
+            if(act.path.size() == 0) {
+                fragNodes = Arrays.copyOf(act.favorites.toArray(new Node[act.favorites.size()]), act.nodes.length + act.favorites.size());
+                System.arraycopy(act.nodes, 0, fragNodes, act.favorites.size(), act.nodes.length);
+            }
+            else
+            {
+                fragNodes = act.nodes;
+            }
             
             adapter = new CustomListAdapter<Node>(getActivity(),android.R.layout.simple_list_item_1,fragNodes);
             //aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -187,10 +196,12 @@ public class SearchActivity extends Activity
                      **/
 
                     // Add to favorites, change color
-                    act.favorites.add(fragNodes[position]);
-                    Style.makeToast(act, fragNodes[position] + " added to Favorites");
-                    Log.e("Adding favorite", fragNodes[position].toString());
-                    view.setBackgroundResource(R.drawable.abc_list_selector_background_transition_holo_light);
+                    if(!act.favorites.contains(fragNodes[position])) {
+                        act.favorites.add(fragNodes[position]);
+                        Style.makeToast(act, fragNodes[position] + " added to Favorites");
+                        Log.e("Adding favorite", fragNodes[position].toString());
+                        view.setBackgroundResource(R.drawable.abc_list_selector_background_transition_holo_light);
+                    }
 
                     return true;
                 }
@@ -288,6 +299,12 @@ public class SearchActivity extends Activity
             }
             else if (chosenNode.getNodeType().equals("PHONE") || chosenNode.getNodeType().equals("TWILIO"))  //End action reached
             {
+                // Add the node to favorites
+                if(!SearchActivity.favorites.contains(((SearchActivity)getActivity()).path.get(0))) {
+                    SearchActivity.favorites.add(((SearchActivity) getActivity()).path.get(0));
+                    Log.e("Added to Favorites", ((SearchActivity) getActivity()).path.get(0).toString());
+                }
+
                 String stringPath = "";
 
                 //Create string representing the path of the chosen nodes

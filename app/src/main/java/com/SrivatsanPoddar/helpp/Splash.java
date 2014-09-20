@@ -7,6 +7,8 @@ import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +29,10 @@ public class Splash extends Activity implements Callback<Node[]>
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.splash);
-        
+
+        ActionBar actionBar = getActionBar();
+        actionBar.hide();
+
         //Calculate passage of time to ensure splash screen displayed for 2s
         startTime = System.currentTimeMillis();
         
@@ -83,7 +88,12 @@ public class Splash extends Activity implements Callback<Node[]>
             else
             {
                 // Use the hashtable to get the parents
-                nodeHash.get(n.getParentNodeId()).addChild(n);
+                try {
+                    nodeHash.get(n.getParentNodeId()).addChild(n);
+                }
+                catch (Exception e) {
+                    Log.e(e.getLocalizedMessage(), "AH");
+                }
             }
         }
 

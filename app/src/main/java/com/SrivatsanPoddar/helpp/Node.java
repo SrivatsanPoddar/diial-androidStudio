@@ -2,6 +2,8 @@ package com.SrivatsanPoddar.helpp;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 @SuppressWarnings("serial")
 public class Node implements Serializable{
@@ -30,7 +32,13 @@ public class Node implements Serializable{
 	}
 	
 	public Node[] getChildren() {
-        return children.toArray(new Node[children.size()]);
+
+        //Don't sort the main list --CHANGE THIS--POOR PROGRAMMING
+        if (children.size() < 15) {
+            Collections.sort(children, new NodeComparator());
+        }
+
+         return children.toArray(new Node[children.size()]);
     }
 	
 	public void addChild(Node child)
@@ -62,3 +70,4 @@ public class Node implements Serializable{
 
     public String getNodeType() { return node_type; }
 }
+

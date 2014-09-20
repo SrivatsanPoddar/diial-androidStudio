@@ -469,8 +469,6 @@ public class SnakeView extends TileView {
             str = res.getText(R.string.mode_ready);
         }
         if (newMode == LOSE) {
-
-
             //Check if high score was reached, if so, update shared preferences and show high score label
             TwilioActivity hostTwilioActivity = (TwilioActivity) this.getContext();
             SharedPreferences prefs = hostTwilioActivity.getApplicationContext().getSharedPreferences("com.SrivatsanPoddar.helpp", Context.MODE_PRIVATE);
@@ -481,7 +479,7 @@ public class SnakeView extends TileView {
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putLong(preferenceKey, mScore);
                 editor.commit();
-                str = res.getString(R.string.high_score_text) 
+                str = res.getString(R.string.high_score_text)
                         + res.getString(R.string.mode_lose_suffix);
             }
             else {

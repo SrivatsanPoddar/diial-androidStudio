@@ -238,6 +238,7 @@ public class SearchActivity extends Activity
                     if(!searchText.getText().toString().equals(""))
                     {
                         button.setVisibility(View.VISIBLE);
+                        button.setText("Search Google for '" + searchText.getText().toString() + "'");
                     }
                     else
                     {

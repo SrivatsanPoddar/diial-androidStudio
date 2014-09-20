@@ -11069,7 +11069,7 @@ false
                 </string>
                 <string name="search_text" >type to begin search...
                 </string>
-                <string name="google_text" >More results from Google
+                <string name="google_text" >Search Google for 
                 </string>
                 <string name="abc_searchview_description_submit" >Submit query
                 </string>
@@ -15923,6 +15923,11 @@ false
                     msgid="7468859129482906941" >"Buka konke"
                 </string>
             </file>
+            <file
+                name="log_list_row"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\layout\log_list_row.xml"
+                qualifiers=""
+                type="layout" />
         </source>
         <source path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\generated\res\rs\debug" />
         <source path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\generated\res\generated\debug" />

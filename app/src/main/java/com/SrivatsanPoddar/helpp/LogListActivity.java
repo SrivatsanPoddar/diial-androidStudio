@@ -47,7 +47,7 @@ public class LogListActivity extends Activity implements Callback<Calls>, ListVi
         public void success(Calls myCalls, Response response) {
             calls = myCalls;
             ListView stored_info_list = (ListView) findViewById(R.id.call_log_list);
-            CustomListAdapter<Call> adapter = new CustomListAdapter<Call>(this, android.R.layout.simple_list_item_1, calls.Calls.toArray(new Call[0]));
+            LogListAdapter<Call> adapter = new LogListAdapter<Call>(this, android.R.layout.simple_list_item_1, calls.Calls.toArray(new Call[0]));
             stored_info_list.setAdapter(adapter);
             stored_info_list.setOnItemClickListener(this);
             Log.e("Successfully retrieved call log", calls.toString());

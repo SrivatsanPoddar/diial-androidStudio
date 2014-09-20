@@ -2,76 +2,76 @@
 <pre-dex-items>
 
     <item
-        dex="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\pre-dexed\debug\jackson-core-asl-1.9.7-49cb2d2e37227d0859d72ddd6ab646d76238df22.jar"
-        jar="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\libs\jackson-core-asl-1.9.7.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="2dd41e7570f5c73e63a6a1311671a60c817e1989"/>
-    <item
-        dex="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\pre-dexed\debug\classes-7141739583fb9d1ce40ea24086f36d40e383fa44.jar"
-        jar="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\classes.jar"
+        dex="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\build\intermediates\pre-dexed\debug\classes-145d99fda0d0ff2434bf2e4481aa1fa84dcefbeb.jar"
+        jar="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\classes.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef"/>
     <item
-        dex="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-79e42da7c2657068d681cf877be8b4cc06e3cb7a.jar"
-        jar="C:\Program Files (x86)\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
-    <item
-        dex="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\pre-dexed\debug\gson-2.2.4-b45e63426db27abfbf9f4d1f2825ae4a6dc84130.jar"
-        jar="C:\Users\Piyush\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.2.4\a60a5e993c98c864010053cb901b7eab25306568\gson-2.2.4.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="a60a5e993c98c864010053cb901b7eab25306568"/>
-    <item
-        dex="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\pre-dexed\debug\acra-4.5.0-ed9a624a844e6efe00cb400c4d5f057d315a4fa2.jar"
-        jar="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\libs\acra-4.5.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="44a5eb946e0d83eed4a0128d877ca1fd8168b83a"/>
-    <item
-        dex="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\pre-dexed\debug\autobahn-0.5.0-f10ffed4e152056dadcf9aff6d683f75f36be985.jar"
-        jar="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\libs\autobahn-0.5.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="5f62bc6117f905fd37955f6e2ebd3aad68701b60"/>
-    <item
-        dex="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\pre-dexed\debug\jackson-mapper-asl-1.9.7-1b1cd1c162a9288f009feb501ee31c142a9da5e0.jar"
-        jar="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\libs\jackson-mapper-asl-1.9.7.jar"
+        dex="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\build\intermediates\pre-dexed\debug\jackson-mapper-asl-1.9.7-46edc0c8afbca47804d476b16e4514d24f112aed.jar"
+        jar="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\libs\jackson-mapper-asl-1.9.7.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="3bc2efad5ceb9e24e44f731d4282b5df3ea6d23f"/>
     <item
-        dex="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\pre-dexed\debug\twilioclient-android-1.1.3-ad48713-9ed05b430a268f270b2016ee18bc80b71d9a7b8b.jar"
-        jar="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\libs\twilioclient-android-1.1.3-ad48713.jar"
+        dex="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\build\intermediates\pre-dexed\debug\picasso-2.3.4-4df2af9d57033b908e83d01142927f507aa17c09.jar"
+        jar="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\libs\picasso-2.3.4.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="379954e85fc5854a2c7abab056af21d2d45e2f3e"/>
+        sha1="3b646ddbdac8a33fc45b64564011da81d23e4635"/>
     <item
-        dex="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\pre-dexed\debug\retrofit-1.6.1-7aaee53f731f6281c2ab24bb654e82c74644b86e.jar"
-        jar="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\libs\retrofit-1.6.1.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="efb0a36546aa8857ab8df358b106c1817e03cbee"/>
-    <item
-        dex="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\pre-dexed\debug\classes-2132751da3593f21685a36483954ca616494b7e5.jar"
-        jar="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
-    <item
-        dex="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-02d4c835f623659f39b2d6b5befe45c74f3cbfb7.jar"
-        jar="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\libs\internal_impl-20.0.0.jar"
+        dex="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-3041d66949eed817e5f3cb99034b1afd2cabc84b.jar"
+        jar="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\libs\internal_impl-20.0.0.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
     <item
-        dex="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\intermediates\pre-dexed\debug\picasso-2.3.4-923065e80d1a3dd7267a18abca93fc232525024a.jar"
-        jar="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\libs\picasso-2.3.4.jar"
+        dex="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-22b431847f72415b036af32ee1c2e0966756e001.jar"
+        jar="C:\Users\Akshay\AppData\Local\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="3b646ddbdac8a33fc45b64564011da81d23e4635"/>
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
+    <item
+        dex="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\build\intermediates\pre-dexed\debug\acra-4.5.0-89fb92c0e7ec03f74a1f04fc4f1190c3a26c07ed.jar"
+        jar="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\libs\acra-4.5.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="44a5eb946e0d83eed4a0128d877ca1fd8168b83a"/>
+    <item
+        dex="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\build\intermediates\pre-dexed\debug\classes-0a2cf59c82c2778451c6adcc34fdf32711f55133.jar"
+        jar="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
+    <item
+        dex="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\build\intermediates\pre-dexed\debug\autobahn-0.5.0-256775bc082c6ea83761d4613d56a960b752f8ea.jar"
+        jar="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\libs\autobahn-0.5.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="5f62bc6117f905fd37955f6e2ebd3aad68701b60"/>
+    <item
+        dex="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\build\intermediates\pre-dexed\debug\retrofit-1.6.1-914fa42e891be22d2f048b9ee70fbf56dc6e3ab0.jar"
+        jar="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\libs\retrofit-1.6.1.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="efb0a36546aa8857ab8df358b106c1817e03cbee"/>
+    <item
+        dex="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\build\intermediates\pre-dexed\debug\jackson-core-asl-1.9.7-be8063d3ddd78ea8643f9dd93474b6d4f5fdf7c9.jar"
+        jar="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\libs\jackson-core-asl-1.9.7.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="2dd41e7570f5c73e63a6a1311671a60c817e1989"/>
+    <item
+        dex="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\build\intermediates\pre-dexed\debug\twilioclient-android-1.1.3-ad48713-3a70da5dc182c9b1bad88f084542a26eb9ef45d9.jar"
+        jar="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\libs\twilioclient-android-1.1.3-ad48713.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="379954e85fc5854a2c7abab056af21d2d45e2f3e"/>
+    <item
+        dex="C:\Users\Akshay\Documents\GitHub\diial-androidStudio\app\build\intermediates\pre-dexed\debug\gson-2.2.4-d8198acea89220d7383810edf23805274a0c103b.jar"
+        jar="C:\Users\Akshay\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.2.4\a60a5e993c98c864010053cb901b7eab25306568\gson-2.2.4.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568"/>
 
 </pre-dex-items>

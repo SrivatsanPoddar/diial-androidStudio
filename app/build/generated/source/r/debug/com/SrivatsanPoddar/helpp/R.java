@@ -957,16 +957,17 @@ containing a value of this type.
         public static final int ic_menu_find_holo_dark=0x7f02005e;
         public static final int list_view=0x7f02005f;
         public static final int main_icon=0x7f020060;
-        public static final int send_digit_pushed=0x7f020061;
-        public static final int send_digit_xml=0x7f020062;
-        public static final int send_digits=0x7f020063;
-        public static final int snake_body=0x7f020064;
-        public static final int snake_border=0x7f020065;
-        public static final int snake_head=0x7f020066;
-        public static final int speaker_phone=0x7f020067;
-        public static final int speaker_phone_button_xml=0x7f020068;
-        public static final int speaker_phone_pushed=0x7f020069;
-        public static final int toast_background=0x7f02006a;
+        public static final int send_digit=0x7f020061;
+        public static final int send_digit_pushed=0x7f020062;
+        public static final int send_digit_xml=0x7f020063;
+        public static final int send_digits=0x7f020064;
+        public static final int snake_body=0x7f020065;
+        public static final int snake_border=0x7f020066;
+        public static final int snake_head=0x7f020067;
+        public static final int speaker_phone=0x7f020068;
+        public static final int speaker_phone_button_xml=0x7f020069;
+        public static final int speaker_phone_pushed=0x7f02006a;
+        public static final int toast_background=0x7f02006b;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f08003e;

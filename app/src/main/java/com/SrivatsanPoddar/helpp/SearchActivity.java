@@ -23,6 +23,8 @@ import android.app.Activity;
 import android.app.ListFragment;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -40,6 +42,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 
 import com.google.gson.*;
 
@@ -54,6 +58,7 @@ public class SearchActivity extends Activity
     Bundle state;
     private ActionBar actionBar;
     private ArrayList<Node> path = new ArrayList<Node>();
+    public static ArrayList<Node> favorites = new ArrayList<Node>();
     private static final String TAG = "SearchActivity";
     private Call thisCall;
     private String device_id;
@@ -155,13 +160,42 @@ public class SearchActivity extends Activity
         public void onActivityCreated(Bundle savedInstanceState)
         {
             super.onActivityCreated(savedInstanceState);
-            SearchActivity act = (SearchActivity) getActivity();
+            final SearchActivity act = (SearchActivity) getActivity();
             fragNodes = act.nodes;
             
             adapter = new CustomListAdapter<Node>(getActivity(),android.R.layout.simple_list_item_1,fragNodes);
             //aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             //promotionsList.setAdapter(aa);
             setListAdapter(adapter);
+
+            // Set up long click (favorites) listener
+            getListView().setOnItemLongClickListener(new OnItemLongClickListener()
+            {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id)
+                {
+                    /**
+                    // Set up shared preferences
+                    SharedPreferences prefs = act.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
+                    int numFavorites = prefs.getInt("numFavorites", 0);
+
+
+                    Node temp = fragNodes[position];
+                    fragNodes[position] = fragNodes[numFavorites];
+                    fragNodes[numFavorites] = temp;
+                    prefs.edit().putInt("numFavorites", numFavorites + 1).apply();
+                     **/
+
+                    // Add to favorites, change color
+                    act.favorites.add(fragNodes[position]);
+                    Style.makeToast(act, fragNodes[position] + " added to Favorites");
+                    Log.e("Adding favorite", fragNodes[position].toString());
+                    view.setBackgroundResource(R.drawable.abc_list_selector_background_transition_holo_light);
+
+                    return true;
+                }
+            });
+
             
             // Set up google search listener
             final Button button = (Button) getActivity().findViewById(R.id.search_button);

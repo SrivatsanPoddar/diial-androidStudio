@@ -64,7 +64,7 @@ public class SurveyActivity extends Activity implements ListView.OnItemClickList
         ui = restAdapter.create(HerokuService.class);
         // First get company questions, then Liine questions
         ui.getQuestions(company_id,this);
-        ui.getQuestions("0", this);
+        //ui.getQuestions("0", this);
         
 
         

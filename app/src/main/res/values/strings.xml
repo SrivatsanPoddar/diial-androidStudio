@@ -49,7 +49,7 @@
     <string name="survey_intro">Help Us Improve Our Service!</string>
     <string name="question_display_text">How was our Service?</string>
     <string name="search_text">type to begin search...</string>
-    <string name="google_text">More results from Google</string>
+    <string name="google_text">Search Google for </string>
     <string name="error">We can\'t access the internet.\nPlease reconnect and try again.</string>
     <string name="error_logo">:(</string>
     <string name="crash_toast_text">The application has crashed--please try again.</string>

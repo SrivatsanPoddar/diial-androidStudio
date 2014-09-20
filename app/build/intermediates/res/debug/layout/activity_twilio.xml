@@ -103,27 +103,29 @@
         android:scaleType="centerInside"
         android:src="@drawable/end_call_button_xml" />
 
-    <ImageButton
-        android:id="@+id/send_digit"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/scrollView1"
-        android:layout_toLeftOf="@+id/hangupButton"
-        android:background="@android:color/transparent"
-        android:scaleType="centerInside"
-        android:src="@drawable/send_digit_xml"
-        android:layout_marginRight="10dp" />
+    <!--<ImageButton-->
+        <!--android:id="@+id/send_digit"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:layout_below="@+id/scrollView1"-->
+        <!--android:layout_toLeftOf="@+id/hangupButton"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:scaleType="centerInside"-->
+        <!--android:src="@drawable/send_digit_xml"-->
+        <!--android:layout_marginRight="10dp" />-->
 
     <ToggleButton
         android:id="@+id/speaker_button"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:scaleType="centerInside"
         android:background="@drawable/speaker_phone_button_xml"
-        android:layout_below="@+id/scrollView1"
         android:textOn=""
         android:textOff=""
-        android:layout_toRightOf="@+id/hangupButton"
-        android:layout_marginLeft="10dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp" />
 
 </RelativeLayout><!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/layout/activity_twilio.xml -->

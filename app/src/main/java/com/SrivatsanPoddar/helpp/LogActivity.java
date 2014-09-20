@@ -51,12 +51,14 @@ public class LogActivity extends Activity {
         TextView duration_log = (TextView) findViewById(R.id.duration_log);
         TextView call_path_log = (TextView) findViewById(R.id.call_path_log);
         TextView call_log_title = (TextView) findViewById(R.id.call_log_title);
+        TextView saved_info_label = (TextView) findViewById(R.id.saved_info_log);
 
         Style.toOpenSans(this,company_name,"light");
         Style.toOpenSans(this,date_log,"light");
         Style.toOpenSans(this,duration_log,"light");
         Style.toOpenSans(this,call_path_log,"light");
         Style.toOpenSans(this,call_log_title,"bold");
+        Style.toOpenSans(this,saved_info_label,"bold");
 
         final StyleSpan bss = new StyleSpan(android.graphics.Typeface.BOLD); // Span to make text bold
 
@@ -102,9 +104,12 @@ public class LogActivity extends Activity {
         }
 
         ListView stored_info_list = (ListView) findViewById(R.id.stored_info_list);
-        if (thisCall.stored_information != null) {
-            CustomListAdapter<String> adapter = new CustomListAdapter<String>(this, android.R.layout.simple_list_item_1, thisCall.stored_information.toArray(new String[0]));
+        if (thisCall.stored_information != null && thisCall.stored_information.size() > 0) {
+            LogListAdapter<String> adapter = new LogListAdapter<String>(this, android.R.layout.simple_list_item_1, thisCall.stored_information.toArray(new String[0]));
             stored_info_list.setAdapter(adapter);
+        }
+        else {
+            saved_info_label.setVisibility(View.GONE);
         }
     }
 

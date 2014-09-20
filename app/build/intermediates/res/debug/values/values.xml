@@ -578,7 +578,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="error">We can\'t access the internet.\nPlease reconnect and try again.</string>
     <string name="error_logo">:(</string>
-    <string name="google_text">More results from Google</string>
+    <string name="google_text">Search Google for </string>
     <string name="high_score_text">New High Score!</string>
     <string name="live_score_text">Score: 0  </string>
     <string name="mode_lose_prefix">Your Score:  </string>

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="@drawable/abc_cab_background_top_holo_light"
+        android:background="#C4D5E0"
         android:contentDescription="@string/app_name"
         android:scaleType="fitCenter"
         android:src="@drawable/main_icon" />

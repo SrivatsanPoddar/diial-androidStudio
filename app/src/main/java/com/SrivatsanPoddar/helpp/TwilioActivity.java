@@ -104,9 +104,9 @@ public class TwilioActivity extends Activity implements View.OnClickListener
  
         ImageButton hangupButton = (ImageButton)findViewById(R.id.hangupButton);
         hangupButton.setOnClickListener(this);
-        
-        ImageButton sendDigit = (ImageButton)findViewById(R.id.send_digit);
-        sendDigit.setOnClickListener(this);
+
+//        ImageButton sendDigit = (ImageButton)findViewById(R.id.send_digit);
+//        sendDigit.setOnClickListener(this);
 
         ToggleButton speakerPhone = (ToggleButton) findViewById(R.id.speaker_button);
         speakerPhone.setOnClickListener(this);
@@ -197,10 +197,10 @@ public class TwilioActivity extends Activity implements View.OnClickListener
             TwilioActivity.this.startActivity(intent);
         }
 
-        else if (view.getId() == R.id.send_digit) {
-            Log.e("Send digit pushed","woo");
-            phone.sendDigit();
-        }
+//        else if (view.getId() == R.id.send_digit) {
+//            Log.e("Send digit pushed","woo");
+//            phone.sendDigit();
+//        }
         else if (view.getId() == R.id.speaker_button) {
             Log.e("Speaker phone toggled", "woo");
             speakerPhoneOn = !speakerPhoneOn;
@@ -363,6 +363,7 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         toAdd.addView(imageView);
         variableLayout.addView(toAdd,0);
 
+        stored_information.add(sentURL);
 
 
     }
@@ -377,6 +378,7 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         //start vibration with repeated count, use -1 if you don't want to repeat the vibration
         vibrator.vibrate(pattern, -1);  
         
+
         String displayText = m.message;  //Extract the link URL
 
         String linkDescription = m.request_type;  

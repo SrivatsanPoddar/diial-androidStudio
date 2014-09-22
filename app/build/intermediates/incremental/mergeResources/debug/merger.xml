@@ -10080,6 +10080,11 @@ false
                 qualifiers=""
                 type="layout" />
             <file
+                name="log_list_row"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\layout\log_list_row.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 name="search_list_row"
                 path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\layout\search_list_row.xml"
                 qualifiers=""
@@ -15923,11 +15928,6 @@ false
                     msgid="7468859129482906941" >"Buka konke"
                 </string>
             </file>
-            <file
-                name="log_list_row"
-                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\layout\log_list_row.xml"
-                qualifiers=""
-                type="layout" />
         </source>
         <source path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\generated\res\rs\debug" />
         <source path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\generated\res\generated\debug" />

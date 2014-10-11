@@ -145,7 +145,7 @@ public class SearchActivity extends Activity
 
         for(Node n : nodes)
         {
-            if(favoriteNames.contains(n.toString()))
+            if(favoriteNames.contains(n.toString()) && !favorites.contains(n))
             {
                 Log.e("Adding to favorites", n.toString());
                 favorites.add(n);

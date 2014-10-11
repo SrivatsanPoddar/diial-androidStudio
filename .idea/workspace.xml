@@ -23,7 +23,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70d5e3ba-d0b5-4b61-b009-fce5a04032ef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/Node.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/Node.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/SearchActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/SearchActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -123,8 +122,8 @@
       <file leaf-file-name="SearchActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/SearchActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.782" vertical-offset="1173" max-vertical-offset="6375">
-              <caret line="147" column="52" selection-start-line="147" selection-start-column="52" selection-end-line="147" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.816" vertical-offset="1224" max-vertical-offset="6375">
+              <caret line="151" column="13" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
               <folding>
                 <element signature="e#4384#4392#0" expanded="true" />
               </folding>
@@ -1368,7 +1367,11 @@
       <created>1413037964268</created>
       <updated>1413037964268</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Favorites now stored across app close.">
+      <created>1413042535770</created>
+      <updated>1413042535770</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1452,7 +1455,8 @@
     </option>
     <MESSAGE value="Long click to add to favorites. Only favorites are highlighted." />
     <MESSAGE value="Updated favorites color." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated favorites color." />
+    <MESSAGE value="Favorites now stored across app close." />
+    <option name="LAST_COMMIT_MESSAGE" value="Favorites now stored across app close." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1895,8 +1899,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/SearchActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.782" vertical-offset="1173" max-vertical-offset="6375">
-          <caret line="147" column="52" selection-start-line="147" selection-start-column="52" selection-end-line="147" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.816" vertical-offset="1224" max-vertical-offset="6375">
+          <caret line="151" column="13" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
           <folding>
             <element signature="e#4384#4392#0" expanded="true" />
           </folding>

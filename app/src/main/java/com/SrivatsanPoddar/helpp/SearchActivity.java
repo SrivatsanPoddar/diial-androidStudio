@@ -2,14 +2,20 @@ package com.SrivatsanPoddar.helpp;
 
 import android.graphics.Color;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Locale;
+import java.util.Scanner;
 import java.util.TimeZone;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -62,6 +68,7 @@ public class SearchActivity extends Activity
     private static final String TAG = "SearchActivity";
     private Call thisCall;
     private String device_id;
+    private final String FILENAME = "Favorites.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -102,12 +109,87 @@ public class SearchActivity extends Activity
             thisCall = new Call();
             thisCall.device_id = this.device_id;
             nodes = Splash.loadedNodes;
+            loadFavorites();
             if (state == null)
             {
                 getFragmentManager().beginTransaction()
                         .add(R.id.frame_layout, new PlaceholderFragment()).commit();
             }
         }
+    }
+
+    private void loadFavorites()
+    {
+        FileInputStream fis = null;
+        try {
+            fis = openFileInput(FILENAME);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
+        Scanner scan = new Scanner(fis);
+
+        HashSet<String> favoriteNames = new HashSet<String>();
+        while(scan.hasNextLine())
+        {
+            String line = scan.nextLine();
+            Log.e("Reading from favorites", line);
+            favoriteNames.add(line);
+        }
+
+        try {
+            fis.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for(Node n : nodes)
+        {
+            if(favoriteNames.contains(n.toString()))
+            {
+                Log.e("Adding to favorites", n.toString());
+                favorites.add(n);
+            }
+        }
+    }
+
+    @Override
+    public void onStop()
+    {
+        // Write the favorites to a file
+        FileOutputStream fos = null;
+        try
+        {
+            fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+        }
+        catch (FileNotFoundException e)
+        {
+            Log.e("File not found", e.getMessage());
+        }
+
+        try
+        {
+            for (Node n : favorites)
+            {
+                Log.e("Writing to favorites", n.toString());
+                fos.write((n.toString() + "\n").getBytes());
+            }
+        }
+        catch(IOException e)
+        {
+            Log.e("Error writing", e.getMessage());
+        }
+
+        try
+        {
+            fos.close();
+        }
+        catch(IOException e)
+        {
+            Log.e("Error closing file", e.getMessage());
+        }
+
+        super.onStop();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

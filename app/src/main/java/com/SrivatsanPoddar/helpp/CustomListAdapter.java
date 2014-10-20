@@ -42,7 +42,11 @@ public class CustomListAdapter<T> extends ArrayAdapter<T>
         if(SearchActivity.favorites.contains(nodes[position]))
         {
             Log.e("In favorites", nodes[position].toString());
+<<<<<<< HEAD
             row.setBackgroundResource(R.color.light_blue);
+=======
+            row.setBackgroundResource(R.drawable.favorites_color);
+>>>>>>> 4aca2ef7ac9a26bb9c6a09d5c9bc050977cca448
         }
         else
         {

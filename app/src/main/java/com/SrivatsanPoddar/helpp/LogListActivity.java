@@ -1,9 +1,11 @@
 package com.SrivatsanPoddar.helpp;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -22,10 +24,15 @@ import retrofit.client.Response;
 public class LogListActivity extends Activity implements Callback<Calls>, ListView.OnItemClickListener {
 
     private Calls calls;
+    private ActionBar actionBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_list_activity);
+
+        actionBar = getActionBar();
+        actionBar.setHomeButtonEnabled(true);
 
         Bundle extras = this.getIntent().getExtras();
 
@@ -41,6 +48,19 @@ public class LogListActivity extends Activity implements Callback<Calls>, ListVi
         options.put("device_id", device_id);
         nodeService.getCallLog(options,this);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, SearchActivity.class);
+                startActivity(intent);
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
         @Override

@@ -3,6 +3,7 @@ package com.SrivatsanPoddar.helpp;
 import com.SrivatsanPoddar.helpp.util.SystemUiHider;
 
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListAdapter;
@@ -35,11 +37,15 @@ import java.util.concurrent.TimeUnit;
 public class LogActivity extends Activity {
 
     private Call thisCall;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
+
+        actionBar = getActionBar();
+        actionBar.setHomeButtonEnabled(true);
 
         Bundle extras = this.getIntent().getExtras();
         thisCall = (Call) extras.getSerializable("thisCall");
@@ -110,6 +116,19 @@ public class LogActivity extends Activity {
         }
         else {
             saved_info_label.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, SearchActivity.class);
+                startActivity(intent);
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

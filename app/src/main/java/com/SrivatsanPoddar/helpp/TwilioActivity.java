@@ -96,7 +96,7 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         this.start(JSONMessage);
         
         variableLayout = (LinearLayout) findViewById(R.id.variable_layout);
-        
+
         phone = new TwilioPhone(getApplicationContext(), company_id);
         //phone.connect(company_id);
 //        ImageButton dialButton = (ImageButton)findViewById(R.id.dialButton);
@@ -223,7 +223,10 @@ public class TwilioActivity extends Activity implements View.OnClickListener
     
     public void onDestroy() {
         super.onDestroy();
-        mHandler.removeCallbacks(pingServer);
+        if (mHandler != null) {
+            mHandler.removeCallbacks(pingServer);
+        }
+
         mConnection.disconnect();
         phone.disconnect();
     }

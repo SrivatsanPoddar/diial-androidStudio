@@ -18,12 +18,9 @@ import android.app.Application;
 //import com.google.android.gms.analytics.Logger.LogLevel;
 import android.util.Log;
 
-@ReportsCrashes(formKey = "", formUri = "http://127.0.0.1:5984/acra-taste/_design/acra-storage/_update/report", reportType = org.acra.sender.HttpSender.Type.JSON, httpMethod = org.acra.sender.HttpSender.Method.PUT, formUriBasicAuthLogin = "ppod", formUriBasicAuthPassword = "ppod", resToastText = R.string.crash_toast_text, mode = ReportingInteractionMode.TOAST, customReportContent = {
-        ReportField.APP_VERSION_CODE, ReportField.APP_VERSION_NAME,
-        ReportField.ANDROID_VERSION, ReportField.PACKAGE_NAME,
-        ReportField.REPORT_ID, ReportField.BUILD, ReportField.PHONE_MODEL,
-        ReportField.CUSTOM_DATA, ReportField.STACK_TRACE, ReportField.LOGCAT,
-        ReportField.USER_COMMENT, ReportField.BRAND }, mailTo = "support@getTaste.co")
+@ReportsCrashes(formKey = "",
+        resToastText = R.string.crash_toast_text,
+        mode = ReportingInteractionMode.TOAST, mailTo = "support@getTaste.co")
 public class Global extends Application
 {
 

@@ -21,4 +21,5 @@
     <color name="abc_search_url_text_pressed">@android:color/black</color>
     <color name="black_overlay">#66000000</color>
     <color name="background">#FFFFFF</color>
+    <color name="light_blue">#C4D5E0</color>
 </resources>

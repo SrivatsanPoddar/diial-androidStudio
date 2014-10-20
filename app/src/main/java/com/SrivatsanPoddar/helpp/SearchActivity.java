@@ -200,7 +200,7 @@ public class SearchActivity extends Activity
                         act.favorites.add(fragNodes[position]);
                         Style.makeToast(act, fragNodes[position] + " added to Favorites");
                         Log.e("Adding favorite", fragNodes[position].toString());
-                        view.setBackgroundResource(R.drawable.abc_list_selector_background_transition_holo_light);
+                        view.setBackgroundResource(R.color.light_blue);
                     }
 
                     return true;

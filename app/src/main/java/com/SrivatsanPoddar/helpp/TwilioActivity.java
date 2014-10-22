@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -163,6 +164,48 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         mSnakeView.setOnClickListener(this);
         mSnakeView.setOnTouchListener(gestureListener);
 
+
+        //Set-up custom message sending and saving
+        final EditText customTextView = (EditText) findViewById(R.id.custom_message_edit_text);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/OpenSans-Light.ttf");
+        customTextView.setTypeface(typeface);
+        Button sendButton = (Button) findViewById(R.id.custom_message_send_button);
+        sendButton.setOnClickListener(new OnClickListener() {
+            public void onClick(final View v) {
+                if (!customTextView.getText().toString().equals("")) {
+                    ChatMessage toSend = new ChatMessage(customTextView.getText().toString(), pairsIndex);
+
+                    String JSONMessage = gson.toJson(toSend);
+                    mConnection.sendTextMessage(JSONMessage);
+
+                    TextView sentMessage = new TextView(TwilioActivity.this);
+                    Style.toOpenSans(TwilioActivity.this, sentMessage, "light");
+                    sentMessage.setGravity(Gravity.CENTER_HORIZONTAL);
+                    sentMessage.setText("Sent: " + customTextView.getText().toString());
+                    variableLayout.addView(sentMessage,0);
+                    stored_information.add("Sent: " + customTextView.getText().toString());
+                    customTextView.setText("");
+
+                }
+            }
+        });
+
+        Button saveButton = (Button) findViewById(R.id.custom_message_save_button);
+        saveButton.setOnClickListener(new OnClickListener() {
+            public void onClick(final View v) {
+                if (!customTextView.getText().toString().equals("")) {
+
+                    TextView savedMessage = new TextView(TwilioActivity.this);
+                    Style.toOpenSans(TwilioActivity.this, savedMessage, "light");
+                    savedMessage.setGravity(Gravity.CENTER_HORIZONTAL);
+                    savedMessage.setText("Saved: " + customTextView.getText().toString());
+                    variableLayout.addView(savedMessage,0);
+                    stored_information.add("Saved: " + customTextView.getText().toString());
+                    customTextView.setText("");
+
+                }
+            }
+        });
     }
 
     @Override
@@ -290,6 +333,8 @@ public class TwilioActivity extends Activity implements View.OnClickListener
                      FrameLayout snakeGame = (FrameLayout) findViewById(R.id.snake_game);
                      ViewGroup parentOfSnake = (ViewGroup) (snakeGame.getParent());
                      parentOfSnake.removeView(snakeGame);
+                     LinearLayout customMessage = (LinearLayout) findViewById(R.id.custom_message);
+                     customMessage.setVisibility(View.VISIBLE);
                  }
                  
 //                 if(m.message != null) {

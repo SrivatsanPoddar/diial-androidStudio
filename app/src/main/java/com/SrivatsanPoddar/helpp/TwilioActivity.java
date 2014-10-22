@@ -376,8 +376,11 @@ public class TwilioActivity extends Activity implements View.OnClickListener
 
               @Override
               public void onClose(int code, String reason) {
-                 mHandler.removeCallbacks(pingServer);
-                 Log.d(TAG, "Connection lost.");
+                 if(mHandler!= null) {
+                     mHandler.removeCallbacks(pingServer);
+                     Log.d(TAG, "Connection lost.");
+                 }
+
               }
            });
         } catch (WebSocketException e) {

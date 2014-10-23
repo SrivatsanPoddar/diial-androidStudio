@@ -57,14 +57,17 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="action_call_log">Call Log</string>
-
-    <string name="mode_ready">Swipe &#8593; to Play Snake\n While you Wait</string>
-    <string name="mode_pause">Paused\n\nSwipe &#8593; To Resume</string>
+    <string name="mode_ready">Swipe ↑ to Play Snake\n While you Wait</string>
+    <string name="mode_pause">Paused\n\nSwipe ↑ To Resume</string>
     <string name="mode_lose_prefix">Your Score:  </string>
-    <string name="mode_lose_suffix">\n\nSwipe &#8593; To Play Again</string>
+    <string name="mode_lose_suffix">\n\nSwipe ↑ To Play Again</string>
     <string name="old_high_score_text">\nHigh Score:</string>
     <string name="high_score_text">New High Score!</string>
     <string name="live_score_text">Score: 0  </string>
-    <string name="right_arrow">&#8594;</string>
+    <string name="right_arrow">→</string>
     <string name="snake_layout_text_text"></string>
+    <string name="title_activity_advertisement">AdvertisementActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
 </resources>

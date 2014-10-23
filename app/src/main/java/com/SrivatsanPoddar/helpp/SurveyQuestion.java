@@ -23,7 +23,11 @@ public class SurveyQuestion {
 	public String getDisplayText() {
 		return display_text;
 	}
-	
+
+    public String getQuestionID() {
+        return question_id;
+    }
+
 	public String[] getOptions() {
 		return options;
 	}

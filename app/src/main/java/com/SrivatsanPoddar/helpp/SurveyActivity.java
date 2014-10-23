@@ -30,7 +30,8 @@ public class SurveyActivity extends Activity implements ListView.OnItemClickList
 	private TextView questionDisplayText;
 	private HerokuService ui;
 	private Call thisCall;
-	
+	private boolean poorExperience = false;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -95,13 +96,19 @@ public class SurveyActivity extends Activity implements ListView.OnItemClickList
 		     
 		  	//Make a retrofit POST call to '/responses/questionID' here, sending questions[currentQuestionIndex].getOptions()[position] as the response!
 	        SurveyQuestion curQuestion = questions.get(currentQuestionsIndex);
+
+
 	        curQuestion.setResponse(curQuestion.getOptions()[position]);
 	        curQuestion.setDeviceID(Secure.getString(this.getApplicationContext().getContentResolver(),Secure.ANDROID_ID));
 		    ui.addResponse(curQuestion, new postResponse());
-		    
+
+              //If current question is default question and the response is negative, then mark for advertisement
+              if (curQuestion.getQuestionID().equals("0") && position >= 2) {
+                poorExperience = true;
+              }
+
 		  	if (currentQuestionsIndex < questions.size() - 1) {
-		  	    
-		  		
+
 		  		currentQuestionsIndex++;
 				questionDisplayText.setText(questions.get(currentQuestionsIndex).getDisplayText());
 				
@@ -113,7 +120,14 @@ public class SurveyActivity extends Activity implements ListView.OnItemClickList
 		  	}
 		  	else {
 
-                Intent intent = new Intent(this, LogActivity.class);
+                Intent intent;
+                if (poorExperience) {
+                    intent = new Intent(this, AdvertisementActivity.class);
+                }
+                else {
+                    intent = new Intent(this, LogActivity.class);
+                }
+
                 intent.putExtra("thisCall",thisCall);
 
 	  			//	          Post the new call to the database (and update with each response to a survey question)
@@ -190,8 +204,18 @@ public class SurveyActivity extends Activity implements ListView.OnItemClickList
             startActivity(intent);
         }
         else {
+
             questionDisplayText = (TextView)findViewById(R.id.question_display_text);
-            questionDisplayText.setText(questions.get(currentQuestionsIndex).getDisplayText());
+
+            //If 'default' question...
+            if (questions.get(currentQuestionsIndex).getQuestionID().equals("0")) {
+                questionDisplayText.setText("How likely is it that you would you to recommend " + thisCall.call_path[0] +" to a friend?");
+            }
+            else {
+                questionDisplayText.setText(questions.get(currentQuestionsIndex).getDisplayText());
+            }
+
+
             Style.toOpenSans(this, questionDisplayText, "light");
             
             //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,questions.get(currentQuestionsIndex).getOptions());

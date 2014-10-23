@@ -79,7 +79,7 @@ public class SearchActivity extends Activity
         
         setContentView(R.layout.activity_search);
         actionBar = getActionBar();
-        actionBar.setHomeButtonEnabled(true);        
+        actionBar.setHomeButtonEnabled(true);
         EditText searchText = (EditText) findViewById(R.id.search_text);
         Style.toOpenSans(this, searchText, "light");
 
@@ -143,7 +143,7 @@ public class SearchActivity extends Activity
             e.printStackTrace();
         }
 
-        for(Node n : nodes)
+        for(Node n : nodes)  ///THROWS ERROR AFTER RETURNING AFTER A WHILE
         {
             if(favoriteNames.contains(n.toString()) && !favorites.contains(n))
             {

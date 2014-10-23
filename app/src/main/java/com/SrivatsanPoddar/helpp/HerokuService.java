@@ -8,6 +8,7 @@ import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Path;
+import retrofit.http.Query;
 import retrofit.http.QueryMap;
 
 public interface HerokuService
@@ -29,4 +30,7 @@ public interface HerokuService
 
     @GET("/calls")
     void getCallLog(@QueryMap Map<String, String> options, Callback<Calls> cb);
+
+    @GET("/competitorsAd")
+    void getAdImageURL(@Query("company_id") String company_id, Callback<StringResponse> cb);
 }

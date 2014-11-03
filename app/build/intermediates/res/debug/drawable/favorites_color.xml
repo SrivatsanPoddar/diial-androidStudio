@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
+    <solid
+    android:color = "#C4D5E0" />
+</shape><!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/drawable/favorites_color.xml -->

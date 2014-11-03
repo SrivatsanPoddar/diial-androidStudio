@@ -538,6 +538,8 @@
     <dimen name="abc_panel_menu_list_width">296dp</dimen>
     <dimen name="abc_search_view_preferred_width">320dip</dimen>
     <dimen name="abc_search_view_text_min_width">160dip</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 
     <item name="dialog_fixed_height_major" type="dimen">80%</item>
     <item name="dialog_fixed_height_minor" type="dimen">100%</item>
@@ -573,6 +575,7 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="action_call_log">Call Log</string>
+    <string name="action_settings">Settings</string>
     <string name="app_name">diial</string>
     <string name="crash_toast_text">The application has crashed--please try again.</string>
     <string name="dummy_button">Dummy Button</string>
@@ -580,6 +583,7 @@
     <string name="error">We can\'t access the internet.\nPlease reconnect and try again.</string>
     <string name="error_logo">:(</string>
     <string name="google_text">Search Google for </string>
+    <string name="hello_world">Hello world!</string>
     <string name="high_score_text">New High Score!</string>
     <string name="live_score_text">Score: 0  </string>
     <string name="mode_lose_prefix">Your Score:  </string>
@@ -592,6 +596,7 @@
     <string name="search_text">type to begin search...</string>
     <string name="snake_layout_text_text"></string>
     <string name="survey_intro">Help Us Improve Our Service!</string>
+    <string name="title_activity_advertisement">AdvertisementActivity</string>
     <string name="title_activity_log">LogActivity</string>
     <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles.xml -->
     <eat-comment />

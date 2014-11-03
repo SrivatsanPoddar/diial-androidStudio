@@ -10967,6 +10967,8 @@ false
 
                 <dimen name="abc_search_view_text_min_width" >160dip
                 </dimen>
+                <dimen name="activity_vertical_margin" >16dp
+                </dimen>
                 <dimen name="abc_action_bar_title_text_size" >18dp
                 </dimen>
                 <dimen name="abc_action_bar_stacked_max_height" >48dp
@@ -11001,6 +11003,8 @@ false
                 <dimen name="abc_action_bar_icon_vertical_padding" >8dip
                 </dimen>
                 <dimen name="abc_action_bar_subtitle_bottom_margin" >5dip
+                </dimen>
+                <dimen name="activity_horizontal_margin" >16dp
                 </dimen>
 
                 <item
@@ -11078,6 +11082,8 @@ false
                 </string>
                 <string name="google_text" >Search Google for 
                 </string>
+                <string name="title_activity_advertisement" >AdvertisementActivity
+                </string>
                 <string name="abc_searchview_description_submit" >Submit query
                 </string>
                 <string name="error_logo" >:(
@@ -11085,6 +11091,8 @@ false
                 <string name="abc_searchview_description_voice" >Voice search
                 </string>
                 <string name="mode_ready" >Swipe ↑ to Play Snake\n While you Wait
+                </string>
+                <string name="hello_world" >Hello world!
                 </string>
                 <string name="abc_action_bar_home_description" >Navigate home
                 </string>
@@ -11097,6 +11105,8 @@ false
                 <string name="abc_shareactionprovider_share_with" >Share with
                 </string>
                 <string name="dummy_button" >Dummy Button
+                </string>
+                <string name="action_settings" >Settings
                 </string>
                 <string name="app_name" >diial
                 </string>
@@ -15930,6 +15940,21 @@ false
                     msgid="7468859129482906941" >"Buka konke"
                 </string>
             </file>
+            <file
+                name="favorites_color"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\drawable\favorites_color.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="advertisement"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\menu\advertisement.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="activity_advertisement"
+                path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\src\main\res\layout\activity_advertisement.xml"
+                qualifiers=""
+                type="layout" />
         </source>
         <source path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\generated\res\rs\debug" />
         <source path="C:\Users\Piyush\AndroidstudioProjects\Helpp\app\build\generated\res\generated\debug" />

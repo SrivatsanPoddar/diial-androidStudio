@@ -114,6 +114,40 @@
         <!--android:src="@drawable/send_digit_xml"-->
         <!--android:layout_marginRight="10dp" />-->
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/hangupButton"
+        android:weightSum="1"
+        android:id="@+id/custom_message"
+        android:visibility="invisible">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/custom_message_edit_text"
+            android:layout_weight="1.00"
+            android:hint='"enter message here..."'
+            android:layout_gravity="bottom" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:id="@+id/custom_message_save_button"
+            android:longClickable="true" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:id="@+id/custom_message_send_button" />
+    </LinearLayout>
+
     <ToggleButton
         android:id="@+id/speaker_button"
         android:layout_width="50dp"

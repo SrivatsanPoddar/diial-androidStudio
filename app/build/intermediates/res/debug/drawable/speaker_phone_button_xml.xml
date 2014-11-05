@@ -3,4 +3,4 @@
     <item android:drawable="@drawable/speaker_phone_pushed" android:state_checked="true" />
     <item android:drawable="@drawable/speaker_phone" android:state_checked="false" />
     <item android:drawable="@drawable/speaker_phone" />
-</selector><!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/drawable/speaker_phone_button_xml.xml -->
+</selector><!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/drawable/speaker_phone_button_xml.xml -->

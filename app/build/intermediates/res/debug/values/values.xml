@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/attrs.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/attrs.xml -->
     <eat-comment />
 
     <attr name="actionBarDivider" format="reference" />
@@ -67,22 +67,22 @@
     <attr name="textAppearanceSmallPopupMenu" format="reference" />
     <attr name="textColorSearchUrl" format="reference|color" />
     <attr name="title" format="string" />
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/bools.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/bools.xml -->
     <eat-comment />
 
     <bool name="abc_action_bar_embed_tabs_pre_jb">false</bool>
     <bool name="abc_action_bar_expanded_action_views_exclusive">true</bool>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/config.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/config.xml -->
     <eat-comment />
 
     <bool name="abc_config_actionMenuItemAllCaps">true</bool>
     <bool name="abc_config_allowActionMenuItemTextWithIcon">false</bool>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/bools.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/bools.xml -->
     <eat-comment />
 
     <bool name="abc_config_showMenuShortcutsWhenKeyboardPresent">false</bool>
     <bool name="abc_split_action_bar_is_narrow">true</bool>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/colors.xml -->
     <eat-comment />
 
     <color name="abc_search_url_text_normal">#7fa87f</color>
@@ -91,7 +91,7 @@
     <color name="background">#FFFFFF</color>
     <color name="black_overlay">#66000000</color>
     <color name="light_blue">#C4D5E0</color>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/attrs.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/attrs.xml -->
     <eat-comment />
 
     <declare-styleable name="ActionBar">
@@ -512,7 +512,7 @@
         -->
         <attr name="android:focusable" />
     </declare-styleable>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/dimens.xml -->
     <eat-comment />
 
     <dimen name="abc_action_bar_default_height">48dip</dimen>
@@ -525,11 +525,11 @@
     <dimen name="abc_action_bar_subtitle_top_margin">-3dp</dimen>
     <dimen name="abc_action_bar_title_text_size">18dp</dimen>
     <dimen name="abc_action_button_min_width">56dip</dimen>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/config.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/config.xml -->
     <eat-comment />
 
     <dimen name="abc_config_prefDialogWidth">320dp</dimen>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/dimens.xml -->
     <eat-comment />
 
     <dimen name="abc_dropdownitem_icon_width">32dip</dimen>
@@ -545,7 +545,7 @@
     <item name="dialog_fixed_height_minor" type="dimen">100%</item>
     <item name="dialog_fixed_width_major" type="dimen">320dp</item>
     <item name="dialog_fixed_width_minor" type="dimen">320dp</item>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/ids.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/ids.xml -->
     <eat-comment />
 
     <item name="action_bar_activity_content" type="id"/>
@@ -554,11 +554,11 @@
     <item name="home" type="id"/>
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/dimens.xml -->
     <eat-comment />
 
     <integer name="abc_max_action_buttons">2</integer>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="abc_action_bar_home_description">Navigate home</string>
@@ -598,7 +598,8 @@
     <string name="survey_intro">Help Us Improve Our Service!</string>
     <string name="title_activity_advertisement">AdvertisementActivity</string>
     <string name="title_activity_log">LogActivity</string>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles.xml -->
+    <string name="title_activity_parent_node">ParentNodeActivity</string>
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="ButtonBar">
@@ -610,14 +611,14 @@
     </style>
 
     <style name="ButtonBarButton" />
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/themes.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/themes.xml -->
     <eat-comment />
 
     <style name="CustomActionBarTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
         <item name="android:windowBackground">@color/background</item>
     </style>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
@@ -626,11 +627,11 @@
         <item name="metaButtonBarStyle">@style/ButtonBar</item>
         <item name="metaButtonBarButtonStyle">@style/ButtonBarButton</item>
     </style>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/themes.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/themes.xml -->
     <eat-comment />
 
     <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse"></style>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles_base.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/styles_base.xml -->
     <eat-comment />
 
     <style name="TextAppearance.AppCompat.Base.CompactMenu.Dialog" parent="android:TextAppearance.Medium">
@@ -679,7 +680,7 @@
     <style name="TextAppearance.AppCompat.Light.Base.Widget.PopupMenu.Large" parent="TextAppearance.AppCompat.Base.Widget.PopupMenu.Large"></style>
 
     <style name="TextAppearance.AppCompat.Light.Base.Widget.PopupMenu.Small" parent="TextAppearance.AppCompat.Base.Widget.PopupMenu.Small"></style>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="TextAppearance.AppCompat.Light.SearchResult.Subtitle" parent="TextAppearance.AppCompat.Light.Base.SearchResult.Subtitle" />
@@ -711,7 +712,7 @@
     <style name="TextAppearance.AppCompat.Widget.ActionMode.Title" parent="TextAppearance.AppCompat.Widget.Base.ActionMode.Title" />
 
     <style name="TextAppearance.AppCompat.Widget.ActionMode.Title.Inverse" parent="TextAppearance.AppCompat.Widget.Base.ActionMode.Title.Inverse" />
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles_base.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/styles_base.xml -->
     <eat-comment />
 
     <style name="TextAppearance.AppCompat.Widget.Base.ActionBar.Menu" parent="android:TextAppearance.Small">
@@ -751,7 +752,7 @@
     <style name="TextAppearance.AppCompat.Widget.Base.DropDownItem" parent="android:TextAppearance.Small">
         <item name="android:textColor">?android:attr/textColorPrimaryDisableOnly</item>
     </style>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="TextAppearance.AppCompat.Widget.DropDownItem" parent="TextAppearance.AppCompat.Widget.Base.DropDownItem" />
@@ -759,17 +760,17 @@
     <style name="TextAppearance.AppCompat.Widget.PopupMenu.Large" parent="TextAppearance.AppCompat.Base.Widget.PopupMenu.Large" />
 
     <style name="TextAppearance.AppCompat.Widget.PopupMenu.Small" parent="TextAppearance.AppCompat.Base.Widget.PopupMenu.Small" />
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles_base.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/styles_base.xml -->
     <eat-comment />
 
     <style name="TextAppearance.Widget.AppCompat.Base.ExpandedMenu.Item" parent="android:TextAppearance.Medium">
         <item name="android:textColor">?android:attr/textColorPrimaryDisableOnly</item>
     </style>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="TextAppearance.Widget.AppCompat.ExpandedMenu.Item" parent="TextAppearance.Widget.AppCompat.Base.ExpandedMenu.Item" />
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
     <eat-comment />
 
     <style name="Theme.AppCompat" parent="Theme.Base.AppCompat">
@@ -806,7 +807,7 @@
         <!-- ShareActionProvider attributes -->
         <item name="activityChooserViewStyle">@style/Widget.AppCompat.ActivityChooserView</item>
     </style>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/themes_base.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/themes_base.xml -->
     <eat-comment />
 
     <style name="Theme.AppCompat.Base.CompactMenu" parent="">
@@ -818,7 +819,7 @@
         <item name="android:itemTextAppearance">            @style/TextAppearance.AppCompat.Base.CompactMenu.Dialog</item>
         <item name="android:listViewStyle">@android:style/Widget.ListView.Menu</item>
     </style>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
     <eat-comment />
 
     <style name="Theme.AppCompat.CompactMenu" parent="Theme.AppCompat.Base.CompactMenu" />
@@ -898,7 +899,7 @@
     </style>
 
     <style name="Theme.AppCompat.Light.DialogWhenLarge" parent="Theme.Base.AppCompat.Light.DialogWhenLarge" />
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/themes_base.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/themes_base.xml -->
     <eat-comment />
 
     <style name="Theme.Base" parent="android:Theme"></style>
@@ -1066,7 +1067,7 @@
     <style name="Theme.Base.AppCompat.Light.DialogWhenLarge" parent="Theme.Base.AppCompat.Light"></style>
 
     <style name="Theme.Base.Light" parent="android:Theme.Light"></style>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="Widget.AppCompat.ActionBar" parent="Widget.AppCompat.Base.ActionBar" />
@@ -1090,7 +1091,7 @@
     <style name="Widget.AppCompat.ActivityChooserView" parent="Widget.AppCompat.Base.ActivityChooserView" />
 
     <style name="Widget.AppCompat.AutoCompleteTextView" parent="Widget.AppCompat.Base.AutoCompleteTextView" />
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles_base.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/styles_base.xml -->
     <eat-comment />
 
     <style name="Widget.AppCompat.Base.ActionBar" parent="">
@@ -1224,7 +1225,7 @@
         <item name="android:clickable">true</item>
         <item name="android:background">@drawable/abc_spinner_ab_holo_dark</item>
     </style>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="Widget.AppCompat.DropDownItem.Spinner" parent="Widget.AppCompat.Base.DropDownItem.Spinner" />
@@ -1258,7 +1259,7 @@
     <style name="Widget.AppCompat.Light.ActivityChooserView" parent="Widget.AppCompat.Light.Base.ActivityChooserView" />
 
     <style name="Widget.AppCompat.Light.AutoCompleteTextView" parent="Widget.AppCompat.Light.Base.AutoCompleteTextView" />
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles_base.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/styles_base.xml -->
     <eat-comment />
 
     <style name="Widget.AppCompat.Light.Base.ActionBar" parent="Widget.AppCompat.Base.ActionBar">
@@ -1342,7 +1343,7 @@
         <item name="android:popupBackground">@drawable/abc_menu_dropdown_panel_holo_light</item>
         <item name="android:background">@drawable/abc_spinner_ab_holo_light</item>
     </style>
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="Widget.AppCompat.Light.DropDownItem.Spinner" parent="Widget.AppCompat.Light.Base.DropDownItem.Spinner" />

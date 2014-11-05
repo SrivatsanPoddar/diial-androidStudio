@@ -33,4 +33,13 @@ public interface HerokuService
 
     @GET("/competitorsAd")
     void getAdImageURL(@Query("company_id") String company_id, Callback<StringResponse> cb);
+
+    @GET("/parentNodes")
+    void getParentNodes(Callback<ParentNode[]> cb);
+
+    @GET("/instructionTree")
+    void getInstructionTree(@QueryMap Map<String, Integer> options, Callback<InstructionTree> cb);
+
+    @POST("/addJSONtree")  //One-time use for converting java trees to JSON
+    void addJSONtree(@Body Node node, Callback<StringResponse> cb);
 }

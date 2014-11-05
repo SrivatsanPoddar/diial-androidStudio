@@ -24,4 +24,4 @@
     <item android:state_focused="true"                                                             android:drawable="@drawable/abc_list_focused_holo" />
     <item                                                                                          android:drawable="@android:color/transparent" />
 </selector>
-<!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/drawable/abc_item_background_holo_dark.xml -->
+<!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/drawable/abc_item_background_holo_dark.xml -->

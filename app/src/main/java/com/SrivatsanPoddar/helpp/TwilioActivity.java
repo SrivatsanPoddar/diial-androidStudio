@@ -17,8 +17,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.hardware.Camera;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,10 +35,14 @@ import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.text.style.StyleSpan;
 import android.text.util.Linkify;
+import android.util.AttributeSet;
+import android.util.Base64;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.Surface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -46,7 +57,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TwilioActivity extends Activity implements View.OnClickListener
 {
@@ -75,6 +90,9 @@ public class TwilioActivity extends Activity implements View.OnClickListener
 
     private static String ICICLE_KEY = "snake-view";
 
+    private Camera mCamera = null;
+    private CameraPreview mPreview = null;
+
     @Override
     public void onCreate(Bundle bundle)
     {
@@ -85,10 +103,9 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         actionBar.setHomeButtonEnabled(true); 
         
         Bundle extras = this.getIntent().getExtras();
-        company_id = extras.getString("company_id");
-        String stringPath = extras.getString("string_path");
         thisCall = (Call) extras.getSerializable("thisCall");
-        
+        String stringPath = thisCall.call_path_string;
+        company_id = thisCall.company_id;
         ChatMessage m = new ChatMessage(stringPath);
         m.setTargetCompany(company_id);
         
@@ -206,6 +223,9 @@ public class TwilioActivity extends Activity implements View.OnClickListener
                 }
             }
         });
+
+        //showPaymentBar();
+
     }
 
     @Override
@@ -335,6 +355,7 @@ public class TwilioActivity extends Activity implements View.OnClickListener
                      parentOfSnake.removeView(snakeGame);
                      LinearLayout customMessage = (LinearLayout) findViewById(R.id.custom_message);
                      customMessage.setVisibility(View.VISIBLE);
+
                  }
                  
 //                 if(m.message != null) {
@@ -349,7 +370,7 @@ public class TwilioActivity extends Activity implements View.OnClickListener
    
                  }
                  //If a link was sent by the caller, then show a clickable link
-                 else if (m.request_format != null && m.request_format.equals("link")) {
+                 else if (m.request_format != null && m.request_format.equals("link") && m.message != null) {
                     String sentURL = m.message;
 
                      //Check if the URL is an image retrievable by Square Picasso, if so, then display that image...
@@ -369,9 +390,21 @@ public class TwilioActivity extends Activity implements View.OnClickListener
 
                      }
                      else {
+
                          TwilioActivity.this.addLink(m);  //Add instructions, text field and button UI
                      }
                  }
+
+                 if(m.request_type != null) {
+                     if (m.request_type.equals("payment")) {
+                         showPaymentBar(m);
+                     }
+                     else if (m.request_type.equals("authentication")) {
+                         takePhoto();
+                     }
+                 }
+
+
               }
 
               @Override
@@ -417,6 +450,62 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         stored_information.add(sentURL);
 
 
+    }
+
+    public void showPaymentBar(ChatMessage m) {
+
+        Resources r = getResources();
+        int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, r.getDisplayMetrics());
+        int px60 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, r.getDisplayMetrics());
+
+        final LinearLayout toAdd = new LinearLayout(TwilioActivity.this);
+        LinearLayout.LayoutParams linearLayoutParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        toAdd.setOrientation(LinearLayout.VERTICAL);
+
+        final String company_name = this.thisCall.company_name;
+        TextView paymentDescription = new TextView(getApplicationContext());
+        paymentDescription.setPadding(px,px,px,(int)Math.floor(px/2));
+        paymentDescription.setGravity(Gravity.CENTER_HORIZONTAL);
+        paymentDescription.setTextColor(0xFF000000);
+
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        final String amount = formatter.format(m.amount);
+        paymentDescription.setText(company_name + " is requesting " + amount + " for '" + m.message + "'");
+        Style.toOpenSans(getApplicationContext(),paymentDescription,"light");
+        toAdd.addView(paymentDescription);
+
+        final FrameLayout frameToAdd = new FrameLayout(TwilioActivity.this);
+        FrameLayout.LayoutParams frameLayoutParams = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+
+        ImageView slideButtonBackground = new ImageView(TwilioActivity.this);
+        FrameLayout.LayoutParams imageLayout = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, px60);
+        imageLayout.setMargins(px,0,px,px);
+        slideButtonBackground.setLayoutParams(imageLayout);
+        slideButtonBackground.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        slideButtonBackground.setImageResource(R.drawable.slide_button_background);
+
+        final SlideButton slideButton = new SlideButton(this,null);
+        Drawable thumb = getResources().getDrawable( R.drawable.slide_button );
+        slideButton.setThumb(thumb);
+        slideButton.setPadding((int)(px60/1.3),px60/12,(int)(px60/1.3),0);
+        Drawable transparentDrawable = new ColorDrawable(Color.TRANSPARENT);
+        slideButton.setProgressDrawable(transparentDrawable);
+        slideButton.setMax(100);
+        slideButton.setClickable(false);
+        FrameLayout.LayoutParams slideLayout = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, px60);
+        slideLayout.setMargins(px,0,px,px);
+        slideButton.setSlideButtonListener(new SlideButtonListener() {
+            @Override
+            public void handleSlide() {
+                Style.makeToast(TwilioActivity.this, "Payment of " +  amount + " made to " + company_name);
+                ((ViewGroup) toAdd.getParent()).removeView(toAdd);
+            }
+        });
+
+        frameToAdd.addView(slideButtonBackground, imageLayout);
+        frameToAdd.addView(slideButton,slideLayout);
+        toAdd.addView(frameToAdd, frameLayoutParams);
+        variableLayout.addView(toAdd,linearLayoutParams);
     }
 
     //Adds a clickable link to the UI
@@ -539,6 +628,209 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         
         toAdd.addView(horizontalLayout, horizontalLayoutParams);
         variableLayout.addView(toAdd,0);
+    }
+
+    public void takePhoto() {
+        mCamera = getCameraInstance();
+
+
+        mPreview = new CameraPreview(this, mCamera);
+        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+        preview.setVisibility(View.VISIBLE);
+        preview.addView(mPreview);
+
+        final ImageView captureButton = (ImageButton) findViewById(R.id.button_capture);
+        captureButton.bringToFront();
+        captureButton.setEnabled(true);
+//        captureButton.setOnTouchListener(new View.OnTouchListener() {
+//
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                // TODO Auto-generated method stub
+//                if(event.getAction()==MotionEvent.ACTION_DOWN)
+//                    ((ImageView)v.findViewById(R.id.button_capture)).setImageResource(R.drawable.camera_button_pushed);
+//                else if(event.getAction()==MotionEvent.ACTION_UP)
+//                    ((ImageView)v.findViewById(R.id.button_capture)).setImageResource(R.drawable.camera_button);
+//                return false;
+//
+//            }
+//        });
+
+        captureButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Camera.Parameters p = mCamera.getParameters();
+                        // get an image from the camera
+                        if (mCamera != null){
+                            captureButton.setEnabled(false);
+                            mCamera.takePicture(null,null,null, mPicture);
+                        }
+
+
+                    }
+                }
+        );
+
+    };
+
+
+    private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
+
+        @Override
+        public void onPictureTaken(byte[] data, Camera camera) {
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 4;
+            options.inMutable = true;
+
+            Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length,options);
+            data = null;
+            Log.e("Image width:", bmp.getWidth() + "");
+            Log.e("Image height:", bmp.getHeight() + "");
+//            if (bmp.getWidth() > bmp.getHeight()) {
+
+
+                Matrix matrix = new Matrix();
+                matrix.postRotate(-90);
+                bmp = Bitmap.createBitmap(bmp , 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
+//            }
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            bmp.compress(Bitmap.CompressFormat.JPEG,25, baos);
+            bmp.recycle();
+            String imgString = Base64.encodeToString(baos.toByteArray(),
+                    Base64.NO_WRAP);
+
+            ChatMessage picToSend = new ChatMessage(imgString, pairsIndex);
+            picToSend.request_type = "CURRENT AUTHENTICATION PICTURE";
+
+            String JSONMessage = gson.toJson(picToSend);
+            mConnection.sendTextMessage(JSONMessage);
+
+            //Retrieve shared preferences
+            SharedPreferences prefs = TwilioActivity.this.getApplicationContext().getSharedPreferences("com.SrivatsanPoddar.helpp", Context.MODE_PRIVATE);
+            final String preferenceKey = "com.SrivatsanPoddar.helpp." + "ORIGINAL_AUTHENTICATION_PICTURE";
+            String originalPicString = prefs.getString(preferenceKey, "");
+
+            if (originalPicString == null || originalPicString.equals("")) {
+                Editor editor = prefs.edit();
+                editor.putString(preferenceKey, imgString);
+                editor.commit();
+
+                ChatMessage originalPic = new ChatMessage(null, pairsIndex);
+                originalPic.request_type = "ORIGINAL AUTHENTICATION PICTURE";
+                JSONMessage = gson.toJson(originalPic);
+                mConnection.sendTextMessage(JSONMessage);
+            }
+            else {
+                ChatMessage originalPic = new ChatMessage(originalPicString, pairsIndex);
+                originalPic.request_type = "ORIGINAL AUTHENTICATION PICTURE";
+                JSONMessage = gson.toJson(originalPic);
+                mConnection.sendTextMessage(JSONMessage);
+            }
+
+
+            imgString = "";
+
+
+
+
+            try {
+                baos.close();
+                baos = null;
+
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+            preview.setVisibility(View.GONE);
+
+            if (mCamera != null) {
+                mCamera.stopPreview();
+                mCamera.release();
+                mCamera = null;
+            }
+            if (mPreview != null) {
+                mPreview.removeCallback();
+                preview.removeView(mPreview);
+                mPreview = null;
+            }
+
+        }
+    };
+
+
+    /** A safe way to get an instance of the Camera object. */
+    public Camera getCameraInstance(){
+        Camera c = null;
+        try {
+            int cameraCount = 0;
+            Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+            cameraCount = Camera.getNumberOfCameras();
+            for ( int camIdx = 0; camIdx < cameraCount; camIdx++ ) {
+                Camera.getCameraInfo( camIdx, cameraInfo );
+                if ( cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT  ) {
+                    try {
+                        c = Camera.open( camIdx );
+
+                        android.hardware.Camera.CameraInfo info = new android.hardware.Camera.CameraInfo();
+                        android.hardware.Camera.getCameraInfo(camIdx, info);
+                        int rotation = TwilioActivity.this.getWindowManager().getDefaultDisplay().getRotation();
+                        int degrees = 0;
+                        switch (rotation) {
+                            case Surface.ROTATION_0:
+                                degrees = 0;
+                                break;
+                            case Surface.ROTATION_90:
+                                degrees = 90;
+                                break;
+                            case Surface.ROTATION_180:
+                                degrees = 180;
+                                break;
+                            case Surface.ROTATION_270:
+                                degrees = 270;
+                                break;
+                        }
+
+                        int result;
+                        if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+                            result = (info.orientation + degrees) % 360;
+                            result = (360 - result) % 360; // compensate the mirror
+                        } else { // back-facing
+                            result = (info.orientation - degrees + 360) % 360;
+                        }
+                        c.setDisplayOrientation(result);
+
+                        Camera.Parameters p = c.getParameters();
+                        p.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_AUTO);
+
+                        List<Camera.Size> sizes = p.getSupportedPictureSizes();
+                        Camera.Size maxSize = sizes.get(0);
+                        for (int i=1;i<sizes.size();i++){
+                            Camera.Size cur = sizes.get(i);
+                            Log.i("PictureSize", "Supported Size: " + cur.width + " height : " + cur.height);
+                            if (cur.height >  (maxSize.height)) {
+                                maxSize = cur;
+                            }
+                        }
+                        Log.i("Selected picture size:", "width: " + maxSize.width + " and height: " + maxSize.height);
+                        p.setPictureSize(maxSize.width, maxSize.height);
+                        c.setParameters(p);
+
+                    } catch (RuntimeException e) {
+                        Log.e(TAG, "Camera failed to open: " + e.getLocalizedMessage());
+                    }
+                }
+            }
+        }
+        catch (Exception e){
+            // Camera is not available (in use or does not exist)
+        }
+
+        return c; // returns null if camera is unavailable
     }
 
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {

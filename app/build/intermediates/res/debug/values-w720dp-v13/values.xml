@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values-w720dp/bools.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values-w720dp/bools.xml -->
     <eat-comment />
 
     <bool name="abc_action_bar_expanded_action_views_exclusive">false</bool>

@@ -20,9 +20,10 @@ public class Splash extends Activity implements Callback<Node[]>
     private long startTime;
     private HerokuService nodeService;
     private Node[] tempNodes;
+    public static ParentNode[] parentNodes;
     public static Node[] loadedNodes;
-    private final int SPLASH_DISPLAY_LENGTH = 2000;
-    private final int ERROR_DISPLAY_LENGTH = 5000;
+    private final int SPLASH_DISPLAY_LENGTH = 1000;
+    private final int ERROR_DISPLAY_LENGTH = 4000;
 
     /** Called when the activity is first created. */
     @Override
@@ -42,7 +43,8 @@ public class Splash extends Activity implements Callback<Node[]>
             .setEndpoint("http://safe-hollows-9286.herokuapp.com")
             .build();
         nodeService = restAdapter.create(HerokuService.class);       
-        nodeService.nodes(this);
+        //nodeService.nodes(this);
+        nodeService.getParentNodes(new ParentNodesCallback());
     }
     
     @Override
@@ -99,7 +101,12 @@ public class Splash extends Activity implements Callback<Node[]>
 
         // Start with the topmost children
         loadedNodes = root.getChildren();
-        
+
+//        //TO BE REMOVED -- This is to convert the current list of nodes to JSON
+//        for (Node node: loadedNodes) {
+//            nodeService.addJSONtree(node, new addNodeCallback());
+//        }
+
         //See how much longer to show splash screen
         long loadTime = System.currentTimeMillis() - startTime;
         long displayTime = 0;
@@ -121,5 +128,60 @@ public class Splash extends Activity implements Callback<Node[]>
                 Splash.this.finish();
             }
         }, displayTime);
+    }
+
+//    private class addNodeCallback implements Callback<StringResponse> {
+//
+//
+//        public void failure(RetrofitError arg0) {
+//            // Print the error and close the application
+//            Log.e("Error adding JSON node tree to database:", arg0.toString());
+//            setContentView(R.layout.error);
+//        }
+//
+//        @Override
+//        public void success(StringResponse arg0, Response arg1) {
+//
+//        }
+//    }
+
+        private class ParentNodesCallback implements Callback<ParentNode[]> {
+
+
+        public void failure(RetrofitError arg0) {
+            // Print the error and close the application
+            Log.e("Error adding JSON node tree to database:", arg0.toString());
+            setContentView(R.layout.error);
+        }
+
+        @Override
+        public void success(final ParentNode[] myParentNodes, Response arg1) {
+
+
+
+            //See how much longer to show splash screen
+            long loadTime = System.currentTimeMillis() - startTime;
+            long displayTime = 0;
+            if(loadTime < SPLASH_DISPLAY_LENGTH)
+            {
+                displayTime = SPLASH_DISPLAY_LENGTH - loadTime;
+            }
+
+        /* New Handler to start the Menu-Activity
+         * and close this Splash-Screen after some seconds.*/
+            new Handler().postDelayed(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                /* Create an Intent that will start the Menu-Activity. */
+                    Intent mainIntent = new Intent(Splash.this, ParentNodeActivity.class);
+                    parentNodes = myParentNodes;
+
+                    Splash.this.startActivity(mainIntent);
+                    Splash.this.finish();
+                }
+            }, displayTime);
+        }
     }
 }

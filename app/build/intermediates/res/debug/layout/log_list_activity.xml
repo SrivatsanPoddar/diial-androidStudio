@@ -19,4 +19,4 @@
         android:layout_height="wrap_content"
         android:id="@+id/call_log_list"
         android:layout_gravity="center_horizontal" />
-</LinearLayout><!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/layout/log_list_activity.xml -->
+</LinearLayout><!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/layout/log_list_activity.xml -->

@@ -3,4 +3,4 @@
         android:icon="@drawable/list_view"
         android:title="@string/action_call_log"
         android:showAsAction="always"/>
-</menu><!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/menu/search_activity_actions.xml -->
+</menu><!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/menu/search_activity_actions.xml -->

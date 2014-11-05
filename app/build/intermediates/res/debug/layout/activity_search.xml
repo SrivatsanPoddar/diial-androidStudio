@@ -7,16 +7,16 @@
     tools:context="com.SrivatsanPoddar.helpp.SearchActivity"
     tools:ignore="MergeRootFrame" >
 
-    <EditText
-        android:id="@+id/search_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/search_text"
-        android:textColorLink="@android:color/darker_gray"
-        android:textSize="20dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp" />
+    <!--<EditText-->
+        <!--android:id="@+id/search_text"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:ems="10"-->
+        <!--android:hint="@string/search_text"-->
+        <!--android:textColorLink="@android:color/darker_gray"-->
+        <!--android:textSize="20dp"-->
+        <!--android:layout_marginTop="2dp"-->
+        <!--android:layout_marginBottom="2dp" />-->
 
     <FrameLayout
         android:id="@+id/frame_layout"
@@ -25,13 +25,13 @@
         android:layout_weight="1.17" >
     </FrameLayout>
 
-    <Button
-        android:id="@+id/search_button"
-        style="@style/CustomActionBarTheme"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:drawableLeft="@drawable/ic_action_search"
-        android:text="@string/google_text" />
+    <!--<Button-->
+        <!--android:id="@+id/search_button"-->
+        <!--style="@style/CustomActionBarTheme"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:drawableLeft="@drawable/ic_action_search"-->
+        <!--android:text="@string/google_text" />-->
 
-</LinearLayout><!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/layout/activity_search.xml -->
+</LinearLayout><!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/layout/activity_search.xml -->

@@ -70,10 +70,8 @@ public class LogActivity extends Activity {
 
         final SpannableStringBuilder sb = new SpannableStringBuilder("HELLOO");
 
-        if (thisCall.call_path != null)
-            this.setBoldLabel(company_name, thisCall.call_path[0].toString());
-        else
-            this.setBoldLabel(company_name, thisCall.company_name);
+
+        this.setBoldLabel(company_name, thisCall.company_name);
 
         this.setBoldLabel(call_path_log, thisCall.call_path_string);
         TimeZone UTC = TimeZone.getTimeZone("UTC");
@@ -123,7 +121,7 @@ public class LogActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent = new Intent(this, SearchActivity.class);
+                Intent intent = new Intent(this, ParentNodeActivity.class);
                 startActivity(intent);
 
                 return true;
@@ -134,7 +132,7 @@ public class LogActivity extends Activity {
 
     public void toSearch(View v) {
         Style.makeToast(this, "Thanks for your time!");
-        Intent intent = new Intent(this, SearchActivity.class);
+        Intent intent = new Intent(this, ParentNodeActivity.class);
 //          Post the new call to the database (and update with each response to a survey question)
         startActivity(intent);
     }

@@ -2,4 +2,4 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 	<item android:state_pressed="true" android:drawable="@drawable/end_call_button_pushed" />
 	<item android:drawable="@drawable/end_call_button" />  
-</selector><!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/drawable/end_call_button_xml.xml -->
+</selector><!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/drawable/end_call_button_xml.xml -->

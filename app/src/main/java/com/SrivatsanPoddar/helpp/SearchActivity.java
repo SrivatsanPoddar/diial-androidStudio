@@ -80,114 +80,100 @@ public class SearchActivity extends Activity
         setContentView(R.layout.activity_search);
         actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
-        EditText searchText = (EditText) findViewById(R.id.search_text);
-        Style.toOpenSans(this, searchText, "light");
 
-        device_id = Secure.getString(this.getApplicationContext().getContentResolver(),Secure.ANDROID_ID);
+//        EditText searchText = (EditText) findViewById(R.id.search_text);
+//        Style.toOpenSans(this, searchText, "light");
+
+        //device_id = Secure.getString(this.getApplicationContext().getContentResolver(),Secure.ANDROID_ID);
         // Check if this activity was started clicking of non-root node. If so,
         // find and display children of that node
-        if (extras != null)
-        {            
-            // Hide search bar since we're in a tree
-            searchText.setVisibility(View.GONE);
-            
-            Node chosenNode = (Node) extras.getSerializable("chosenNode");
-            path = (ArrayList<Node>) extras.getSerializable("path");
-            thisCall = (Call) extras.getSerializable("thisCall");
-            
-            nodes = chosenNode.getChildren();
-            //path.add(chosenNode);  //Add chosen node to path of traveled nodes
-            if (state == null)
-            {
-                getFragmentManager().beginTransaction()
-                        .add(R.id.frame_layout, new PlaceholderFragment()).commit();
-            }
-        }
-        // Otherwise we are coming from splash loader
-        else
+
+        // Hide search bar since we're in a tree
+        //searchText.setVisibility(View.GONE);
+
+        Node chosenNode = (Node) extras.getSerializable("chosenNode");
+        thisCall = (Call) extras.getSerializable("thisCall");
+        path = thisCall.call_path;
+        device_id = thisCall.device_id;
+        nodes = chosenNode.getChildren();
+        //path.add(chosenNode);  //Add chosen node to path of traveled nodes
+        if (state == null)
         {
-            thisCall = new Call();
-            thisCall.device_id = this.device_id;
-            nodes = Splash.loadedNodes;
-            loadFavorites();
-            if (state == null)
-            {
-                getFragmentManager().beginTransaction()
-                        .add(R.id.frame_layout, new PlaceholderFragment()).commit();
-            }
+            getFragmentManager().beginTransaction()
+                    .add(R.id.frame_layout, new PlaceholderFragment()).commit();
         }
     }
 
-    private void loadFavorites()
-    {
-        FileInputStream fis = null;
-        try {
-            fis = openFileInput(FILENAME);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return;
-        }
-        Scanner scan = new Scanner(fis);
-
-        HashSet<String> favoriteNames = new HashSet<String>();
-        while(scan.hasNextLine())
-        {
-            String line = scan.nextLine();
-            Log.e("Reading from favorites", line);
-            favoriteNames.add(line);
-        }
-
-        try {
-            fis.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        for(Node n : nodes)  ///THROWS ERROR AFTER RETURNING AFTER A WHILE
-        {
-            if(favoriteNames.contains(n.toString()) && !favorites.contains(n))
-            {
-                Log.e("Adding to favorites", n.toString());
-                favorites.add(n);
-            }
-        }
-    }
+//    private void loadFavorites()
+//    {
+//        FileInputStream fis = null;
+//        try {
+//            fis = openFileInput(FILENAME);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//            return;
+//        }
+//        Scanner scan = new Scanner(fis);
+//
+//        HashSet<String> favoriteNames = new HashSet<String>();
+//        while(scan.hasNextLine())
+//        {
+//            String line = scan.nextLine();
+//            Log.e("Reading from favorites", line);
+//            favoriteNames.add(line);
+//        }
+//
+//        try {
+//            fis.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        for(Node n : nodes)  ///THROWS ERROR AFTER RETURNING AFTER A WHILE
+//        {
+//            if(favoriteNames.contains(n.toString()) && !favorites.contains(n))
+//            {
+//                Log.e("Adding to favorites", n.toString());
+//                favorites.add(n);
+//            }
+//        }
+//    }
 
     @Override
     public void onStop()
     {
-        // Write the favorites to a file
-        FileOutputStream fos = null;
-        try
-        {
-            fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-        }
-        catch (FileNotFoundException e)
-        {
-            Log.e("File not found", e.getMessage());
-        }
-
-        try
-        {
-            for (Node n : favorites)
-            {
-                Log.e("Writing to favorites", n.toString());
-                fos.write((n.toString() + "\n").getBytes());
-            }
-        }
-        catch(IOException e)
-        {
-            Log.e("Error writing", e.getMessage());
-        }
-
-        try
-        {
-            fos.close();
-        }
-        catch(IOException e)
-        {
-            Log.e("Error closing file", e.getMessage());
-        }
+//        // Write the favorites to a file
+//        FileOutputStream fos = null;
+//        try
+//        {
+//            fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+//        }
+//        catch (FileNotFoundException e)
+//        {
+//            Log.e("File not found", e.getMessage());
+//        }
+//
+//        try
+//        {
+//            for (Node n : favorites)
+//            {
+//                Log.e("Writing to favorites", n.toString());
+//                fos.write((n.toString() + "\n").getBytes());
+//            }
+//        }
+//        catch(IOException e)
+//        {
+//            Log.e("Error writing", e.getMessage());
+//        }
+//
+//        try
+//        {
+//            fos.close();
+//        }
+//        catch(IOException e)
+//        {
+//            Log.e("Error closing file", e.getMessage());
+//        }
 
         super.onStop();
     }
@@ -208,7 +194,7 @@ public class SearchActivity extends Activity
 
             case android.R.id.home:
                 //Do stuff
-                intent = new Intent(this, SearchActivity.class);
+                intent = new Intent(this, ParentNodeActivity.class);
                 startActivity(intent);
                 
                 return true;
@@ -221,8 +207,14 @@ public class SearchActivity extends Activity
         }
     }
 
-    
-    
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.slide_out);
+
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -234,7 +226,7 @@ public class SearchActivity extends Activity
                                             // action' has been reached i.e.
                                             // phone call in order to trigger
                                             // survey
-        EditText searchText;
+        //EditText searchText;
         CustomListAdapter<Node> adapter;
         Node chosenNode;
         
@@ -244,104 +236,107 @@ public class SearchActivity extends Activity
             super.onActivityCreated(savedInstanceState);
             final SearchActivity act = (SearchActivity) getActivity();
 
-            // Concatenate favorites to top of list if not in tree
-            if(act.path.size() == 0) {
-                fragNodes = Arrays.copyOf(act.favorites.toArray(new Node[act.favorites.size()]), act.nodes.length + act.favorites.size());
-                System.arraycopy(act.nodes, 0, fragNodes, act.favorites.size(), act.nodes.length);
-            }
-            else
-            {
-                fragNodes = act.nodes;
-            }
-            
+//            // Concatenate favorites to top of list if not in tree
+//            if(act.path.size() == 0) {
+//                fragNodes = Arrays.copyOf(act.favorites.toArray(new Node[act.favorites.size()]), act.nodes.length + act.favorites.size());
+//                System.arraycopy(act.nodes, 0, fragNodes, act.favorites.size(), act.nodes.length);
+//            }
+//            else
+//            {
+//                fragNodes = act.nodes;
+//            }
+
+            fragNodes = act.nodes;
             adapter = new CustomListAdapter<Node>(getActivity(),android.R.layout.simple_list_item_1,fragNodes);
             //aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             //promotionsList.setAdapter(aa);
             setListAdapter(adapter);
 
             // Set up long click (favorites) listener
-            getListView().setOnItemLongClickListener(new OnItemLongClickListener()
-            {
-                @Override
-                public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id)
-                {
-                    /**
-                    // Set up shared preferences
-                    SharedPreferences prefs = act.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
-                    int numFavorites = prefs.getInt("numFavorites", 0);
-
-
-                    Node temp = fragNodes[position];
-                    fragNodes[position] = fragNodes[numFavorites];
-                    fragNodes[numFavorites] = temp;
-                    prefs.edit().putInt("numFavorites", numFavorites + 1).apply();
-                     **/
-
-                    // Add to favorites, change color
-                    if(!act.favorites.contains(fragNodes[position])) {
-                        act.favorites.add(fragNodes[position]);
-                        Style.makeToast(act, fragNodes[position] + " added to Favorites");
-                        Log.e("Adding favorite", fragNodes[position].toString());
-                        view.setBackgroundResource(R.color.light_blue);
-                        view.setBackgroundResource(R.drawable.favorites_color);
-                    }
-
-                    return true;
-                }
-            });
+//            getListView().setOnItemLongClickListener(new OnItemLongClickListener()
+//            {
+//                @Override
+//                public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id)
+//                {
+//                    /**
+//                    // Set up shared preferences
+//                    SharedPreferences prefs = act.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
+//                    int numFavorites = prefs.getInt("numFavorites", 0);
+//
+//
+//                    Node temp = fragNodes[position];
+//                    fragNodes[position] = fragNodes[numFavorites];
+//                    fragNodes[numFavorites] = temp;
+//                    prefs.edit().putInt("numFavorites", numFavorites + 1).apply();
+//                     **/
+//
+//                    // Add to favorites, change color
+//                    if(!act.favorites.contains(fragNodes[position])) {
+//                        act.favorites.add(fragNodes[position]);
+//                        Style.makeToast(act, fragNodes[position] + " added to Favorites");
+//                        Log.e("Adding favorite", fragNodes[position].toString());
+//                        view.setBackgroundResource(R.color.light_blue);
+//                        view.setBackgroundResource(R.drawable.favorites_color);
+//                    }
+//
+//                    return true;
+//                }
+//            });
 
             
             // Set up google search listener
-            final Button button = (Button) getActivity().findViewById(R.id.search_button);
-            button.setVisibility(View.GONE);
-            button.setOnClickListener(new View.OnClickListener()
-            {
-                public void onClick(View v)
-                {
-                    Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);   
-                    intent.putExtra(SearchManager.QUERY, searchText.getText().toString() + " customer support");    
-                    startActivity(intent);
-                }
-            });
-
-            // Implement Search Functionality
-            searchText = (EditText) getActivity()
-                    .findViewById(R.id.search_text);
-            searchText.addTextChangedListener(new TextWatcher()
-            {
-
-                @Override
-                public void afterTextChanged(Editable arg0)
-                {
-                    String text = searchText.getText().toString()
-                            .toLowerCase(Locale.getDefault());
-                    adapter.getFilter().filter(text);
-                    
-                    //Show or hide button
-                    if(!searchText.getText().toString().equals(""))
-                    {
-                        button.setVisibility(View.VISIBLE);
-                        button.setText("Search Google for '" + searchText.getText().toString() + "'");
-                    }
-                    else
-                    {
-                        button.setVisibility(View.GONE);
-                    }
-                }
-
-                @Override
-                public void beforeTextChanged(CharSequence arg0, int arg1,
-                        int arg2, int arg3)
-                {
-                }
-
-                @Override
-                public void onTextChanged(CharSequence arg0, int arg1,
-                        int arg2, int arg3)
-                {
-                }
-            });
+//            final Button button = (Button) getActivity().findViewById(R.id.search_button);
+//            button.setVisibility(View.GONE);
+//            button.setOnClickListener(new View.OnClickListener()
+//            {
+//                public void onClick(View v)
+//                {
+//                    Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+//                    intent.putExtra(SearchManager.QUERY, searchText.getText().toString() + " customer support");
+//                    startActivity(intent);
+//                }
+//            });
+//
+//            // Implement Search Functionality
+//            searchText = (EditText) getActivity()
+//                    .findViewById(R.id.search_text);
+//            searchText.addTextChangedListener(new TextWatcher()
+//            {
+//
+//                @Override
+//                public void afterTextChanged(Editable arg0)
+//                {
+//                    String text = searchText.getText().toString()
+//                            .toLowerCase(Locale.getDefault());
+//                    adapter.getFilter().filter(text);
+//
+//                    //Show or hide button
+//                    if(!searchText.getText().toString().equals(""))
+//                    {
+//                        button.setVisibility(View.VISIBLE);
+//                        button.setText("Search Google for '" + searchText.getText().toString() + "'");
+//                    }
+//                    else
+//                    {
+//                        button.setVisibility(View.GONE);
+//                    }
+//                }
+//
+//                @Override
+//                public void beforeTextChanged(CharSequence arg0, int arg1,
+//                        int arg2, int arg3)
+//                {
+//                }
+//
+//                @Override
+//                public void onTextChanged(CharSequence arg0, int arg1,
+//                        int arg2, int arg3)
+//                {
+//                }
+//            });
         }
+
+
 
         @Override
         public void onResume()
@@ -350,16 +345,16 @@ public class SearchActivity extends Activity
 
             // If the fragment restarts after an end action was performed,
             // then start the survey activity
-            if (endActionInitiated)
-            {
-                
-                Intent intent = new Intent(getActivity(), SurveyActivity.class);
-                
-                intent.putExtra("company_id", chosenNode.getCompanyId());
-                intent.putExtra("thisCall", ((SearchActivity) this.getActivity()).thisCall);
-                
-                this.startActivity(intent);
-            }
+//            if (endActionInitiated)
+//            {
+//
+//                Intent intent = new Intent(getActivity(), SurveyActivity.class);
+//
+//                intent.putExtra("company_id", chosenNode.getCompanyId());
+//                intent.putExtra("thisCall", ((SearchActivity) this.getActivity()).thisCall);
+//
+//                this.startActivity(intent);
+//            }
         }
 
         @Override
@@ -368,6 +363,7 @@ public class SearchActivity extends Activity
             super.onListItemClick(l, v, position, id);
             chosenNode = (Node) getListView().getItemAtPosition(position);
             ((SearchActivity)getActivity()).path.add(chosenNode);  //Add chosen node to path of traveled nodes
+            ((SearchActivity) this.getActivity()).thisCall.call_path = ((SearchActivity)getActivity()).path;
             //chosenNode = fragNodes[position];
             Log.e("Reached", position + "");
             // Node[] childrenOfChosenNode = chosenNode.childrenNodes;
@@ -377,17 +373,17 @@ public class SearchActivity extends Activity
             {
                 Intent intent = new Intent(getActivity(), SearchActivity.class);
                 intent.putExtra("chosenNode", chosenNode);
-                intent.putExtra("path", ((SearchActivity)getActivity()).path);
                 intent.putExtra("thisCall", ((SearchActivity) getActivity()).thisCall);
                 this.startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_in,R.anim.stay_still);
             }
             else if (chosenNode.getNodeType().equals("PHONE") || chosenNode.getNodeType().equals("TWILIO"))  //End action reached
             {
-                // Add the node to favorites
-                if(!SearchActivity.favorites.contains(((SearchActivity)getActivity()).path.get(0))) {
-                    SearchActivity.favorites.add(((SearchActivity) getActivity()).path.get(0));
-                    Log.e("Added to Favorites", ((SearchActivity) getActivity()).path.get(0).toString());
-                }
+//                // Add the node to favorites
+//                if(!SearchActivity.favorites.contains(((SearchActivity)getActivity()).path.get(0))) {
+//                    SearchActivity.favorites.add(((SearchActivity) getActivity()).path.get(0));
+//                    Log.e("Added to Favorites", ((SearchActivity) getActivity()).path.get(0).toString());
+//                }
 
                 String stringPath = "";
 
@@ -398,15 +394,6 @@ public class SearchActivity extends Activity
                 //stringPath = stringPath + " &#8594; " + chosenNode.toString();
                 stringPath = stringPath.substring(2);  //Cut-off initial arrow from string display
 
-                //Set current time as start of call
-                TimeZone UTC = TimeZone.getTimeZone("UTC");
-                SimpleDateFormat dfUTC = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",Locale.US);
-                dfUTC.setTimeZone(UTC);
-                String start_time = dfUTC.format(new Date());
-
-                ((SearchActivity) this.getActivity()).thisCall.company_id = chosenNode.getCompanyId();
-                ((SearchActivity) this.getActivity()).thisCall.call_path = ((SearchActivity)getActivity()).path.toArray(new Node[0]);
-                ((SearchActivity) this.getActivity()).thisCall.start_time = start_time;
                 ((SearchActivity) this.getActivity()).thisCall.call_path_string = stringPath;
 
                 Intent intent;
@@ -419,8 +406,6 @@ public class SearchActivity extends Activity
                     intent = new Intent(getActivity(), TwilioActivity.class);
                 }
 
-                intent.putExtra("company_id", chosenNode.getCompanyId());
-                intent.putExtra("string_path", stringPath);
                 intent.putExtra("thisCall", (Serializable) ((SearchActivity) this.getActivity()).thisCall);
 
                 String chosenPhoneNumber = PhoneNumberUtils.stripSeparators(chosenNode.getPhoneNumber());

@@ -31,9 +31,9 @@ public class PhoneActivity extends Activity
         telephonyManager.listen(phoneListener,PhoneStateListener.LISTEN_CALL_STATE);
         Bundle extras = this.getIntent().getExtras();
         String numberToCall = "tel:" + extras.getString("phone_number");
-        companyID = extras.getString("company_id");
-        thisCall = (Call) extras.getSerializable("thisCall");
 
+        thisCall = (Call) extras.getSerializable("thisCall");
+        companyID = thisCall.company_id;
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse(numberToCall));
         startActivity(callIntent);

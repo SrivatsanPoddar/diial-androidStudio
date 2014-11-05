@@ -17,7 +17,7 @@ public class Call implements Serializable
     public String end_time;
     public String company_id;
     public ArrayList<String> response_ids = new ArrayList<String>();
-    public Node[] call_path;
+    public ArrayList<Node> call_path;
     public ArrayList<String> stored_information;
     public String call_path_string;
     public int[] call_path_id; //Call path represented by Node ID

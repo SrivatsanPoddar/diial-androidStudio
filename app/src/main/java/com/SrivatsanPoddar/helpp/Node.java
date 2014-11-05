@@ -16,7 +16,6 @@ public class Node implements Serializable{
 	private String display_text;
 	private String phone_number;
 	private ArrayList<Node> children;
-	private String company_id;
 	private String node_type;
 
 	public Node(int nodeID, int parentNodeID, String displayText, String phoneNumber, String companyId, String nodeType) {
@@ -25,7 +24,6 @@ public class Node implements Serializable{
 		display_text = displayText;
 		phone_number = phoneNumber;
 		children = new ArrayList<Node>();
-		company_id = companyId;
         node_type = nodeType;
 	}
 	
@@ -53,10 +51,7 @@ public class Node implements Serializable{
 	public int getNodeId(){
 		return node_id;
 	}
-	
-	public String getCompanyId(){
-        return company_id;
-    }
+
 	
 	public int getParentNodeId() {
 		return parent_node_id;

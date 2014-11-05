@@ -16,4 +16,4 @@
 <translate xmlns:android="http://schemas.android.com/apk/res/android"
            android:interpolator="@android:anim/accelerate_interpolator"
            android:fromYDelta="0" android:toYDelta="-50%p"
-           android:duration="@android:integer/config_mediumAnimTime"/><!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/anim/abc_slide_out_top.xml -->
+           android:duration="@android:integer/config_mediumAnimTime"/><!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/anim/abc_slide_out_top.xml -->

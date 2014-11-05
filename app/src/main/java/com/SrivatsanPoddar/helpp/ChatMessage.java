@@ -9,7 +9,8 @@ public class ChatMessage
     public String target_role;
     public String request_format;
     public String request_type;
-    
+    public double amount;
+
     public ChatMessage(String mString) {
         message = mString;
     }
@@ -18,6 +19,11 @@ public class ChatMessage
         message = mString;
         pairsIndex = mPairsIndex;
         target_role = "agent";
+        request_type = "MESSAGE";
+    }
+
+    public void setRequestType(String myRequestType) {
+        request_type = myRequestType;
     }
     
     public void setTargetCompany(String target){

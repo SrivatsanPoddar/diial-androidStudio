@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/values-sr/strings.xml -->
+    <!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/values-sr/strings.xml -->
     <eat-comment />
 
     <string name="abc_action_bar_home_description" msgid="4600421777120114993">"Одлазак на Почетну"</string>

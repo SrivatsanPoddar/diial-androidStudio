@@ -54,7 +54,7 @@ public class LogListActivity extends Activity implements Callback<Calls>, ListVi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent = new Intent(this, SearchActivity.class);
+                Intent intent = new Intent(this, ParentNodeActivity.class);
                 startActivity(intent);
 
                 return true;

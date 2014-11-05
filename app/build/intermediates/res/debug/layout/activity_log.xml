@@ -79,4 +79,4 @@
         android:id="@+id/button"
         android:layout_gravity="center_horizontal"
         android:onClick="toSearch"/>
-</LinearLayout><!-- From: file:/C:/Users/Piyush/AndroidstudioProjects/Helpp/app/src/main/res/layout/activity_log.xml -->
+</LinearLayout><!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/layout/activity_log.xml -->

@@ -79,7 +79,7 @@ public class SurveyActivity extends Activity implements ListView.OnItemClickList
         case android.R.id.home:
             //Do stuff
             Style.makeToast(this, "Thanks for your time!");
-            Intent intent = new Intent(this, SearchActivity.class);
+            Intent intent = new Intent(this, ParentNodeActivity.class);
 //          Post the new call to the database (and update with each response to a survey question)
             ui.addCall(thisCall, new postCall());
             startActivity(intent);
@@ -194,7 +194,7 @@ public class SurveyActivity extends Activity implements ListView.OnItemClickList
         if (questions.size() == 0) {
             
             Style.makeToast(this, "Thanks for the call!");
-            Intent intent = new Intent(this, SearchActivity.class);
+            Intent intent = new Intent(this, ParentNodeActivity.class);
             
             
 //          Post the new call to the database (and update with each response to a survey question)
@@ -209,7 +209,7 @@ public class SurveyActivity extends Activity implements ListView.OnItemClickList
 
             //If 'default' question...
             if (questions.get(currentQuestionsIndex).getQuestionID().equals("0")) {
-                questionDisplayText.setText("How likely is it that you would you to recommend " + thisCall.call_path[0] +" to a friend?");
+                questionDisplayText.setText("How likely is it that you would recommend " + thisCall.company_name+" to a friend?");
             }
             else {
                 questionDisplayText.setText(questions.get(currentQuestionsIndex).getDisplayText());

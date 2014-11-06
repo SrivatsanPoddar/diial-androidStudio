@@ -26,7 +26,9 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/CustomActionBarTheme" >
+        android:theme="@style/CustomActionBarTheme"
+        android:largeHeap="true"
+        >
         <activity
             android:name=".SearchActivity"
             android:configChanges="orientation|keyboardHidden"

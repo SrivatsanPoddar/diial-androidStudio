@@ -209,4 +209,18 @@
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp" />
 
+    <ImageButton
+        android:id="@+id/back_camera_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerInside"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/back_camera_button" />
+
+
+
 </RelativeLayout>

@@ -2,6 +2,7 @@ package com.SrivatsanPoddar.helpp;
 
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
+import com.twilio.client.Twilio;
 
 import de.tavendo.autobahn.WebSocketConnection;
 import de.tavendo.autobahn.WebSocketException;
@@ -63,7 +64,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TwilioActivity extends Activity implements View.OnClickListener
+public class TwilioActivity extends Activity implements View.OnClickListener, Camera.AutoFocusCallback
 {
     private TwilioPhone phone;
     private EditText numberField;
@@ -79,7 +80,7 @@ public class TwilioActivity extends Activity implements View.OnClickListener
     ValueAnimator callingAnimation;
     private ArrayList<String> stored_information = new ArrayList<String>(5);
     private boolean speakerPhoneOn = false;
-
+    private ImageButton backCameraButton;
     //Snake
     private SnakeView mSnakeView;
     private static final int SWIPE_MIN_DISTANCE = 80;
@@ -92,6 +93,8 @@ public class TwilioActivity extends Activity implements View.OnClickListener
 
     private Camera mCamera = null;
     private CameraPreview mPreview = null;
+
+    private boolean backCameraActive = false;
 
     @Override
     public void onCreate(Bundle bundle)
@@ -115,6 +118,19 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         
         variableLayout = (LinearLayout) findViewById(R.id.variable_layout);
 
+        backCameraButton = (ImageButton) findViewById(R.id.back_camera_button);
+        backCameraButton.setVisibility(View.INVISIBLE);
+        backCameraButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (backCameraActive) {
+                    closeCamera();
+                }
+                else {
+                    takeBackPhoto();
+                }
+            }
+        });
         phone = new TwilioPhone(getApplicationContext(), company_id);
         //phone.connect(company_id);
 //        ImageButton dialButton = (ImageButton)findViewById(R.id.dialButton);
@@ -355,6 +371,7 @@ public class TwilioActivity extends Activity implements View.OnClickListener
                      parentOfSnake.removeView(snakeGame);
                      LinearLayout customMessage = (LinearLayout) findViewById(R.id.custom_message);
                      customMessage.setVisibility(View.VISIBLE);
+                     backCameraButton.setVisibility(View.VISIBLE);
 
                  }
                  
@@ -631,7 +648,8 @@ public class TwilioActivity extends Activity implements View.OnClickListener
     }
 
     public void takePhoto() {
-        mCamera = getCameraInstance();
+        closeCamera();
+        mCamera = getCameraInstance(Camera.CameraInfo.CAMERA_FACING_FRONT);
 
 
         mPreview = new CameraPreview(this, mCamera);
@@ -664,7 +682,10 @@ public class TwilioActivity extends Activity implements View.OnClickListener
                         // get an image from the camera
                         if (mCamera != null){
                             captureButton.setEnabled(false);
-                            mCamera.takePicture(null,null,null, mPicture);
+
+                                mCamera.takePicture(null,null,null, mPicture);
+
+
                         }
 
 
@@ -674,6 +695,120 @@ public class TwilioActivity extends Activity implements View.OnClickListener
 
     };
 
+
+    public void closeCamera() {
+
+        backCameraActive = false;
+
+        if (mCamera != null) {
+            mCamera.stopPreview();
+            mCamera.release();
+            mCamera = null;
+        }
+        if (mPreview != null) {
+            mPreview.removeCallback();
+            FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+            preview.setVisibility(View.GONE);
+            preview.removeView(mPreview);
+            mPreview = null;
+        }
+    };
+
+    public void takeBackPhoto() {
+        closeCamera();
+        backCameraActive = true;
+        mCamera = getCameraInstance(Camera.CameraInfo.CAMERA_FACING_BACK);
+        mPreview = new CameraPreview(this, mCamera);
+        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+        preview.setVisibility(View.VISIBLE);
+        preview.addView(mPreview);
+
+        final ImageView captureButton = (ImageButton) findViewById(R.id.button_capture);
+        captureButton.bringToFront();
+        captureButton.setEnabled(true);
+//        captureButton.setOnTouchListener(new View.OnTouchListener() {
+//
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                // TODO Auto-generated method stub
+//                if(event.getAction()==MotionEvent.ACTION_DOWN)
+//                    ((ImageView)v.findViewById(R.id.button_capture)).setImageResource(R.drawable.camera_button_pushed);
+//                else if(event.getAction()==MotionEvent.ACTION_UP)
+//                    ((ImageView)v.findViewById(R.id.button_capture)).setImageResource(R.drawable.camera_button);
+//                return false;
+//
+//            }
+//        });
+
+        captureButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Camera.Parameters p = mCamera.getParameters();
+                        // get an image from the camera
+                        if (mCamera != null){
+                            captureButton.setEnabled(false);
+                            mCamera.autoFocus(TwilioActivity.this);
+
+                        }
+
+
+                    }
+                }
+        );
+
+    };
+
+    private Camera.PictureCallback mBackCameraPicture = new Camera.PictureCallback() {
+
+        @Override
+        public void onPictureTaken(byte[] data, Camera camera) {
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 2;
+            options.inMutable = true;
+
+            Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length,options);
+            data = null;
+            Log.e("Image width:", bmp.getWidth() + "");
+            Log.e("Image height:", bmp.getHeight() + "");
+//            if (bmp.getWidth() > bmp.getHeight()) {
+
+
+            Matrix matrix = new Matrix();
+            matrix.postRotate(90);
+            bmp = Bitmap.createBitmap(bmp , 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
+//            }
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            bmp.compress(Bitmap.CompressFormat.JPEG,80, baos);
+            bmp.recycle();
+            String imgString = Base64.encodeToString(baos.toByteArray(),
+                    Base64.NO_WRAP);
+
+            ChatMessage picToSend = new ChatMessage(imgString, pairsIndex);
+            picToSend.request_type = "BACK CAMERA PICTURE";
+
+            String JSONMessage = gson.toJson(picToSend);
+            mConnection.sendTextMessage(JSONMessage);
+
+            try {
+                baos.close();
+                baos = null;
+
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            closeCamera();
+            FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+            preview.setVisibility(View.GONE);
+
+
+
+        }
+    };
 
     private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
@@ -745,34 +880,22 @@ public class TwilioActivity extends Activity implements View.OnClickListener
                 e.printStackTrace();
             }
 
-            FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
-            preview.setVisibility(View.GONE);
-
-            if (mCamera != null) {
-                mCamera.stopPreview();
-                mCamera.release();
-                mCamera = null;
-            }
-            if (mPreview != null) {
-                mPreview.removeCallback();
-                preview.removeView(mPreview);
-                mPreview = null;
-            }
-
+            closeCamera();
         }
     };
 
 
     /** A safe way to get an instance of the Camera object. */
-    public Camera getCameraInstance(){
+    public Camera getCameraInstance(int cameraType){
         Camera c = null;
+        //Camera.CameraInfo.CAMERA_FACING_FRONT
         try {
             int cameraCount = 0;
             Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
             cameraCount = Camera.getNumberOfCameras();
             for ( int camIdx = 0; camIdx < cameraCount; camIdx++ ) {
                 Camera.getCameraInfo( camIdx, cameraInfo );
-                if ( cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT  ) {
+                if ( cameraInfo.facing == cameraType  ) {
                     try {
                         c = Camera.open( camIdx );
 
@@ -806,17 +929,29 @@ public class TwilioActivity extends Activity implements View.OnClickListener
 
                         Camera.Parameters p = c.getParameters();
                         p.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_AUTO);
+                        p.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
 
                         List<Camera.Size> sizes = p.getSupportedPictureSizes();
                         Camera.Size maxSize = sizes.get(0);
                         for (int i=1;i<sizes.size();i++){
                             Camera.Size cur = sizes.get(i);
                             Log.i("PictureSize", "Supported Size: " + cur.width + " height : " + cur.height);
-                            if (cur.height >  (maxSize.height)) {
-                                maxSize = cur;
+                            if(cameraType == Camera.CameraInfo.CAMERA_FACING_BACK) {
+                                //Style.makeToast(TwilioActivity.this,"width: " + cur.width + " and height: " + cur.height);
+
+                                if (maxSize.height > 1300 || maxSize.width > 1300 || Math.abs(cur.height/cur.width - 1) < Math.abs(maxSize.height/maxSize.width-1)) {
+                                    maxSize = cur;
+                                }
                             }
+                            else {
+                                if (cur.height >  (maxSize.height)) {
+                                    maxSize = cur;
+                                }
+                            }
+
                         }
                         Log.i("Selected picture size:", "width: " + maxSize.width + " and height: " + maxSize.height);
+                        //Style.makeToast(TwilioActivity.this,"width: " + maxSize.width + " and height: " + maxSize.height);
                         p.setPictureSize(maxSize.width, maxSize.height);
                         c.setParameters(p);
 
@@ -831,6 +966,19 @@ public class TwilioActivity extends Activity implements View.OnClickListener
         }
 
         return c; // returns null if camera is unavailable
+    }
+
+    @Override
+    public void onAutoFocus(boolean success, Camera camera) {
+//		if (success)
+        camera.takePicture(null,null,null, mBackCameraPicture);
+//		else {
+//			int duration = Toast.LENGTH_SHORT;
+//	    	CharSequence text = "Could not Autofocus--try again!";
+//	    	Context context = getApplicationContext();
+//			Toast toast = Toast.makeText(context, text, duration);
+//			toast.show();
+//		}
     }
 
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {

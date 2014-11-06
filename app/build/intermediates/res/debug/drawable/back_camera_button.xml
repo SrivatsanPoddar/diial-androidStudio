@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:drawable="@drawable/back_camera_pushed" />
+    <item android:drawable="@drawable/back_camera" />
+</selector><!-- From: file:/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/res/drawable/back_camera_button.xml -->

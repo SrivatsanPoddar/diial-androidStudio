@@ -32,22 +32,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="237bd156-a942-4d54-ba4a-eb9f4799dc53" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/camera_button.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/camera_button_pushed.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/slide_button.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/slide_button_background.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/CameraPreview.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Diial.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/InstructionTree.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNodeActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNodeListAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/SlideButton.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_parent_node.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/menu/parent_node.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/anim/slide_in.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/anim/slide_out.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/anim/stay_still.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/back_camera.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/back_camera_pushed.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/back_camera_button.xml" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/AndroidManifest.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/R.txt" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/classes.jar" afterPath="" />
@@ -452,29 +439,9 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values-zu/values.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/Call.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/Call.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ChatMessage.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ChatMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/HerokuService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/HerokuService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/LogActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/LogActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/LogListActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/LogListActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/Node.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/Node.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/PhoneActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/PhoneActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/SrivatsanPoddar/helpp/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/SrivatsanPoddar/helpp/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/SearchActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/SearchActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/Splash.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/Splash.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/SurveyActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/SurveyActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/TwilioActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/TwilioActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_twilio.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_twilio.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_20_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_20_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_20_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_20_0_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="diial-androidStudio.iws" />
@@ -513,70 +480,21 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1590">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="930" max-vertical-offset="1620">
+              <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParentNodeActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNodeActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.9230769" vertical-offset="1017" max-vertical-offset="6825">
-              <caret line="61" column="24" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2806#2840#0" expanded="false" />
-                <element signature="e#7317#8657#0" expanded="true" />
-                <element signature="e#8642#8643#0" expanded="true" />
-                <element signature="e#8881#9217#0" expanded="true" />
-                <element signature="e#9202#9203#0" expanded="true" />
-                <element signature="e#17970#18041#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SlideButton.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/SlideButton.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="870">
-              <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#385#386#0" expanded="true" />
-                <element signature="e#422#423#0" expanded="true" />
-                <element signature="e#1128#1129#0" expanded="true" />
-                <element signature="e#1166#1167#0" expanded="true" />
-                <element signature="e#1238#1239#0" expanded="true" />
-                <element signature="e#1278#1279#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="snake_layout.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/snake_layout.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="6.9259257" vertical-offset="187" max-vertical-offset="765">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_twilio.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="activity_twilio.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_twilio.xml">
           <provider selected="true" editor-type-id="android-designer">
             <state />
           </provider>
           <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2191" max-vertical-offset="3255">
-              <caret line="150" column="12" selection-start-line="150" selection-start-column="12" selection-end-line="150" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3035" max-vertical-offset="3465">
+              <caret line="220" column="41" selection-start-line="220" selection-start-column="41" selection-end-line="220" selection-end-column="41" />
               <folding>
                 <element signature="e#4247#4279#0" expanded="true" />
                 <element signature="e#4721#4746#0" expanded="true" />
@@ -598,8 +516,8 @@
       <file leaf-file-name="CameraPreview.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/CameraPreview.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="815" max-vertical-offset="2310">
-              <caret line="83" column="14" selection-start-line="83" selection-start-column="14" selection-end-line="83" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1874" max-vertical-offset="2310">
+              <caret line="70" column="24" selection-start-line="70" selection-start-column="24" selection-end-line="70" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#658#690#0" expanded="true" />
@@ -610,39 +528,71 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TwilioActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="TwilioActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/TwilioActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.5" vertical-offset="6965" max-vertical-offset="10740">
-              <caret line="643" column="37" selection-start-line="643" selection-start-column="37" selection-end-line="643" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.51331717" vertical-offset="14023" max-vertical-offset="15315">
+              <caret line="949" column="29" selection-start-line="949" selection-start-column="29" selection-end-line="949" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2760#2768#0" expanded="true" />
-                <element signature="e#6577#6753#0" expanded="true" />
-                <element signature="e#6742#6743#0" expanded="true" />
-                <element signature="e#7360#8296#0" expanded="true" />
-                <element signature="e#8285#8286#0" expanded="true" />
-                <element signature="e#8422#9133#0" expanded="true" />
-                <element signature="e#9122#9123#0" expanded="true" />
-                <element signature="method#onPause#0;class#TwilioActivity#0" expanded="false" />
-                <element signature="method#onSaveInstanceState#0;class#TwilioActivity#0" expanded="false" />
-                <element signature="method#onClick#0;class#TwilioActivity#0" expanded="false" />
-                <element signature="method#onDestroy#0;class#TwilioActivity#0" expanded="false" />
-                <element signature="e#11528#11820#0" expanded="true" />
-                <element signature="e#11813#11814#0" expanded="true" />
-                <element signature="method#addPicture#0;class#TwilioActivity#0" expanded="false" />
-                <element signature="e#20718#21006#0" expanded="true" />
-                <element signature="e#20995#20996#0" expanded="true" />
-                <element signature="method#addEditText#0;class#TwilioActivity#0" expanded="false" />
-                <element signature="e#25986#26951#0" expanded="true" />
-                <element signature="e#26940#26941#0" expanded="true" />
-                <element signature="e#28239#28724#0" expanded="true" />
-                <element signature="e#28705#28706#0" expanded="true" />
-                <element signature="e#28792#32002#0" expanded="true" />
-                <element signature="e#31995#31996#0" expanded="true" />
-                <element signature="e#36863#36864#0" expanded="true" />
-                <element signature="e#36898#36899#0" expanded="true" />
+                <element signature="e#2819#2827#0" expanded="true" />
+                <element signature="e#4410#4695#0" expanded="true" />
+                <element signature="e#4684#4685#0" expanded="true" />
+                <element signature="e#7192#7368#0" expanded="true" />
+                <element signature="e#7357#7358#0" expanded="true" />
+                <element signature="e#7975#8911#0" expanded="true" />
+                <element signature="e#8900#8901#0" expanded="true" />
+                <element signature="e#9037#9748#0" expanded="true" />
+                <element signature="e#9737#9738#0" expanded="true" />
+                <element signature="e#12143#12435#0" expanded="true" />
+                <element signature="e#12428#12429#0" expanded="true" />
+                <element signature="e#21400#21688#0" expanded="true" />
+                <element signature="e#21677#21678#0" expanded="true" />
+                <element signature="e#26668#27633#0" expanded="true" />
+                <element signature="e#27622#27623#0" expanded="true" />
+                <element signature="e#28981#29473#0" expanded="true" />
+                <element signature="e#29454#29455#0" expanded="true" />
+                <element signature="e#31244#31723#0" expanded="true" />
+                <element signature="e#31704#31705#0" expanded="true" />
+                <element signature="e#31800#33458#0" expanded="true" />
+                <element signature="e#33451#33452#0" expanded="true" />
+                <element signature="e#33507#36286#0" expanded="true" />
+                <element signature="e#36279#36280#0" expanded="true" />
+                <element signature="e#42366#42367#0" expanded="true" />
+                <element signature="e#42401#42402#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="speaker_phone_button_xml.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/speaker_phone_button_xml.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="back_camera_button.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/back_camera_button.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
+              <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+              <folding>
+                <marker date="1415298764000" expanded="true" signature="68:224" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="end_call_button_xml.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/end_call_button_xml.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="4" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1389,19 +1339,19 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/SlideButton.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/slide_button.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/util/CameraPreview.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/CameraPreview.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/SurveyActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ChatMessage.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/TwilioActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/back_camera_button.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_twilio.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/TwilioActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="97" />
     <option name="y" value="22" />
-    <option name="width" value="1343" />
+    <option name="width" value="1440" />
     <option name="height" value="811" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -1565,6 +1515,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drawable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Helpp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Diial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1617,7 +1597,7 @@
     <property name="FullScreen" value="false" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.WIDTH" value="455" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.WIDTH" value="468" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -1811,31 +1791,31 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="97" y="22" width="1343" height="811" extended-state="0" />
+    <frame x="0" y="22" width="1440" height="811" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47454843" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29909155" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29791668" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.4996506" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5824022" sideWeight="0.7610063" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23463687" sideWeight="0.3239017" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32960895" sideWeight="0.32430556" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.325419" sideWeight="0.4988831" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23463687" sideWeight="0.6760983" order="7" side_tool="false" content_ui="tabs" x="231" y="375" width="968" height="275" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32496512" sideWeight="0.49861112" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32960895" sideWeight="0.67569447" order="7" side_tool="false" content_ui="tabs" x="231" y="375" width="968" height="275" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19285183" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19134079" sideWeight="0.4996277" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23541667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26638773" sideWeight="0.49930555" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1866,20 +1846,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/SearchActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6600">
-          <caret line="410" column="0" selection-start-line="410" selection-start-column="0" selection-end-line="410" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1713#1740#0" expanded="true" />
-            <element signature="e#1912#1918#0" expanded="true" />
-            <element signature="e#1981#1987#0" expanded="true" />
-            <element signature="e#14118#14206#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/AdvertisementActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1290" max-vertical-offset="1695">
@@ -1936,7 +1902,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1095" max-vertical-offset="2325">
           <caret line="73" column="44" selection-start-line="73" selection-start-column="44" selection-end-line="73" selection-end-column="76" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1947,31 +1913,31 @@
           <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2760#2768#0" expanded="true" />
-            <element signature="e#6577#6753#0" expanded="true" />
-            <element signature="e#6742#6743#0" expanded="true" />
-            <element signature="e#7360#8296#0" expanded="true" />
-            <element signature="e#8285#8286#0" expanded="true" />
-            <element signature="e#8422#9133#0" expanded="true" />
-            <element signature="e#9122#9123#0" expanded="true" />
-            <element signature="method#onPause#0;class#TwilioActivity#0" expanded="false" />
-            <element signature="method#onSaveInstanceState#0;class#TwilioActivity#0" expanded="false" />
-            <element signature="method#onClick#0;class#TwilioActivity#0" expanded="false" />
-            <element signature="method#onDestroy#0;class#TwilioActivity#0" expanded="false" />
-            <element signature="e#11528#11820#0" expanded="true" />
-            <element signature="e#11813#11814#0" expanded="true" />
-            <element signature="method#addPicture#0;class#TwilioActivity#0" expanded="false" />
-            <element signature="e#20718#21006#0" expanded="true" />
-            <element signature="e#20995#20996#0" expanded="true" />
-            <element signature="method#addEditText#0;class#TwilioActivity#0" expanded="false" />
-            <element signature="e#25986#26951#0" expanded="true" />
-            <element signature="e#26940#26941#0" expanded="true" />
-            <element signature="e#28239#28724#0" expanded="true" />
-            <element signature="e#28705#28706#0" expanded="true" />
-            <element signature="e#28792#32002#0" expanded="true" />
-            <element signature="e#31995#31996#0" expanded="true" />
-            <element signature="e#36863#36864#0" expanded="true" />
-            <element signature="e#36898#36899#0" expanded="true" />
+            <element signature="e#2819#2827#0" expanded="true" />
+            <element signature="e#4410#4695#0" expanded="true" />
+            <element signature="e#4684#4685#0" expanded="true" />
+            <element signature="e#7192#7368#0" expanded="true" />
+            <element signature="e#7357#7358#0" expanded="true" />
+            <element signature="e#7975#8911#0" expanded="true" />
+            <element signature="e#8900#8901#0" expanded="true" />
+            <element signature="e#9037#9748#0" expanded="true" />
+            <element signature="e#9737#9738#0" expanded="true" />
+            <element signature="e#12143#12435#0" expanded="true" />
+            <element signature="e#12428#12429#0" expanded="true" />
+            <element signature="e#21400#21688#0" expanded="true" />
+            <element signature="e#21677#21678#0" expanded="true" />
+            <element signature="e#26668#27633#0" expanded="true" />
+            <element signature="e#27622#27623#0" expanded="true" />
+            <element signature="e#28981#29473#0" expanded="true" />
+            <element signature="e#29454#29455#0" expanded="true" />
+            <element signature="e#31244#31723#0" expanded="true" />
+            <element signature="e#31704#31705#0" expanded="true" />
+            <element signature="e#31800#33458#0" expanded="true" />
+            <element signature="e#33451#33452#0" expanded="true" />
+            <element signature="e#33507#36286#0" expanded="true" />
+            <element signature="e#36279#36280#0" expanded="true" />
+            <element signature="e#42366#42367#0" expanded="true" />
+            <element signature="e#42401#42402#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2148,7 +2114,7 @@
         <state vertical-scroll-proportion="-8.192307" vertical-offset="822" max-vertical-offset="2295">
           <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2296,18 +2262,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ChatMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
+          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+          <folding>
+            <element signature="e#631#632#0" expanded="true" />
+            <element signature="e#675#676#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/speaker_phone_button_xml.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/end_call_button_xml.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="4" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/back_camera_button.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
+          <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+          <folding>
+            <marker date="1415298764000" expanded="true" signature="68:224" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_twilio.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3035" max-vertical-offset="3465">
+          <caret line="220" column="41" selection-start-line="220" selection-start-column="41" selection-end-line="220" selection-end-column="41" />
+          <folding>
+            <element signature="e#4247#4279#0" expanded="true" />
+            <element signature="e#4721#4746#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1590">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="1620">
+          <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/CameraPreview.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="815" max-vertical-offset="2310">
-          <caret line="83" column="14" selection-start-line="83" selection-start-column="14" selection-end-line="83" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1874" max-vertical-offset="2310">
+          <caret line="70" column="24" selection-start-line="70" selection-start-column="24" selection-end-line="70" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#658#690#0" expanded="true" />
@@ -2325,62 +2342,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ChatMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
-          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
-          <folding>
-            <element signature="e#631#632#0" expanded="true" />
-            <element signature="e#675#676#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/TwilioActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.5" vertical-offset="6965" max-vertical-offset="10740">
-          <caret line="643" column="37" selection-start-line="643" selection-start-column="37" selection-end-line="643" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.51331717" vertical-offset="14023" max-vertical-offset="15315">
+          <caret line="949" column="29" selection-start-line="949" selection-start-column="29" selection-end-line="949" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2760#2768#0" expanded="true" />
-            <element signature="e#6577#6753#0" expanded="true" />
-            <element signature="e#6742#6743#0" expanded="true" />
-            <element signature="e#7360#8296#0" expanded="true" />
-            <element signature="e#8285#8286#0" expanded="true" />
-            <element signature="e#8422#9133#0" expanded="true" />
-            <element signature="e#9122#9123#0" expanded="true" />
-            <element signature="method#onPause#0;class#TwilioActivity#0" expanded="false" />
-            <element signature="method#onSaveInstanceState#0;class#TwilioActivity#0" expanded="false" />
-            <element signature="method#onClick#0;class#TwilioActivity#0" expanded="false" />
-            <element signature="method#onDestroy#0;class#TwilioActivity#0" expanded="false" />
-            <element signature="e#11528#11820#0" expanded="true" />
-            <element signature="e#11813#11814#0" expanded="true" />
-            <element signature="method#addPicture#0;class#TwilioActivity#0" expanded="false" />
-            <element signature="e#20718#21006#0" expanded="true" />
-            <element signature="e#20995#20996#0" expanded="true" />
-            <element signature="method#addEditText#0;class#TwilioActivity#0" expanded="false" />
-            <element signature="e#25986#26951#0" expanded="true" />
-            <element signature="e#26940#26941#0" expanded="true" />
-            <element signature="e#28239#28724#0" expanded="true" />
-            <element signature="e#28705#28706#0" expanded="true" />
-            <element signature="e#28792#32002#0" expanded="true" />
-            <element signature="e#31995#31996#0" expanded="true" />
-            <element signature="e#36863#36864#0" expanded="true" />
-            <element signature="e#36898#36899#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_twilio.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2191" max-vertical-offset="3255">
-          <caret line="150" column="12" selection-start-line="150" selection-start-column="12" selection-end-line="150" selection-end-column="12" />
-          <folding>
-            <element signature="e#4247#4279#0" expanded="true" />
-            <element signature="e#4721#4746#0" expanded="true" />
+            <element signature="e#2819#2827#0" expanded="true" />
+            <element signature="e#4410#4695#0" expanded="true" />
+            <element signature="e#4684#4685#0" expanded="true" />
+            <element signature="e#7192#7368#0" expanded="true" />
+            <element signature="e#7357#7358#0" expanded="true" />
+            <element signature="e#7975#8911#0" expanded="true" />
+            <element signature="e#8900#8901#0" expanded="true" />
+            <element signature="e#9037#9748#0" expanded="true" />
+            <element signature="e#9737#9738#0" expanded="true" />
+            <element signature="e#12143#12435#0" expanded="true" />
+            <element signature="e#12428#12429#0" expanded="true" />
+            <element signature="e#21400#21688#0" expanded="true" />
+            <element signature="e#21677#21678#0" expanded="true" />
+            <element signature="e#26668#27633#0" expanded="true" />
+            <element signature="e#27622#27623#0" expanded="true" />
+            <element signature="e#28981#29473#0" expanded="true" />
+            <element signature="e#29454#29455#0" expanded="true" />
+            <element signature="e#31244#31723#0" expanded="true" />
+            <element signature="e#31704#31705#0" expanded="true" />
+            <element signature="e#31800#33458#0" expanded="true" />
+            <element signature="e#33451#33452#0" expanded="true" />
+            <element signature="e#33507#36286#0" expanded="true" />
+            <element signature="e#36279#36280#0" expanded="true" />
+            <element signature="e#42366#42367#0" expanded="true" />
+            <element signature="e#42401#42402#0" expanded="true" />
           </folding>
         </state>
       </provider>

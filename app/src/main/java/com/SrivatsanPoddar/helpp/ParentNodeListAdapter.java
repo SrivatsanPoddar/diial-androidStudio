@@ -34,17 +34,6 @@ public class ParentNodeListAdapter<T> extends ArrayAdapter<T>
 
         //expiration.setText(("valid " + convertDate(promotions[position].start_date) + "-" + convertDate(promotions[position].end_date)));
 
-        // Set color if item in favorites
-        if(nodes[0].getClass().equals(ParentNode.class) && ParentNodeActivity.favorites.contains(nodes[position]))
-        {
-            Log.e("In favorites", nodes[position].toString());
-            row.setBackgroundResource(R.color.light_blue);
-        }
-        else
-        {
-            row.setBackgroundResource(0);
-        }
-
         Style.toOpenSans(getContext(), displayText, "light");
         //displayText.setAutoLinkMask(Linkify.ALL);
         //displayText.setText(nodes[position].toString());

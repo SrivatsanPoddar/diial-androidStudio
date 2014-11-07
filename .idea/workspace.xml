@@ -16,6 +16,10 @@
   <component name="AndroidLayouts">
     <shared>
       <config>
+        <devices>
+          <device id="Nexus 4" />
+          <device id="Nexus 7 2013" />
+        </devices>
         <target>android-19</target>
       </config>
     </shared>
@@ -32,16 +36,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="237bd156-a942-4d54-ba4a-eb9f4799dc53" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/model_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/model_data.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNodeActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNodeActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNodeListAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNodeListAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/SrivatsanPoddar/helpp/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/SrivatsanPoddar/helpp/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_parent_node.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_parent_node.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="diial-androidStudio.iws" />
@@ -68,24 +66,41 @@
       <file leaf-file-name="ParentNodeListAdapter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNodeListAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="175" max-vertical-offset="765">
+              <caret line="34" column="139" selection-start-line="34" selection-start-column="139" selection-end-line="34" selection-end-column="139" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParentNodeActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ParentNodeActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNodeActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5747331" vertical-offset="2958" max-vertical-offset="6222">
-              <caret line="234" column="53" selection-start-line="234" selection-start-column="53" selection-end-line="234" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="7140">
+              <caret line="117" column="85" selection-start-line="117" selection-start-column="85" selection-end-line="117" selection-end-column="85" />
               <folding>
-                <element signature="e#1511#1523#0" expanded="true" />
-                <element signature="e#3189#3197#0" expanded="true" />
-                <element signature="e#7070#8105#0" expanded="true" />
-                <element signature="e#8090#8091#0" expanded="true" />
-                <element signature="e#13775#13846#0" expanded="true" />
+                <element signature="e#1530#1536#0" expanded="true" />
+                <element signature="e#1605#1617#0" expanded="true" />
+                <element signature="e#3179#4191#0" expanded="true" />
+                <element signature="e#4180#4181#0" expanded="true" />
+                <element signature="method#loadFavorites#0;class#ParentNodeActivity#0" expanded="false" />
+                <element signature="e#4534#4542#0" expanded="true" />
+                <element signature="method#onStop#0;class#ParentNodeActivity#0" expanded="false" />
+                <element signature="method#onCreateOptionsMenu#0;class#ParentNodeActivity#0" expanded="false" />
+                <element signature="method#onOptionsItemSelected#0;class#ParentNodeActivity#0" expanded="false" />
+                <element signature="e#8358#9143#0" expanded="true" />
+                <element signature="e#9128#9129#0" expanded="true" />
+                <element signature="e#9359#9695#0" expanded="true" />
+                <element signature="e#9680#9681#0" expanded="true" />
+                <element signature="method#onListItemClick#0;class#FavoritesFragment#0;class#ParentNodeActivity#0" expanded="false" />
+                <element signature="method#failure#0;class#FavoritesFragment#0;class#ParentNodeActivity#0" expanded="false" />
+                <element signature="method#success#0;class#FavoritesFragment#0;class#ParentNodeActivity#0" expanded="false" />
+                <element signature="e#14805#14876#0" expanded="true" />
+                <element signature="e#17212#18095#0" expanded="true" />
+                <element signature="e#18080#18081#0" expanded="true" />
+                <element signature="e#18312#18648#0" expanded="true" />
+                <element signature="e#18633#18634#0" expanded="true" />
+                <element signature="e#23758#23829#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,15 +136,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_parent_node.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="activity_parent_node.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_parent_node.xml">
-          <provider editor-type-id="android-designer">
+          <provider selected="true" editor-type-id="android-designer">
             <state />
           </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.888889" vertical-offset="151" max-vertical-offset="714">
-              <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-              <folding />
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986">
+              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding>
+                <element signature="e#614#635#0" expanded="true" />
+                <element signature="e#1798#1819#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1280,7 +1298,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/AdvertisementActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/parent_node.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNode.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_parent_node.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/Node.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/Call.java" />
@@ -1305,10 +1322,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_twilio.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/TwilioActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNodeListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/search_list_row.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNodeListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNodeActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_parent_node.xml" />
       </list>
     </option>
   </component>
@@ -1317,6 +1335,25 @@
     <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Android Lint</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AndroidLintUselessParent</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -1723,6 +1760,11 @@
       <created>1413834279043</created>
       <updated>1413834279043</updated>
     </task>
+    <task id="LOCAL-00001" summary="Re-added favorites">
+      <created>1415335630698</created>
+      <updated>1415335630698</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1742,14 +1784,14 @@
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32464713" sideWeight="0.4984375" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32899022" sideWeight="0.67552084" order="7" side_tool="false" content_ui="tabs" x="231" y="375" width="968" height="275" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32899022" sideWeight="0.67552084" order="7" side_tool="false" content_ui="tabs" x="231" y="375" width="968" height="275" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23541667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19010417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2660152" sideWeight="0.49895832" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1774,6 +1816,8 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="Re-added favorites" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-added favorites" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1919,7 +1963,7 @@
         <state vertical-scroll-proportion="0.12733446" vertical-offset="0" max-vertical-offset="589">
           <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
           <folding>
-            <element signature="e#168#193#0" expanded="true" />
+            <element signature="e#168#193#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2018,6 +2062,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="239" max-vertical-offset="2460">
           <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2144,14 +2189,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNodeListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/search_list_row.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -2182,17 +2219,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_parent_node.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.888889" vertical-offset="151" max-vertical-offset="714">
-          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -2212,16 +2238,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNodeListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="175" max-vertical-offset="765">
+          <caret line="34" column="139" selection-start-line="34" selection-start-column="139" selection-end-line="34" selection-end-column="139" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/SrivatsanPoddar/helpp/ParentNodeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5747331" vertical-offset="2958" max-vertical-offset="6222">
-          <caret line="234" column="53" selection-start-line="234" selection-start-column="53" selection-end-line="234" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="7140">
+          <caret line="117" column="85" selection-start-line="117" selection-start-column="85" selection-end-line="117" selection-end-column="85" />
           <folding>
-            <element signature="e#1511#1523#0" expanded="true" />
-            <element signature="e#3189#3197#0" expanded="true" />
-            <element signature="e#7070#8105#0" expanded="true" />
-            <element signature="e#8090#8091#0" expanded="true" />
-            <element signature="e#13775#13846#0" expanded="true" />
+            <element signature="e#1530#1536#0" expanded="true" />
+            <element signature="e#1605#1617#0" expanded="true" />
+            <element signature="e#3179#4191#0" expanded="true" />
+            <element signature="e#4180#4181#0" expanded="true" />
+            <element signature="method#loadFavorites#0;class#ParentNodeActivity#0" expanded="false" />
+            <element signature="e#4534#4542#0" expanded="true" />
+            <element signature="method#onStop#0;class#ParentNodeActivity#0" expanded="false" />
+            <element signature="method#onCreateOptionsMenu#0;class#ParentNodeActivity#0" expanded="false" />
+            <element signature="method#onOptionsItemSelected#0;class#ParentNodeActivity#0" expanded="false" />
+            <element signature="e#8358#9143#0" expanded="true" />
+            <element signature="e#9128#9129#0" expanded="true" />
+            <element signature="e#9359#9695#0" expanded="true" />
+            <element signature="e#9680#9681#0" expanded="true" />
+            <element signature="method#onListItemClick#0;class#FavoritesFragment#0;class#ParentNodeActivity#0" expanded="false" />
+            <element signature="method#failure#0;class#FavoritesFragment#0;class#ParentNodeActivity#0" expanded="false" />
+            <element signature="method#success#0;class#FavoritesFragment#0;class#ParentNodeActivity#0" expanded="false" />
+            <element signature="e#14805#14876#0" expanded="true" />
+            <element signature="e#17212#18095#0" expanded="true" />
+            <element signature="e#18080#18081#0" expanded="true" />
+            <element signature="e#18312#18648#0" expanded="true" />
+            <element signature="e#18633#18634#0" expanded="true" />
+            <element signature="e#23758#23829#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_parent_node.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#614#635#0" expanded="true" />
+            <element signature="e#1798#1819#0" expanded="true" />
           </folding>
         </state>
       </provider>

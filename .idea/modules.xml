@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Diial.iml" filepath="$PROJECT_DIR$/Diial.iml" />
       <module fileurl="file://$PROJECT_DIR$/Helpp.iml" filepath="$PROJECT_DIR$/Helpp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/diial-androidStudio.iml" filepath="$PROJECT_DIR$/diial-androidStudio.iml" />
     </modules>
   </component>
 </project>

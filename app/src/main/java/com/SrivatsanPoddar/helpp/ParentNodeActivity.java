@@ -6,6 +6,7 @@ import android.app.ListFragment;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.telephony.PhoneNumberUtils;
@@ -48,8 +49,8 @@ public class ParentNodeActivity extends Activity {
     public ParentNode[] parentNodes;
     Bundle state;
     private ActionBar actionBar;
-    private ArrayList<Node> path = new ArrayList<Node>();
-    public static ArrayList<Node> favorites = new ArrayList<Node>();
+    public ArrayList<Node> path = new ArrayList<Node>();
+    public static ArrayList<ParentNode> favorites = new ArrayList<ParentNode>();
     private static final String TAG = "SearchActivity";
     private Call thisCall;
     private String device_id;
@@ -81,7 +82,7 @@ public class ParentNodeActivity extends Activity {
             //RELOAD PARENT NODES
         }
 
-        //loadFavorites();
+        loadFavorites();
         if (state == null)
         {
             getFragmentManager().beginTransaction()
@@ -90,76 +91,76 @@ public class ParentNodeActivity extends Activity {
     }
 
 
-//    private void loadFavorites()
-//    {
-//        FileInputStream fis = null;
-//        try {
-//            fis = openFileInput(FILENAME);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//            return;
-//        }
-//        Scanner scan = new Scanner(fis);
-//
-//        HashSet<String> favoriteNames = new HashSet<String>();
-//        while(scan.hasNextLine())
-//        {
-//            String line = scan.nextLine();
-//            Log.e("Reading from favorites", line);
-//            favoriteNames.add(line);
-//        }
-//
-//        try {
-//            fis.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        for(Node n : nodes)  ///THROWS ERROR AFTER RETURNING AFTER A WHILE
-//        {
-//            if(favoriteNames.contains(n.toString()) && !favorites.contains(n))
-//            {
-//                Log.e("Adding to favorites", n.toString());
-//                favorites.add(n);
-//            }
-//        }
-//    }
+    private void loadFavorites()
+    {
+        FileInputStream fis = null;
+        try {
+            fis = openFileInput(FILENAME);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
+        Scanner scan = new Scanner(fis);
+
+        HashSet<String> favoriteNames = new HashSet<String>();
+        while(scan.hasNextLine())
+        {
+            String line = scan.nextLine();
+            Log.e("Reading from favorites", line);
+            favoriteNames.add(line);
+        }
+
+        try {
+            fis.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for(ParentNode n : parentNodes)  ///THROWS ERROR AFTER RETURNING AFTER A WHILE
+        {
+            if(favoriteNames.contains(n.toString()) && !favorites.contains(n))
+            {
+                Log.e("Adding to favorites", n.toString());
+                favorites.add(n);
+            }
+        }
+    }
 
     @Override
     public void onStop()
     {
-//        // Write the favorites to a file
-//        FileOutputStream fos = null;
-//        try
-//        {
-//            fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-//        }
-//        catch (FileNotFoundException e)
-//        {
-//            Log.e("File not found", e.getMessage());
-//        }
-//
-//        try
-//        {
-//            for (Node n : favorites)
-//            {
-//                Log.e("Writing to favorites", n.toString());
-//                fos.write((n.toString() + "\n").getBytes());
-//            }
-//        }
-//        catch(IOException e)
-//        {
-//            Log.e("Error writing", e.getMessage());
-//        }
-//
-//        try
-//        {
-//            fos.close();
-//        }
-//        catch(IOException e)
-//        {
-//            Log.e("Error closing file", e.getMessage());
-//        }
+        // Write the favorites to a file
+        FileOutputStream fos = null;
+        try
+        {
+            fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+        }
+        catch (FileNotFoundException e)
+        {
+            Log.e("File not found", e.getMessage());
+        }
+
+        try
+        {
+            for (ParentNode n : favorites)
+            {
+                Log.e("Writing to favorites", n.toString());
+                fos.write((n.toString() + "\n").getBytes());
+            }
+        }
+        catch(IOException e)
+        {
+            Log.e("Error writing", e.getMessage());
+        }
+
+        try
+        {
+            fos.close();
+        }
+        catch(IOException e)
+        {
+            Log.e("Error closing file", e.getMessage());
+        }
         super.onStop();
     }
 
@@ -206,7 +207,7 @@ public class ParentNodeActivity extends Activity {
         // phone call in order to trigger
         // survey
         EditText searchText;
-        ParentNodeListAdapter<ParentNode> adapter;
+        ParentNodeListAdapter<ParentNode> listAdapter;
         ParentNode chosenNode;
 
         @Override
@@ -214,47 +215,31 @@ public class ParentNodeActivity extends Activity {
             super.onActivityCreated(savedInstanceState);
             final ParentNodeActivity act = (ParentNodeActivity) getActivity();
 
-//            // Concatenate favorites to top of list if not in tree
-//            if(act.path.size() == 0) {
-//                fragNodes = Arrays.copyOf(act.favorites.toArray(new Node[act.favorites.size()]), act.nodes.length + act.favorites.size());
-//                System.arraycopy(act.nodes, 0, fragNodes, act.favorites.size(), act.nodes.length);
-//            }
-//            else
-//            {
-//                fragNodes = act.nodes;
-//            }
+            // Concatenate favorites to top of list
+            fragNodes = Arrays.copyOf(act.favorites.toArray(new ParentNode[act.favorites.size()]), act.parentNodes.length + act.favorites.size());
+            System.arraycopy(act.parentNodes, 0, fragNodes, act.favorites.size(), act.parentNodes.length);
 
-            fragNodes = act.parentNodes;
-
-            adapter = new ParentNodeListAdapter<ParentNode>(getActivity(), android.R.layout.simple_list_item_1, fragNodes);
+            listAdapter = new ParentNodeListAdapter<ParentNode>(getActivity(), android.R.layout.simple_list_item_1, fragNodes);
             //aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             //promotionsList.setAdapter(aa);
-            setListAdapter(adapter);
+            setListAdapter(listAdapter);
 
             // Set up long click (favorites) listener
             getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id) {
-                    /**
-                     // Set up shared preferences
-                     SharedPreferences prefs = act.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
-                     int numFavorites = prefs.getInt("numFavorites", 0);
+                     ParentNode temp = (ParentNode) getListView().getItemAtPosition(position);
+                     listAdapter.nodes[position] = listAdapter.nodes[ParentNodeActivity.favorites.size()];
+                     listAdapter.nodes[ParentNodeActivity.favorites.size()] = temp;
 
-
-                     Node temp = fragNodes[position];
-                     fragNodes[position] = fragNodes[numFavorites];
-                     fragNodes[numFavorites] = temp;
-                     prefs.edit().putInt("numFavorites", numFavorites + 1).apply();
-                     **/
-
-//                    // Add to favorites, change color
-//                    if(!act.favorites.contains(fragNodes[position])) {
-//                        act.favorites.add(fragNodes[position]);
-//                        Style.makeToast(act, fragNodes[position] + " added to Favorites");
-//                        Log.e("Adding favorite", fragNodes[position].toString());
-//                        view.setBackgroundResource(R.color.light_blue);
-//                        view.setBackgroundResource(R.drawable.favorites_color);
-//                    }
+                    // Add to favorites, change color
+                    if(!ParentNodeActivity.favorites.contains(temp)) {
+                        ParentNodeActivity.favorites.add(temp);
+                        Style.makeToast(act, temp + " added to Favorites");
+                        Log.e("Adding favorite", temp.toString());
+                        view.setBackgroundResource(R.color.light_blue);
+                        view.setBackgroundResource(R.drawable.favorites_color);
+                    }
 
                     return true;
                 }
@@ -281,7 +266,7 @@ public class ParentNodeActivity extends Activity {
                 public void afterTextChanged(Editable arg0) {
                     String text = searchText.getText().toString()
                             .toLowerCase(Locale.getDefault());
-                    adapter.getFilter().filter(text);
+                    listAdapter.getFilter().filter(text);
 
                     //Show or hide button
                     if (!searchText.getText().toString().equals("")) {
@@ -339,71 +324,6 @@ public class ParentNodeActivity extends Activity {
             Map options = new HashMap<String, Integer>();
             options.put("company_id", chosenNode.company_id);
             nodeService.getInstructionTree(options, this);
-
-//
-//
-//            ((ParentNodeActivity)getActivity()).path.add(chosenNode);  //Add chosen node to path of traveled nodes
-//            //chosenNode = fragNodes[position];
-//            Log.e("Reached", position + "");
-//            // Node[] childrenOfChosenNode = chosenNode.childrenNodes;
-//
-//
-//            if (chosenNode.getNodeType().equals("BRANCH"))
-//            {
-//                Intent intent = new Intent(getActivity(), SearchActivity.class);
-//                intent.putExtra("chosenNode", chosenNode);
-//                intent.putExtra("path", ((SearchActivity)getActivity()).path);
-//                intent.putExtra("thisCall", ((SearchActivity) getActivity()).thisCall);
-//                this.startActivity(intent);
-//            }
-//            else if (chosenNode.getNodeType().equals("PHONE") || chosenNode.getNodeType().equals("TWILIO"))  //End action reached
-//            {
-//                // Add the node to favorites
-//                if(!SearchActivity.favorites.contains(((SearchActivity)getActivity()).path.get(0))) {
-//                    SearchActivity.favorites.add(((SearchActivity) getActivity()).path.get(0));
-//                    Log.e("Added to Favorites", ((SearchActivity) getActivity()).path.get(0).toString());
-//                }
-//
-//                String stringPath = "";
-//
-//                //Create string representing the path of the chosen nodes
-//                for (Node n : ((SearchActivity) getActivity()).path) {
-//                    stringPath = stringPath + " " + ((SearchActivity) getActivity()).getApplicationContext().getString(R.string.right_arrow) + " " + n.toString();
-//                }
-//                //stringPath = stringPath + " &#8594; " + chosenNode.toString();
-//                stringPath = stringPath.substring(2);  //Cut-off initial arrow from string display
-//
-//                //Set current time as start of call
-//                TimeZone UTC = TimeZone.getTimeZone("UTC");
-//                SimpleDateFormat dfUTC = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",Locale.US);
-//                dfUTC.setTimeZone(UTC);
-//                String start_time = dfUTC.format(new Date());
-//
-//                ((SearchActivity) this.getActivity()).thisCall.company_id = chosenNode.getCompanyId();
-//                ((SearchActivity) this.getActivity()).thisCall.call_path = ((SearchActivity)getActivity()).path.toArray(new Node[0]);
-//                ((SearchActivity) this.getActivity()).thisCall.start_time = start_time;
-//                ((SearchActivity) this.getActivity()).thisCall.call_path_string = stringPath;
-//
-//                Intent intent;
-//
-//                //Choose the right intent based on the type of end node reached
-//                if (chosenNode.getNodeType().equals("PHONE")) {
-//                    intent = new Intent(getActivity(), PhoneActivity.class);
-//                }
-//                else {
-//                    intent = new Intent(getActivity(), TwilioActivity.class);
-//                }
-//
-//                intent.putExtra("company_id", chosenNode.getCompanyId());
-//                intent.putExtra("string_path", stringPath);
-//                intent.putExtra("thisCall", (Serializable) ((SearchActivity) this.getActivity()).thisCall);
-//
-//                String chosenPhoneNumber = PhoneNumberUtils.stripSeparators(chosenNode.getPhoneNumber());
-//                intent.putExtra("phone_number", chosenPhoneNumber);
-//
-//                endActionInitiated = true;
-//                startActivity(intent);
-//            }
         }
 
         public void failure(RetrofitError arg0) {
@@ -416,7 +336,8 @@ public class ParentNodeActivity extends Activity {
             //Retrieved instruction tree for the given company
             Node rootNode = myNodes.instruction_tree[0];
 
-            ((ParentNodeActivity)getActivity()).path.add(rootNode);
+            ParentNodeActivity act = (ParentNodeActivity) getActivity();
+            act.path.add(rootNode);
 
             //Set current time as start of call
             TimeZone UTC = TimeZone.getTimeZone("UTC");
@@ -439,11 +360,11 @@ public class ParentNodeActivity extends Activity {
             }
             else if (rootNode.getNodeType().equals("PHONE") || rootNode.getNodeType().equals("TWILIO"))  //End action reached
             {
-//                // Add the node to favorites
-//                if(!SearchActivity.favorites.contains(((SearchActivity)getActivity()).path.get(0))) {
-//                    SearchActivity.favorites.add(((SearchActivity) getActivity()).path.get(0));
-//                    Log.e("Added to Favorites", ((SearchActivity) getActivity()).path.get(0).toString());
-//                }
+                // Add the node to favorites
+                if(!act.favorites.contains(chosenNode)) {
+                    act.favorites.add(chosenNode);
+                    Log.e("Added to Favorites", chosenNode.toString());
+                }
 
                 String stringPath = "";
 

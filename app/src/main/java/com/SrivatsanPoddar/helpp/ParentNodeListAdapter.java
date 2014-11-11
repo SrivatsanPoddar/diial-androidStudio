@@ -1,6 +1,7 @@
 package com.SrivatsanPoddar.helpp;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,25 +33,6 @@ public class ParentNodeListAdapter<T> extends ArrayAdapter<T>
         TextView displayText = (TextView) row.findViewById(R.id.display_text);
 
         //expiration.setText(("valid " + convertDate(promotions[position].start_date) + "-" + convertDate(promotions[position].end_date)));
-
-        // Set color if item in favorites
-        /** SharedPreferences prefs = getContext().getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
-         int numFavorites = prefs.getInt("numFavorites", 0);
-         Log.e("position", position + "");
-         if(numFavorites > position) {
-         row.setBackgroundResource(R.drawable.abc_list_selector_background_transition_holo_light);
-         } **/
-
-//        if(SearchActivity.favorites.contains(nodes[position]))
-//        {
-//            Log.e("In favorites", nodes[position].toString());
-//            row.setBackgroundResource(R.color.light_blue);
-//
-//        }
-//        else
-//        {
-//            row.setBackgroundResource(0);
-//        }
 
         Style.toOpenSans(getContext(), displayText, "light");
         //displayText.setAutoLinkMask(Linkify.ALL);

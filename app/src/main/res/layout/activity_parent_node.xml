@@ -1,11 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/outer_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context="com.SrivatsanPoddar.helpp.ParentNodeActivity"
-    tools:ignore="MergeRootFrame" >
+    tools:ignore="MergeRootFrame"
+    android:divider="@color/light_blue">
+
 
     <EditText
         android:id="@+id/search_text_parent"
@@ -18,19 +20,33 @@
         android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp" />
 
-    <FrameLayout
-        android:id="@+id/frame_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.17" >
-    </FrameLayout>
-
-    <Button
-        android:id="@+id/search_button"
-        style="@style/CustomActionBarTheme"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Display All Companies"
+        android:id="@+id/favorites_text"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:clickable="true" />
+
+    <FrameLayout
+        android:id="@+id/favorites"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.17" />
+
+    <FrameLayout
+        android:id="@+id/all_companies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.17" />
+
+    <Button
+        style="@style/CustomActionBarTheme"
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_action_search"
         android:text="@string/google_text" />
 

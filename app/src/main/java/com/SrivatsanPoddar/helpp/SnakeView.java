@@ -46,8 +46,6 @@ import android.widget.TextView;
 
 /**
  * SnakeView: implementation of a simple game of Snake
- *
- *
  */
 public class SnakeView extends TileView {
 
@@ -168,8 +166,6 @@ public class SnakeView extends TileView {
 
         // For now we're just going to load up a short default eastbound snake
         // that's just turned north
-
-
         mSnakeTrail.add(new Coordinate(7, 7));
         mSnakeTrail.add(new Coordinate(6, 7));
         mSnakeTrail.add(new Coordinate(5, 7));
@@ -188,7 +184,6 @@ public class SnakeView extends TileView {
         TextView liveScore = (TextView) hostTwilioActivity.findViewById(R.id.live_score);
         liveScore.setText("Score: " + mScore);
     }
-
 
     /**
      * Given a ArrayList of coordinates, we need to flatten them into an array of
@@ -262,124 +257,6 @@ public class SnakeView extends TileView {
         mScore = icicle.getLong("mScore");
         mSnakeTrail = coordArrayToArrayList(icicle.getIntArray("mSnakeTrail"));
     }
-
-    /*
-     * handles key events in the game. Update the direction our snake is traveling
-     * based on the DPAD. Ignore events that would cause the snake to immediately
-     * turn back on itself.
-     *
-     * (non-Javadoc)
-     *
-     * @see android.view.View#onKeyDown(int, android.os.KeyEvent)
-     */
-//    public boolean onKeyDown(int keyCode, KeyEvent msg) {
-//
-//        if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
-//            if (mMode == READY | mMode == LOSE) {
-//                /*
-//                 * At the beginning of the game, or the end of a previous one,
-//                 * we should start a new game.
-//                 */
-//                initNewGame();
-//                setMode(RUNNING);
-//                update();
-//                return (true);
-//            }
-//
-//            if (mMode == PAUSE) {
-//                /*
-//                 * If the game is merely paused, we should just continue where
-//                 * we left off.
-//                 */
-//                setMode(RUNNING);
-//                update();
-//                return (true);
-//            }
-//
-//            if (mDirection != SOUTH) {
-//                mNextDirection = NORTH;
-//            }
-//            return (true);
-//        }
-//
-//        if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
-//            if (mDirection != NORTH) {
-//                mNextDirection = SOUTH;
-//            }
-//            return (true);
-//        }
-//
-//        if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
-//            if (mDirection != EAST) {
-//                mNextDirection = WEST;
-//            }
-//            return (true);
-//        }
-//
-//        if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
-//            if (mDirection != WEST) {
-//                mNextDirection = EAST;
-//            }
-//            return (true);
-//        }
-//
-//        return super.onKeyDown(keyCode, msg);
-//    }
-//
-//    public boolean onKeyDown(int keyCode, KeyEvent msg) {
-//
-//        if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
-//            if (mMode == READY | mMode == LOSE) {
-//                /*
-//                 * At the beginning of the game, or the end of a previous one,
-//                 * we should start a new game.
-//                 */
-//                initNewGame();
-//                setMode(RUNNING);
-//                update();
-//                return (true);
-//            }
-//
-//            if (mMode == PAUSE) {
-//                /*
-//                 * If the game is merely paused, we should just continue where
-//                 * we left off.
-//                 */
-//                setMode(RUNNING);
-//                update();
-//                return (true);
-//            }
-//
-//            if (mDirection != SOUTH) {
-//                mNextDirection = NORTH;
-//            }
-//            return (true);
-//        }
-//
-//        if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
-//            if (mDirection != NORTH) {
-//                mNextDirection = SOUTH;
-//            }
-//            return (true);
-//        }
-//
-//        if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
-//            if (mDirection != EAST) {
-//                mNextDirection = WEST;
-//            }
-//            return (true);
-//        }
-//
-//        if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
-//            if (mDirection != WEST) {
-//                mNextDirection = EAST;
-//            }
-//            return (true);
-//        }
-//
-//        return super.onKeyDown(keyCode, msg);
-//    }
-
 
     public boolean giveSwipe(String direction) {
 
@@ -486,8 +363,6 @@ public class SnakeView extends TileView {
                 str = res.getString(R.string.mode_lose_prefix) + " " + mScore + res.getString(R.string.old_high_score_text) + " " + previousHighScore
                         + res.getString(R.string.mode_lose_suffix);
             }
-
-
         }
 
         mStatusText.setText(str);
@@ -499,7 +374,6 @@ public class SnakeView extends TileView {
      * by the snake. Currently _could_ go into an infinite loop if the snake
      * currently fills the garden, but we'll leave discovery of this prize to a
      * truly excellent snake-player.
-     *
      */
     private void addRandomApple() {
         Coordinate newCoord = null;
@@ -529,7 +403,6 @@ public class SnakeView extends TileView {
         mAppleList.add(newCoord);
     }
 
-
     /**
      * Handles the basic update loop, checking to see if we are in the running
      * state, determining if a move should be made, updating the snake's location.
@@ -547,12 +420,10 @@ public class SnakeView extends TileView {
             }
             mRedrawHandler.sleep(mMoveDelay);
         }
-
     }
 
     /**
      * Draws some walls.
-     *
      */
     private void updateWalls() {
         for (int x = 0; x < mXTileCount; x++) {
@@ -567,7 +438,6 @@ public class SnakeView extends TileView {
 
     /**
      * Draws some apples.
-     *
      */
     private void updateApples() {
         for (Coordinate c : mAppleList) {
@@ -670,7 +540,6 @@ public class SnakeView extends TileView {
      * Simple class containing two integer values and a comparison function.
      * There's probably something I should use instead, but this was quick and
      * easy to build.
-     *
      */
     private class Coordinate {
         public int x;
@@ -693,5 +562,4 @@ public class SnakeView extends TileView {
             return "Coordinate: [" + x + "," + y + "]";
         }
     }
-
 }

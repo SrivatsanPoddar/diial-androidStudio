@@ -1,27 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="2" >
-
-    <dataSet config="20.0.0" >
-        <source path="/Users/piyushpoddar/AndroidStudioProjects/Diial/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/assets" />
-    </dataSet>
-    <dataSet config="20.0.0" >
-        <source path="/Users/piyushpoddar/AndroidStudioProjects/Diial/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/assets" />
-    </dataSet>
-    <dataSet config="main" >
-        <source path="/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/assets" >
-            <file
-                name="fonts/OpenSans-Light.ttf"
-                path="/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/assets/fonts/OpenSans-Light.ttf" />
-            <file
-                name="fonts/OpenSans-Regular.ttf"
-                path="/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/assets/fonts/OpenSans-Regular.ttf" />
-            <file
-                name="fonts/OpenSans-Semibold.ttf"
-                path="/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/assets/fonts/OpenSans-Semibold.ttf" />
-        </source>
-    </dataSet>
-    <dataSet config="debug" >
-        <source path="/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/debug/assets" />
-    </dataSet>
-
-</merger>
+<merger version="3"><dataSet config="20.0.0"><source path="/Users/piyushpoddar/AndroidStudioProjects/Diial/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/assets"/></dataSet><dataSet config="20.0.0"><source path="/Users/piyushpoddar/AndroidStudioProjects/Diial/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/assets"/></dataSet><dataSet config="main"><source path="/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/assets"><file name="fonts/OpenSans-Light.ttf" path="/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/assets/fonts/OpenSans-Light.ttf"/><file name="fonts/OpenSans-Regular.ttf" path="/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/assets/fonts/OpenSans-Regular.ttf"/><file name="fonts/OpenSans-Semibold.ttf" path="/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/main/assets/fonts/OpenSans-Semibold.ttf"/></source></dataSet><dataSet config="debug"><source path="/Users/piyushpoddar/AndroidStudioProjects/Diial/app/src/debug/assets"/></dataSet></merger>

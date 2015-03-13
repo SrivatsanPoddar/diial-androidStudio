@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.SeekBar;
 
+//Extension of the Seekbar for the Payment slidebar component
 public class SlideButton extends SeekBar {
 
     private Drawable thumb;
@@ -21,6 +22,7 @@ public class SlideButton extends SeekBar {
         this.thumb = thumb;
     }
 
+    //Detect touch and only slide if greater than 70% through
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -31,11 +33,9 @@ public class SlideButton extends SeekBar {
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
             if (getProgress() > 70)
                 handleSlide();
-
             setProgress(0);
         } else
             super.onTouchEvent(event);
-
         return true;
     }
 

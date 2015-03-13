@@ -1,5 +1,6 @@
 package com.SrivatsanPoddar.helpp;
 
+//Retrofit object for a chat message
 public class ChatMessage
 {
     public String message;

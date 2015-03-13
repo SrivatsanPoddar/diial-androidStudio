@@ -3,11 +3,9 @@ package com.SrivatsanPoddar.helpp;
 import java.io.IOException;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Context;
 import android.hardware.Camera;
 import android.util.Log;
-import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -24,16 +22,14 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     public CameraPreview(Context context, Camera camera) {
         super(context);
         mCamera = camera;
-
-
         mContext = context;
         mSupportedPreviewSizes = mCamera.getParameters().getSupportedPreviewSizes();
-
 
         // Install a SurfaceHolder.Callback so we get notified when the
         // underlying surface is created and destroyed.
         mHolder = getHolder();
         mHolder.addCallback(this);
+
         // deprecated setting, but required on Android versions prior to 3.0
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
     }

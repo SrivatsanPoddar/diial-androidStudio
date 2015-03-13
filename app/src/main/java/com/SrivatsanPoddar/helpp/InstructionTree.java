@@ -1,8 +1,6 @@
 package com.SrivatsanPoddar.helpp;
 
-/**
- * Created by piyushpoddar on 11/3/14.
- */
+//Retrofit object storing the tree of intruction nodes
 public class InstructionTree {
     Node[] instruction_tree;
 }

@@ -2,13 +2,10 @@ package com.SrivatsanPoddar.helpp;
 
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-import com.twilio.client.Twilio;
 
 import de.tavendo.autobahn.WebSocketConnection;
 import de.tavendo.autobahn.WebSocketException;
 import de.tavendo.autobahn.WebSocketHandler;
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -33,10 +30,8 @@ import android.os.Handler;
 import android.os.Vibrator;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.method.LinkMovementMethod;
 import android.text.style.StyleSpan;
 import android.text.util.Linkify;
-import android.util.AttributeSet;
 import android.util.Base64;
 import android.util.Log;
 import android.util.TypedValue;
@@ -54,7 +49,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -64,62 +58,113 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TwilioActivity extends Activity implements View.OnClickListener, Camera.AutoFocusCallback
-{
-    private TwilioPhone phone;
-    private EditText numberField;
-    private String company_id;
-    private static final WebSocketConnection mConnection = new WebSocketConnection();
-    protected static final String TAG = "Twilio Activity";
-    private Gson gson = new Gson();
-    private String pairsIndex;
-    TextView instructionField;
-    private Handler mHandler; 
-    private LinearLayout variableLayout;
-    private Call thisCall;
-    ValueAnimator callingAnimation;
-    private ArrayList<String> stored_information = new ArrayList<String>(5);
-    private boolean speakerPhoneOn = false;
-    private ImageButton backCameraButton;
-    //Snake
-    private SnakeView mSnakeView;
-    private static final int SWIPE_MIN_DISTANCE = 80;
-    private static final int SWIPE_MAX_OFF_PATH = 250;
-    private static final int SWIPE_THRESHOLD_VELOCITY = 150;
-    private GestureDetector gestureDetector;
+/**
+ * Activity that handles interactive call over Twilio Voice API
+ */
+public class TwilioActivity extends Activity implements View.OnClickListener, Camera.AutoFocusCallback {
+
+    //Activity components
+    LinearLayout variableLayout;
+    ImageButton backCameraButton;
+
+    //Twilio Variables
+    TwilioPhone phone;
+
+    //Websocket variables
+    String company_id;
+    static final WebSocketConnection mConnection = new WebSocketConnection();
+    Handler mHandler;
+    Gson gson = new Gson();
+
+    //Snake variables
+    SnakeView mSnakeView;
+    static final int SWIPE_MIN_DISTANCE = 80;
+    static final int SWIPE_THRESHOLD_VELOCITY = 150;
+    GestureDetector gestureDetector;
     View.OnTouchListener gestureListener;
+    static String ICICLE_KEY = "snake-view";
 
-    private static String ICICLE_KEY = "snake-view";
+    //Activity Variables
+    static final String TAG = "Twilio Activity";
+    String pairsIndex;
+    Call thisCall;
+    ValueAnimator callingAnimation;
+    ArrayList<String> stored_information = new ArrayList<String>(5);
+    boolean speakerPhoneOn = false;
 
-    private Camera mCamera = null;
-    private CameraPreview mPreview = null;
-
-    private boolean backCameraActive = false;
+    //Camera Variables
+    Camera mCamera = null;
+    CameraPreview mPreview = null;
+    boolean backCameraActive = false;
 
     @Override
-    public void onCreate(Bundle bundle)
-    {
+    public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_twilio);
         
         final ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true); 
-        
+
+        //Get intent data
         Bundle extras = this.getIntent().getExtras();
         thisCall = (Call) extras.getSerializable("thisCall");
         String stringPath = thisCall.call_path_string;
         company_id = thisCall.company_id;
+
+        //Send initial message informing agent of a new call
         ChatMessage m = new ChatMessage(stringPath);
         m.setTargetCompany(company_id);
-        
         String JSONMessage = this.gson.toJson(m);
-        //((SearchActivity) getActivity()).mConnection.sendTextMessage(JSONMessage);
         this.start(JSONMessage);
-        
-        variableLayout = (LinearLayout) findViewById(R.id.variable_layout);
 
+        //Start snake game
+        if (bundle == null) { // We were just launched -- set up a new game
+            mSnakeView.setMode(SnakeView.READY);
+        } else {             // We are being restored
+            Bundle map = bundle.getBundle(ICICLE_KEY);
+            if (map != null) {
+                mSnakeView.restoreState(map);
+            } else {
+                mSnakeView.setMode(SnakeView.PAUSE);
+            }
+        }
+
+        // Start Gesture detection
+        gestureDetector = new GestureDetector(this, new MyGestureDetector());
+        gestureListener = new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector.onTouchEvent(event);
+            }
+        };
+
+        mSnakeView.setOnClickListener(this);
+        mSnakeView.setOnTouchListener(gestureListener);
+
+        //Retrieve components
+        variableLayout = (LinearLayout) findViewById(R.id.variable_layout);
         backCameraButton = (ImageButton) findViewById(R.id.back_camera_button);
+        ImageButton hangupButton = (ImageButton)findViewById(R.id.hangupButton);
+        TextView callingIndicator = (TextView) findViewById(R.id.calling_indicator);
+        ToggleButton speakerPhone = (ToggleButton) findViewById(R.id.speaker_button);
+        TextView snakeText = (TextView) findViewById(R.id.text);
+        mSnakeView = (SnakeView) findViewById(R.id.snake);
+        mSnakeView.setTextView((TextView) findViewById(R.id.text));
+        final EditText customTextView = (EditText) findViewById(R.id.custom_message_edit_text);
+        Button sendButton = (Button) findViewById(R.id.custom_message_send_button);
+        Button saveButton = (Button) findViewById(R.id.custom_message_save_button);
+
+        //Style Components
+        Style.toOpenSans(this, callingIndicator,"light");
+        Style.toOpenSans(this,snakeText,"light");
         backCameraButton.setVisibility(View.INVISIBLE);
+        phone = new TwilioPhone(getApplicationContext(), company_id);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/OpenSans-Light.ttf");
+        customTextView.setTypeface(typeface);
+
+        //Set Listeners
+        hangupButton.setOnClickListener(this);
+        speakerPhone.setOnClickListener(this);
+
         backCameraButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,86 +176,16 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
                 }
             }
         });
-        phone = new TwilioPhone(getApplicationContext(), company_id);
-        //phone.connect(company_id);
-//        ImageButton dialButton = (ImageButton)findViewById(R.id.dialButton);
-//        dialButton.setOnClickListener(this);
- 
-        ImageButton hangupButton = (ImageButton)findViewById(R.id.hangupButton);
-        hangupButton.setOnClickListener(this);
 
-//        ImageButton sendDigit = (ImageButton)findViewById(R.id.send_digit);
-//        sendDigit.setOnClickListener(this);
-
-        ToggleButton speakerPhone = (ToggleButton) findViewById(R.id.speaker_button);
-        speakerPhone.setOnClickListener(this);
-
-        TextView callingIndicator = (TextView) findViewById(R.id.calling_indicator);
-        Style.toOpenSans(this, callingIndicator,"light");
-
-        TextView snakeText = (TextView) findViewById(R.id.text);
-        Style.toOpenSans(this,snakeText,"light");
-        callingAnimation = ObjectAnimator.ofInt(callingIndicator,  "textColor",  Color.rgb(0x00, 0x00, 0x00), Color.rgb(0xC4, 0xD5, 0xE0));
-        callingAnimation.setDuration(1000);
-        callingAnimation.setRepeatCount(ValueAnimator.INFINITE);
-        callingAnimation.setRepeatMode(ValueAnimator.REVERSE);
-        callingAnimation.setEvaluator(new ArgbEvaluator());
-        
-//        AnimatorSet callingAnimation = (AnimatorSet) AnimatorInflater.loadAnimator(this, R.animator.calling_blink);
-//        callingAnimation.setTarget(callingIndicator);
-        callingAnimation.start();
-        
-// 
-//        numberField = (EditText)findViewById(R.id.numberField);
-//        instructionField = (TextView) findViewById(R.id.live_instructions);
-//        
-//        Button sendMessage = (Button) findViewById(R.id.send_message);
-//        sendMessage.setOnClickListener(this);
-
-       // setContentView(R.layout.snake_layout);
-
-        mSnakeView = (SnakeView) findViewById(R.id.snake);
-        mSnakeView.setTextView((TextView) findViewById(R.id.text));
-
-        if (bundle == null) {
-            // We were just launched -- set up a new game
-            mSnakeView.setMode(SnakeView.READY);
-        } else {
-            // We are being restored
-            Bundle map = bundle.getBundle(ICICLE_KEY);
-            if (map != null) {
-                mSnakeView.restoreState(map);
-            } else {
-                mSnakeView.setMode(SnakeView.PAUSE);
-            }
-        }
-
-        // Gesture detection
-        gestureDetector = new GestureDetector(this, new MyGestureDetector());
-        gestureListener = new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent event) {
-                return gestureDetector.onTouchEvent(event);
-            }
-        };
-
-        //RelativeLayout twilioLayout = (RelativeLayout) findViewById(R.id.twilio_layout);
-        mSnakeView.setOnClickListener(this);
-        mSnakeView.setOnTouchListener(gestureListener);
-
-
-        //Set-up custom message sending and saving
-        final EditText customTextView = (EditText) findViewById(R.id.custom_message_edit_text);
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/OpenSans-Light.ttf");
-        customTextView.setTypeface(typeface);
-        Button sendButton = (Button) findViewById(R.id.custom_message_send_button);
+        //Send a custom message
         sendButton.setOnClickListener(new OnClickListener() {
             public void onClick(final View v) {
                 if (!customTextView.getText().toString().equals("")) {
                     ChatMessage toSend = new ChatMessage(customTextView.getText().toString(), pairsIndex);
-
                     String JSONMessage = gson.toJson(toSend);
                     mConnection.sendTextMessage(JSONMessage);
 
+                    //Add the message to the log
                     TextView sentMessage = new TextView(TwilioActivity.this);
                     Style.toOpenSans(TwilioActivity.this, sentMessage, "light");
                     sentMessage.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -218,16 +193,14 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
                     variableLayout.addView(sentMessage,0);
                     stored_information.add("Sent: " + customTextView.getText().toString());
                     customTextView.setText("");
-
                 }
             }
         });
 
-        Button saveButton = (Button) findViewById(R.id.custom_message_save_button);
+        //Save the typed message rather than send it (for personal notes)
         saveButton.setOnClickListener(new OnClickListener() {
             public void onClick(final View v) {
                 if (!customTextView.getText().toString().equals("")) {
-
                     TextView savedMessage = new TextView(TwilioActivity.this);
                     Style.toOpenSans(TwilioActivity.this, savedMessage, "light");
                     savedMessage.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -235,52 +208,45 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
                     variableLayout.addView(savedMessage,0);
                     stored_information.add("Saved: " + customTextView.getText().toString());
                     customTextView.setText("");
-
                 }
             }
         });
 
-        //showPaymentBar();
-
+        //Start calling color change animation
+        callingAnimation = ObjectAnimator.ofInt(callingIndicator,  "textColor",  Color.rgb(0x00, 0x00, 0x00), Color.rgb(0xC4, 0xD5, 0xE0));
+        callingAnimation.setDuration(1000);
+        callingAnimation.setRepeatCount(ValueAnimator.INFINITE);
+        callingAnimation.setRepeatMode(ValueAnimator.REVERSE);
+        callingAnimation.setEvaluator(new ArgbEvaluator());
+        callingAnimation.start();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        // Pause the game along with the activity
-        mSnakeView.setMode(SnakeView.PAUSE);
+        mSnakeView.setMode(SnakeView.PAUSE); // Pause the game along with the activity
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        //Store the game state
-        outState.putBundle(ICICLE_KEY, mSnakeView.saveState());
+        outState.putBundle(ICICLE_KEY, mSnakeView.saveState()); //Store the game state
     }
 
     @Override
     public void onClick(View view)
     {
-//        if (view.getId() == R.id.dialButton)
-//            phone.connect(company_id);
-//        else 
-        if (view.getId() == R.id.hangupButton) {
+        if (view.getId() == R.id.hangupButton) { //End the call, close connections, and go to Survey activity
             phone.disconnect();
             mHandler.removeCallbacks(pingServer);
             mConnection.disconnect();
 
             Intent intent = new Intent(TwilioActivity.this, SurveyActivity.class);
-
             thisCall.stored_information = stored_information;
             intent.putExtra("company_id", TwilioActivity.this.company_id);
             intent.putExtra("thisCall", TwilioActivity.this.thisCall);
             TwilioActivity.this.startActivity(intent);
         }
-
-//        else if (view.getId() == R.id.send_digit) {
-//            Log.e("Send digit pushed","woo");
-//            phone.sendDigit();
-//        }
-        else if (view.getId() == R.id.speaker_button) {
+        else if (view.getId() == R.id.speaker_button) { //Toggle loud speaker
             Log.e("Speaker phone toggled", "woo");
             speakerPhoneOn = !speakerPhoneOn;
             if (speakerPhoneOn) {
@@ -292,26 +258,10 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
                 audioManager.setSpeakerphoneOn(false);
             }
         }
-//        else if (view.getId() == R.id.send_message) {
-//            String messageToSend = numberField.getText().toString();
-//            ChatMessage m = new ChatMessage(messageToSend,pairsIndex);
-//            String JSONMessage = gson.toJson(m);
-//            mConnection.sendTextMessage(JSONMessage);
-//        }
     }
-    
-    public void onDestroy() {
-        super.onDestroy();
-        if (mHandler != null) {
-            mHandler.removeCallbacks(pingServer);
-        }
 
-        mConnection.disconnect();
-        phone.disconnect();
-    }
-    
+    //Ping server to stop the web socket connection from closing
     Runnable pingServer = new Runnable() {
-        
         public void run () {
             ChatMessage m = new ChatMessage("Ping from android");
             String JSONMessage = gson.toJson(m);
@@ -333,70 +283,57 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
               @Override
               public void onOpen() {
                  Log.d(TAG, "Status: Connected to " + wsuri);
-//                 ChatMessage m = new ChatMessage();
-//                 m.setString("Hello Bob!");
-//                 
-//                 String JSONMessage = gson.toJson(m);
                  mConnection.sendTextMessage(initialMessage);
-                 Log.e("Sending initial message to target_id of:",  initialMessage);
-                 //CLOSE WEB SOCKET
-                 //mConnection.disconnect();
+                 Log.e("Sent start message to:",  initialMessage);
                  mHandler = new Handler();
-                 pingServer.run();
-
+                 pingServer.run(); //Start pinging
               }
 
               @Override
-              public void onTextMessage(String payload) {
+              public void onTextMessage(String payload) { //Received message
                  Log.d(TAG, "Got echo: " + payload);
                  ChatMessage m = gson.fromJson(payload, ChatMessage.class);
                  
                  //If just paired, then set pairsIndex
                  if(m.pair != null) {
                      pairsIndex = m.pairsIndex;
-                     Log.e("Pairing Request Received with pairsIndex:", pairsIndex + "");
-                     phone.connect(company_id); //Make call once the pairing occurs!
-                     TextView callingIndicator = (TextView) findViewById(R.id.calling_indicator);
+                     Log.e("Got Pairing Request", pairsIndex + "");
+                     phone.connect(company_id); //Make twilio call once the pairing occurs!
+
+                     TextView callingIndicator = (TextView) findViewById(R.id.calling_indicator); //Change the calling indicator to Call in Progress
                      callingAnimation.end();
                      callingIndicator.setText("Call in Progress");
                      callingIndicator.setTextColor(Color.rgb(0x00, 0x72, 0x55));
-                     
+
+                     //Vibrate on established connection
                      long pattern[]={0,200,200,200};
-                     //Start the vibration
                      Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-                     //start vibration with repeated count, use -1 if you don't want to repeat the vibration
                      vibrator.vibrate(pattern, -1);
+
+                     //Hide the snake game
                      FrameLayout snakeGame = (FrameLayout) findViewById(R.id.snake_game);
                      ViewGroup parentOfSnake = (ViewGroup) (snakeGame.getParent());
                      parentOfSnake.removeView(snakeGame);
+
+                     //Show the custom message field and camera button
                      LinearLayout customMessage = (LinearLayout) findViewById(R.id.custom_message);
                      customMessage.setVisibility(View.VISIBLE);
                      backCameraButton.setVisibility(View.VISIBLE);
-
                  }
-                 
-//                 if(m.message != null) {
-//                     instructionField.setText(m.message);
-//                 }
-                 
                  
                  //If String information was requested from caller, then add UI to give info and pre-fill with Shared Preferences if it exists
                  if (m.request_format != null && m.request_format.equals("edit_text")) {
-                                         
-                     TwilioActivity.this.addEditText(m);  //Add instructions, text field and button UI
-   
+                    TwilioActivity.this.addEditText(m);  //Add instructions, text field and button UI
                  }
                  //If a link was sent by the caller, then show a clickable link
                  else if (m.request_format != null && m.request_format.equals("link") && m.message != null) {
                     String sentURL = m.message;
 
-                     //Check if the URL is an image retrievable by Square Picasso, if so, then display that image...
+                    //Check if the URL is an image retrievable by Square Picasso, if so, then display that image...
                     String[] imageFileExtensions =  new String[] {"jpg", "png", "gif","jpeg"};
                     boolean isImage = false;
-                     for (String extension : imageFileExtensions)
-                     {
-                        if (sentURL.toLowerCase().endsWith(extension))
-                        {
+                     for (String extension : imageFileExtensions) {
+                        if (sentURL.toLowerCase().endsWith(extension)) {
                             isImage = true;
                             break;
                         }
@@ -404,10 +341,7 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
 
                      if (isImage) {
                          TwilioActivity.this.addPicture(sentURL);
-
-                     }
-                     else {
-
+                     } else {
                          TwilioActivity.this.addLink(m);  //Add instructions, text field and button UI
                      }
                  }
@@ -420,8 +354,6 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
                          takePhoto();
                      }
                  }
-
-
               }
 
               @Override
@@ -430,11 +362,10 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
                      mHandler.removeCallbacks(pingServer);
                      Log.d(TAG, "Connection lost.");
                  }
-
               }
            });
-        } catch (WebSocketException e) {
 
+        } catch (WebSocketException e) {
            Log.d(TAG, e.toString());
         }
      }
@@ -442,13 +373,13 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
     //Adds a picture if sent by agent
     public void addPicture(String sentURL) {
 
+        //Vibrate if picture was sent
         long pattern[]={0,50,50,50};
-        //Start the vibration
         Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-        //start vibration with repeated count, use -1 if you don't want to repeat the vibration
         vibrator.vibrate(pattern, -1);
 
-        Log.e("Picture detected with URL: ", sentURL);
+        //Create and add new picture layout
+        Log.e("Picture found w/ URL: ", sentURL);
         final LinearLayout toAdd = new LinearLayout(TwilioActivity.this);
         toAdd.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams linLayoutParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
@@ -463,18 +394,18 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
 
         toAdd.addView(imageView);
         variableLayout.addView(toAdd,0);
-
-        stored_information.add(sentURL);
-
-
+        stored_information.add(sentURL); //Store the picture in the log
     }
 
+    //Shows the payment confirmation 'swipe to pay' bar
     public void showPaymentBar(ChatMessage m) {
 
+        //Scale to density
         Resources r = getResources();
         int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, r.getDisplayMetrics());
         int px60 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, r.getDisplayMetrics());
 
+        //Create and add the bar to the layout
         final LinearLayout toAdd = new LinearLayout(TwilioActivity.this);
         LinearLayout.LayoutParams linearLayoutParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         toAdd.setOrientation(LinearLayout.VERTICAL);
@@ -511,9 +442,10 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
         slideButton.setClickable(false);
         FrameLayout.LayoutParams slideLayout = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, px60);
         slideLayout.setMargins(px,0,px,px);
+
         slideButton.setSlideButtonListener(new SlideButtonListener() {
             @Override
-            public void handleSlide() {
+            public void handleSlide() { //Notify of successful payment and remove the slide bar
                 Style.makeToast(TwilioActivity.this, "Payment of " +  amount + " made to " + company_name);
                 ((ViewGroup) toAdd.getParent()).removeView(toAdd);
             }
@@ -528,28 +460,24 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
     //Adds a clickable link to the UI
     public void addLink(ChatMessage m) {
 
-
+        //Vibrate on new message
         long pattern[]={0,50,50,50};
-        //Start the vibration
         Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-        //start vibration with repeated count, use -1 if you don't want to repeat the vibration
-        vibrator.vibrate(pattern, -1);  
-        
+        vibrator.vibrate(pattern, -1);
 
         String displayText = m.message;  //Extract the link URL
-
         String linkDescription = m.request_type;  
         if ((linkDescription != null) && !linkDescription.isEmpty()) {
             displayText = linkDescription + ": " + displayText;
         }
-        stored_information.add(displayText);
-        final SpannableStringBuilder sb = new SpannableStringBuilder(displayText);
 
+        stored_information.add(displayText); //Store the link for the call log
+
+        final SpannableStringBuilder sb = new SpannableStringBuilder(displayText);
         final StyleSpan bss = new StyleSpan(android.graphics.Typeface.BOLD); // Span to make text bold
         if (linkDescription != null) {
             sb.setSpan(bss, 0, linkDescription.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE); // make first 4 characters Bold
         }
-
 
         final LinearLayout toAdd = new LinearLayout(TwilioActivity.this);
         toAdd.setOrientation(LinearLayout.VERTICAL);
@@ -561,30 +489,27 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
         Style.toOpenSans(this, linkView, "light");
         linkView.setGravity(Gravity.CENTER_HORIZONTAL);
         
-        //linkView.setMovementMethod(LinkMovementMethod.getInstance());
         linkView.setAutoLinkMask(Linkify.ALL);
         linkView.setText(sb);
         toAdd.addView(linkView, linkParams);
         variableLayout.addView(toAdd,0);
-        
     }
-    
+
+    //Adds an edit text with personal instruction for personal info
     public void addEditText(ChatMessage m) {
-        
+
+        //Vibrate on new personal info request
         long pattern[]={0, 150};
-        //Start the vibration
         Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-        //start vibration with repeated count, use -1 if you don't want to repeat the vibration
-        vibrator.vibrate(pattern, -1);  
+        vibrator.vibrate(pattern, -1);
         
-        //Retrieve shared preferences
+        //Retrieve shared preferences and check if this info has been saved from previously
         SharedPreferences prefs = TwilioActivity.this.getApplicationContext().getSharedPreferences("com.SrivatsanPoddar.helpp", Context.MODE_PRIVATE);
         final String preferenceKey = "com.SrivatsanPoddar.helpp." + m.request_type;
         String preference = prefs.getString(preferenceKey, "");
         Log.e("Retrieved preference: " + preference + " for preference key: ", preferenceKey);
-        
-        
-        //Log.e("Adding view","WOO");
+
+        //Construct and add the UI to the layout
         final LinearLayout toAdd = new LinearLayout(TwilioActivity.this);
         toAdd.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams linLayoutParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
@@ -622,6 +547,7 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
         send.setGravity(Gravity.BOTTOM);
         send.setText("Send");
         horizontalLayout.addView(send, sendParams);
+
         send.setOnClickListener(new OnClickListener() {
             public void onClick(final View v) {
                 if (!toEdit.getText().toString().equals("")) {
@@ -635,11 +561,10 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
                     String JSONMessage = gson.toJson(toSend);
                     mConnection.sendTextMessage(JSONMessage);
                     
-                    //Remove the view!
+                    //Remove the view on sending the info!
                     variableLayout.removeView(toAdd);
                     
                 }
-
             }
         });
         
@@ -647,11 +572,10 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
         variableLayout.addView(toAdd,0);
     }
 
+    //Sets-up live camera preview for taking a new photo from the front camera
     public void takePhoto() {
         closeCamera();
         mCamera = getCameraInstance(Camera.CameraInfo.CAMERA_FACING_FRONT);
-
-
         mPreview = new CameraPreview(this, mCamera);
         FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
         preview.setVisibility(View.VISIBLE);
@@ -660,19 +584,6 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
         final ImageView captureButton = (ImageButton) findViewById(R.id.button_capture);
         captureButton.bringToFront();
         captureButton.setEnabled(true);
-//        captureButton.setOnTouchListener(new View.OnTouchListener() {
-//
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                // TODO Auto-generated method stub
-//                if(event.getAction()==MotionEvent.ACTION_DOWN)
-//                    ((ImageView)v.findViewById(R.id.button_capture)).setImageResource(R.drawable.camera_button_pushed);
-//                else if(event.getAction()==MotionEvent.ACTION_UP)
-//                    ((ImageView)v.findViewById(R.id.button_capture)).setImageResource(R.drawable.camera_button);
-//                return false;
-//
-//            }
-//        });
 
         captureButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -682,24 +593,17 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
                         // get an image from the camera
                         if (mCamera != null){
                             captureButton.setEnabled(false);
-
                                 mCamera.takePicture(null,null,null, mPicture);
-
-
                         }
-
-
                     }
                 }
         );
-
     };
 
-
+    //Closes the existing camera set-up
     public void closeCamera() {
 
         backCameraActive = false;
-
         if (mCamera != null) {
             mCamera.stopPreview();
             mCamera.release();
@@ -714,6 +618,7 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
         }
     };
 
+    //Sets up the live camera-preview for a back-facing picture
     public void takeBackPhoto() {
         closeCamera();
         backCameraActive = true;
@@ -726,39 +631,23 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
         final ImageView captureButton = (ImageButton) findViewById(R.id.button_capture);
         captureButton.bringToFront();
         captureButton.setEnabled(true);
-//        captureButton.setOnTouchListener(new View.OnTouchListener() {
-//
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                // TODO Auto-generated method stub
-//                if(event.getAction()==MotionEvent.ACTION_DOWN)
-//                    ((ImageView)v.findViewById(R.id.button_capture)).setImageResource(R.drawable.camera_button_pushed);
-//                else if(event.getAction()==MotionEvent.ACTION_UP)
-//                    ((ImageView)v.findViewById(R.id.button_capture)).setImageResource(R.drawable.camera_button);
-//                return false;
-//
-//            }
-//        });
 
         captureButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Camera.Parameters p = mCamera.getParameters();
-                        // get an image from the camera
                         if (mCamera != null){
                             captureButton.setEnabled(false);
                             mCamera.autoFocus(TwilioActivity.this);
-
                         }
-
-
                     }
                 }
         );
 
     };
 
+    //Receives and processes a taken picture from the back camera
     private Camera.PictureCallback mBackCameraPicture = new Camera.PictureCallback() {
 
         @Override
@@ -771,16 +660,14 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
             data = null;
             Log.e("Image width:", bmp.getWidth() + "");
             Log.e("Image height:", bmp.getHeight() + "");
-//            if (bmp.getWidth() > bmp.getHeight()) {
 
-
+            //Rotate the image
             Matrix matrix = new Matrix();
             matrix.postRotate(90);
             bmp = Bitmap.createBitmap(bmp , 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
-//            }
 
+            //Compress the image
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
             bmp.compress(Bitmap.CompressFormat.JPEG,80, baos);
             bmp.recycle();
             String imgString = Base64.encodeToString(baos.toByteArray(),
@@ -789,6 +676,7 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
             ChatMessage picToSend = new ChatMessage(imgString, pairsIndex);
             picToSend.request_type = "BACK CAMERA PICTURE";
 
+            //Serialize the image and send over websockets
             String JSONMessage = gson.toJson(picToSend);
             mConnection.sendTextMessage(JSONMessage);
 
@@ -797,23 +685,22 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
                 baos = null;
 
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
             closeCamera();
             FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
             preview.setVisibility(View.GONE);
-
-
-
         }
     };
 
+    //Receive and process a picture taken from the front camera for verification
     private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
+
+            //Compress and rotate the image
             final BitmapFactory.Options options = new BitmapFactory.Options();
             options.inSampleSize = 4;
             options.inMutable = true;
@@ -822,13 +709,9 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
             data = null;
             Log.e("Image width:", bmp.getWidth() + "");
             Log.e("Image height:", bmp.getHeight() + "");
-//            if (bmp.getWidth() > bmp.getHeight()) {
-
-
-                Matrix matrix = new Matrix();
-                matrix.postRotate(-90);
-                bmp = Bitmap.createBitmap(bmp , 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
-//            }
+            Matrix matrix = new Matrix();
+            matrix.postRotate(-90);
+            bmp = Bitmap.createBitmap(bmp , 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -837,6 +720,7 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
             String imgString = Base64.encodeToString(baos.toByteArray(),
                     Base64.NO_WRAP);
 
+            //Get previously stored authentication picture from shared preferences if it exists and send both to agent for verification
             ChatMessage picToSend = new ChatMessage(imgString, pairsIndex);
             picToSend.request_type = "CURRENT AUTHENTICATION PICTURE";
 
@@ -864,19 +748,11 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
                 JSONMessage = gson.toJson(originalPic);
                 mConnection.sendTextMessage(JSONMessage);
             }
-
-
-            imgString = "";
-
-
-
-
             try {
                 baos.close();
                 baos = null;
 
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
@@ -884,11 +760,9 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
         }
     };
 
-
     /** A safe way to get an instance of the Camera object. */
     public Camera getCameraInstance(int cameraType){
         Camera c = null;
-        //Camera.CameraInfo.CAMERA_FACING_FRONT
         try {
             int cameraCount = 0;
             Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
@@ -925,8 +799,8 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
                         } else { // back-facing
                             result = (info.orientation - degrees + 360) % 360;
                         }
-                        c.setDisplayOrientation(result);
 
+                        c.setDisplayOrientation(result);
                         Camera.Parameters p = c.getParameters();
                         p.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_AUTO);
                         p.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
@@ -937,8 +811,6 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
                             Camera.Size cur = sizes.get(i);
                             Log.i("PictureSize", "Supported Size: " + cur.width + " height : " + cur.height);
                             if(cameraType == Camera.CameraInfo.CAMERA_FACING_BACK) {
-                                //Style.makeToast(TwilioActivity.this,"width: " + cur.width + " and height: " + cur.height);
-
                                 if (maxSize.height > 1300 || maxSize.width > 1300 || Math.abs(cur.height/cur.width - 1) < Math.abs(maxSize.height/maxSize.width-1)) {
                                     maxSize = cur;
                                 }
@@ -951,7 +823,6 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
 
                         }
                         Log.i("Selected picture size:", "width: " + maxSize.width + " and height: " + maxSize.height);
-                        //Style.makeToast(TwilioActivity.this,"width: " + maxSize.width + " and height: " + maxSize.height);
                         p.setPictureSize(maxSize.width, maxSize.height);
                         c.setParameters(p);
 
@@ -968,36 +839,26 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
         return c; // returns null if camera is unavailable
     }
 
+    //Take the picture once autofocused
     @Override
     public void onAutoFocus(boolean success, Camera camera) {
-//		if (success)
         camera.takePicture(null,null,null, mBackCameraPicture);
-//		else {
-//			int duration = Toast.LENGTH_SHORT;
-//	    	CharSequence text = "Could not Autofocus--try again!";
-//	    	Context context = getApplicationContext();
-//			Toast toast = Toast.makeText(context, text, duration);
-//			toast.show();
-//		}
     }
 
+    //Gesture detection for controlling the snake game
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             Log.e("Fling detected", "woo");
             try {
                 if(e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                    //Toast.makeText(Snake.this, "Up Swipe", Toast.LENGTH_SHORT).show();
                     mSnakeView.giveSwipe("up");
                 }  else if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                    //Toast.makeText(Snake.this, "Down Swipe", Toast.LENGTH_SHORT).show();
                     mSnakeView.giveSwipe("down");
                 }
                 else if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                    //Toast.makeText(Snake.this, "Left Swipe", Toast.LENGTH_SHORT).show();
                     mSnakeView.giveSwipe("left");
                 }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                    //Toast.makeText(Snake.this, "Right Swipe", Toast.LENGTH_SHORT).show();
                     mSnakeView.giveSwipe("right");
                 }
             } catch (Exception e) {
@@ -1010,6 +871,15 @@ public class TwilioActivity extends Activity implements View.OnClickListener, Ca
         public boolean onDown(MotionEvent e) {
             return true;
         }
+    }
+
+    public void onDestroy() { //Destroy connections
+        super.onDestroy();
+        if (mHandler != null) {
+            mHandler.removeCallbacks(pingServer);
+        }
+        mConnection.disconnect();
+        phone.disconnect();
     }
 
 }

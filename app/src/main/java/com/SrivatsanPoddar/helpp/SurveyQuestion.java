@@ -1,5 +1,8 @@
 package com.SrivatsanPoddar.helpp;
 
+/**
+ * Retrofit object representing a SurveyQuestion
+ */
 public class SurveyQuestion {
 	
 	private String question_type;  //Could be "multiple_choice" for Multiple-Choice, "true_false", or "short_response"

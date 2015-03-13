@@ -3,15 +3,11 @@ package com.SrivatsanPoddar.helpp;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+//Call object used for Retrofit
 public class Call implements Serializable
 {
-
-    /**
-     * 
-     */
     private static final long serialVersionUID = -7804709187605780091L;
-    
-    
+
     public String device_id;
     public String start_time; 
     public String end_time;

@@ -15,10 +15,9 @@ public class LogListAdapter<T> extends ArrayAdapter<T>
     T[] nodes;
     public LogListAdapter(Context context, int resource, T[] myNodes) {
         super(context, R.layout.log_list_row, R.id.log_display_text, myNodes);
-        // TODO Auto-generated constructor stub
         nodes = myNodes;
     }
-    
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = super.getView(position, convertView, parent);

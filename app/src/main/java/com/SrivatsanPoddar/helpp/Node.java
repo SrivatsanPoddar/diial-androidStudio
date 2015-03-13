@@ -1,13 +1,12 @@
 package com.SrivatsanPoddar.helpp;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
+/*
+ * Retrofit object representing a node in the instruction tree
+ */
 @SuppressWarnings("serial")
 public class Node implements Serializable{
 
@@ -26,33 +25,36 @@ public class Node implements Serializable{
 		children = new ArrayList<Node>();
         node_type = nodeType;
 	}
-	
+
+    //Initialize children
 	public void initChildren()
 	{
 		children = new ArrayList<Node>();
 	}
-	
-	public Node[] getChildren() {
 
+    //Retrives the children of this node
+	public Node[] getChildren() {
         //Don't sort the main list --CHANGE THIS--POOR PROGRAMMING
         if (children.size() < 15) {
             Collections.sort(children, new NodeComparator());
         }
 
-         return children.toArray(new Node[children.size()]);
+        return children.toArray(new Node[children.size()]);
     }
-	
+
+    //Add a child to this node
 	public void addChild(Node child)
 	{
 		assert children != null;
 		children.add(child);
 	}
-	
+
+    //Get the ID of this node
 	public int getNodeId(){
 		return node_id;
 	}
 
-	
+    //Get the ID of the parent node
 	public int getParentNodeId() {
 		return parent_node_id;
 	}

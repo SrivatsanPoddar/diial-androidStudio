@@ -1,7 +1,7 @@
 package com.SrivatsanPoddar.helpp;
 
 /**
- * Created by Piyush on 10/22/2014.
+ * Retrofit object representing a standard string response
  */
 public class StringResponse {
     public String response;

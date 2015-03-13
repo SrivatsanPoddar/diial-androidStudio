@@ -2,9 +2,7 @@ package com.SrivatsanPoddar.helpp;
 
 import java.util.List;
 
-/**
- * Created by Piyush on 9/10/2014.
- */
+//Call object to store calls
 public class Calls {
     List<Call> Calls;
 }

@@ -1,8 +1,6 @@
 package com.SrivatsanPoddar.helpp;
 
-/**
- * Created by piyushpoddar on 11/3/14.
- */
+//Retrofit class that represents the header for a given company
 public class ParentNode {
 
     int company_id;

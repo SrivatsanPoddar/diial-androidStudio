@@ -11,6 +11,9 @@ import retrofit.http.Path;
 import retrofit.http.Query;
 import retrofit.http.QueryMap;
 
+/*
+ * Retrofit routing methods for HTTP requests
+ */
 public interface HerokuService
 {
 	@GET("/nodes")

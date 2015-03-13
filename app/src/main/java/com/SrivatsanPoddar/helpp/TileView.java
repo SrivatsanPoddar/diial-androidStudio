@@ -15,9 +15,7 @@ package com.SrivatsanPoddar.helpp;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -29,7 +27,6 @@ import android.view.View;
 /**
  * TileView: a View-variant designed for handling arrays of "icons" or other
  * drawables.
- *
  */
 public class TileView extends View {
 

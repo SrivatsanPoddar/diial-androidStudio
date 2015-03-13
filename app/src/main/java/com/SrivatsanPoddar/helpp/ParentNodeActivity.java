@@ -66,30 +66,33 @@ public class ParentNodeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_node);
 
-        state = savedInstanceState;
-        Bundle extras = this.getIntent().getExtras();
-
         actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
+
+        state = savedInstanceState;
+
+        //Retrieve components
         searchText = (EditText) findViewById(R.id.search_text_parent);
+
+        //Style Components
         Style.toOpenSans(this, searchText, "light");
 
         device_id = Settings.Secure.getString(this.getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-        // Check if this activity was started clicking of non-root node. If so,
-        // find and display children of that node
 
+        //Create a new call
         thisCall = new Call();
         thisCall.device_id = this.device_id;
         parentNodes = Splash.parentNodes;
 
         if (parentNodes == null) {
-            //RELOAD PARENT NODES
+            //RELOAD PARENT NODES -- NEED TO IMPLEMENT
         }
 
         loadFavorites();
 
         final Fragment cf = new CompanyFragment();
         final Fragment ff = new FavoritesFragment();
+
         if (state == null)
         {
             getFragmentManager().beginTransaction()
@@ -97,7 +100,7 @@ public class ParentNodeActivity extends Activity {
         }
 
         final TextView favText = (TextView) this.findViewById(R.id.favorites_text);
-        favText.setOnClickListener(new View.OnClickListener() {
+        favText.setOnClickListener(new View.OnClickListener() { //Toggle list of favorite companies on click
             @Override
             public void onClick(View view) {
                 if(!favoritesVisible)
@@ -122,7 +125,9 @@ public class ParentNodeActivity extends Activity {
         });
     }
 
-
+    /*
+     * Load favorite from the file
+     */
     private void loadFavorites()
     {
         FileInputStream fis = null;
@@ -148,7 +153,7 @@ public class ParentNodeActivity extends Activity {
             e.printStackTrace();
         }
 
-        for(ParentNode n : parentNodes)  ///THROWS ERROR AFTER RETURNING AFTER A WHILE
+        for(ParentNode n : parentNodes) //Add companies listed in file to favorites
         {
             if(favoriteNames.contains(n.toString()) && !favorites.contains(n))
             {
@@ -196,48 +201,17 @@ public class ParentNodeActivity extends Activity {
         super.onStop();
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu items for use in the action bar
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.parent_node, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        Log.e("Menu Item Id", item.getItemId()+"");
-        Intent intent;
-        switch (item.getItemId()) {
-
-            case android.R.id.home:
-                //Do stuff
-                intent = new Intent(this, ParentNodeActivity.class);
-                startActivity(intent);
-
-                return true;
-            case R.id.call_log:
-                intent = new Intent(this, LogListActivity.class);
-                intent.putExtra("device_id", this.device_id);
-                startActivity(intent);
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
     /**
-     * A placeholder fragment containing a simple view.
+     * A fragment containing the list of favorites
      */
     public static class FavoritesFragment extends ListFragment implements Callback<InstructionTree> {
 
-        ParentNode[] fragNodes;
-        boolean endActionInitiated = false; // Flag to denote that an 'end
-        // action' has been reached i.e.
-        // phone call in order to trigger
-        // survey
         EditText searchText;
         ParentNodeListAdapter<ParentNode> listAdapter;
         ParentNode chosenNode;
+        ParentNode[] fragNodes;
+        boolean endActionInitiated = false; // Flag to denote that an 'end action' has been reached i.e.
+                                            // phone call in order to trigger survey
 
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
@@ -252,37 +226,7 @@ public class ParentNodeActivity extends Activity {
             }
 
             listAdapter = new ParentNodeListAdapter<ParentNode>(getActivity(), android.R.layout.simple_list_item_1, fragNodes);
-
-            //aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            //promotionsList.setAdapter(aa);
             setListAdapter(listAdapter);
-
-            // Set up long click (favorites) listener
-            getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                @Override
-                public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id) {
-                    ParentNode temp = (ParentNode) getListView().getItemAtPosition(position);
-                    //TODO remove from favorites
-                    //listAdapter.nodes[position] = listAdapter.nodes[ParentNodeActivity.favorites.size()];
-                    //listAdapter.nodes[ParentNodeActivity.favorites.size()] = temp;
-//                    ParentNodeActivity.favorites.add(temp);
-//                    Style.makeToast(act, temp + " removed from Favorites");
-//                    Log.e("Removing favorite", temp.toString());
-
-                    return true;
-                }
-            });
-
-            // Set up google search listener
-            final Button button = (Button) getActivity().findViewById(R.id.button);
-            button.setVisibility(View.GONE);
-            button.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-                    intent.putExtra(SearchManager.QUERY, searchText.getText().toString() + " customer support");
-                    startActivity(intent);
-                }
-            });
 
             // Implement Search Functionality
             searchText = (EditText) getActivity()
@@ -294,45 +238,26 @@ public class ParentNodeActivity extends Activity {
                     String text = searchText.getText().toString()
                             .toLowerCase(Locale.getDefault());
                     listAdapter.getFilter().filter(text);
-
-                    //Show or hide button
-                    if (!searchText.getText().toString().equals("")) {
-                        button.setVisibility(View.VISIBLE);
-                        button.setText("Search Google for '" + searchText.getText().toString() + "'");
-                    } else {
-                        button.setVisibility(View.GONE);
-                    }
                 }
 
                 @Override
                 public void beforeTextChanged(CharSequence arg0, int arg1,
                                               int arg2, int arg3) {
+                    //Do nothing
                 }
 
                 @Override
                 public void onTextChanged(CharSequence arg0, int arg1,
                                           int arg2, int arg3) {
+                    //Do nothing
                 }
             });
         }
 
         @Override
         public void onResume() {
-
             super.onResume();
             searchText.setText("");
-            // If the fragment restarts after an end action was performed,
-            // then start the survey activity
-//            if (endActionInitiated)
-//            {
-//
-//                Intent intent = new Intent(getActivity(), SurveyActivity.class);
-//
-//                intent.putExtra("company_id", chosenNode.getCompanyId());
-//                intent.putExtra("thisCall", ((ParentNodeActivity) this.getActivity()).thisCall);
-//
-//                this.startActivity(intent);
-//            }
         }
 
         @Override
@@ -341,13 +266,11 @@ public class ParentNodeActivity extends Activity {
             chosenNode = (ParentNode) getListView().getItemAtPosition(position);
 
             //Retrieve instruction tree for this parent node
-            // Get the nodes from Heroku
             RestAdapter restAdapter = new RestAdapter.Builder()
                     .setLogLevel(RestAdapter.LogLevel.FULL)
                     .setEndpoint("http://safe-hollows-9286.herokuapp.com")
                     .build();
             HerokuService nodeService = restAdapter.create(HerokuService.class);
-            //nodeService.nodes(this);
             Map options = new HashMap<String, Integer>();
             options.put("company_id", chosenNode.company_id);
             nodeService.getInstructionTree(options, this);
@@ -355,16 +278,16 @@ public class ParentNodeActivity extends Activity {
 
         public void failure(RetrofitError arg0) {
             // Print the error and close the application
-            Log.e("Error getting instruction tree:", arg0.toString());
+            Log.e("Cant get instructions:", arg0.toString());
         }
 
         @Override
-        public void success(InstructionTree myNodes, Response arg1) {
-            //Retrieved instruction tree for the given company
+        public void success(InstructionTree myNodes, Response arg1) { //Successfully retrieved instruction tree for the given company
+
             Node rootNode = myNodes.instruction_tree[0];
 
             ParentNodeActivity act = (ParentNodeActivity) getActivity();
-            act.path.add(rootNode);
+            act.path.add(rootNode); //Add the root to the call path
 
             //Set current time as start of call
             TimeZone UTC = TimeZone.getTimeZone("UTC");
@@ -372,12 +295,13 @@ public class ParentNodeActivity extends Activity {
             dfUTC.setTimeZone(UTC);
             String start_time = dfUTC.format(new Date());
 
+            //Initialize the fields for this call
             ((ParentNodeActivity) this.getActivity()).thisCall.company_id = chosenNode.company_id + "";
             ((ParentNodeActivity) this.getActivity()).thisCall.call_path = ((ParentNodeActivity)getActivity()).path;
             ((ParentNodeActivity) this.getActivity()).thisCall.start_time = start_time;
             ((ParentNodeActivity) this.getActivity()).thisCall.company_name = chosenNode.company_name;
 
-            if (rootNode.getNodeType().equals("BRANCH"))
+            if (rootNode.getNodeType().equals("BRANCH")) //If this Node is not a leaf node
             {
                 Intent intent = new Intent(getActivity(), SearchActivity.class);
                 intent.putExtra("chosenNode", rootNode);
@@ -385,59 +309,47 @@ public class ParentNodeActivity extends Activity {
                 this.startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.slide_in, R.anim.stay_still);
             }
-            else if (rootNode.getNodeType().equals("PHONE") || rootNode.getNodeType().equals("TWILIO"))  //End action reached
+            else if (rootNode.getNodeType().equals("PHONE") || rootNode.getNodeType().equals("TWILIO"))  //End action reached, add to path and handle call
             {
+                endActionInitiated = true;
+
                 // Add the node to favorites
                 if(!act.favorites.contains(chosenNode)) {
                     act.favorites.add(chosenNode);
                     Log.e("Added to Favorites", chosenNode.toString());
                 }
 
+                //Create and set string representing the path of the chosen nodes
                 String stringPath = "";
-
-                //Create string representing the path of the chosen nodes
                 for (Node n : ((ParentNodeActivity) getActivity()).path) {
                     stringPath = stringPath + " " + (getActivity()).getApplicationContext().getString(R.string.right_arrow) + " " + n.toString();
                 }
-
-                //stringPath = stringPath + " &#8594; " + chosenNode.toString();
                 stringPath = stringPath.substring(2);  //Cut-off initial arrow from string display
-
-
                 ((ParentNodeActivity) this.getActivity()).thisCall.call_path_string = stringPath;
 
                 Intent intent;
-
-                //Choose the right intent based on the type of end node reached
-                if (rootNode.getNodeType().equals("PHONE")) {
+                if (rootNode.getNodeType().equals("PHONE")) {   //Choose the right intent based on the type of end node reached
                     intent = new Intent(getActivity(), PhoneActivity.class);
                 }
                 else {
                     intent = new Intent(getActivity(), TwilioActivity.class);
                 }
-
                 intent.putExtra("thisCall", (Serializable) ((ParentNodeActivity) this.getActivity()).thisCall);
-
                 String chosenPhoneNumber = PhoneNumberUtils.stripSeparators(rootNode.getPhoneNumber());
                 intent.putExtra("phone_number", chosenPhoneNumber);
 
-                endActionInitiated = true;
                 startActivity(intent);
             }
-
         }
     }
 
     /**
-     * A placeholder fragment containing a simple view.
+     * A fragment containing all the companies
      */
     public static class CompanyFragment extends ListFragment implements Callback<InstructionTree> {
 
         ParentNode[] fragNodes;
-        boolean endActionInitiated = false; // Flag to denote that an 'end
-        // action' has been reached i.e.
-        // phone call in order to trigger
-        // survey
+        boolean endActionInitiated = false;
         EditText searchText;
         ParentNodeListAdapter<ParentNode> listAdapter;
         ParentNode chosenNode;
@@ -447,15 +359,11 @@ public class ParentNodeActivity extends Activity {
             super.onActivityCreated(savedInstanceState);
             final ParentNodeActivity act = (ParentNodeActivity) getActivity();
 
-            // Concatenate favorites to top of list
-            fragNodes = act.parentNodes;
-
+            fragNodes = act.parentNodes; //Set nodes
             listAdapter = new ParentNodeListAdapter<ParentNode>(getActivity(), android.R.layout.simple_list_item_1, fragNodes);
-            //aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            //promotionsList.setAdapter(aa);
             setListAdapter(listAdapter);
 
-            // Set up long click (favorites) listener
+            //Add company as favorite when long clicked
             getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> adapter, View view, int position, long id) {
@@ -463,17 +371,14 @@ public class ParentNodeActivity extends Activity {
                      listAdapter.nodes[position] = listAdapter.nodes[ParentNodeActivity.favorites.size()];
                      listAdapter.nodes[ParentNodeActivity.favorites.size()] = temp;
 
-                    // Add to favorites, change color
-                    if(!ParentNodeActivity.favorites.contains(temp)) {
+                    if(!ParentNodeActivity.favorites.contains(temp)) { // Add to favorites, change color
                         ParentNodeActivity.favorites.add(temp);
                         Style.makeToast(act, temp + " added to Favorites");
                         Log.e("Adding favorite", temp.toString());
                     }
-
                     return true;
                 }
             });
-
 
             // Set up google search listener
             final Button button = (Button) getActivity().findViewById(R.id.button);
@@ -481,16 +386,14 @@ public class ParentNodeActivity extends Activity {
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-                    intent.putExtra(SearchManager.QUERY, searchText.getText().toString() + " customer support");
+                    intent.putExtra(SearchManager.QUERY, searchText.getText().toString() + " customer support"); //Search for query when Google button pressed
                     startActivity(intent);
                 }
             });
 
             // Implement Search Functionality
-            searchText = (EditText) getActivity()
-                    .findViewById(R.id.search_text_parent);
+            searchText = (EditText) getActivity().findViewById(R.id.search_text_parent);
             searchText.addTextChangedListener(new TextWatcher() {
-
                 @Override
                 public void afterTextChanged(Editable arg0) {
                     String text = searchText.getText().toString()
@@ -500,7 +403,7 @@ public class ParentNodeActivity extends Activity {
                     //Show or hide button
                     if (!searchText.getText().toString().equals("")) {
                         button.setVisibility(View.VISIBLE);
-                        button.setText("Search Google for '" + searchText.getText().toString() + "'");
+                        button.setText("Search Google for '" + searchText.getText().toString() + "'"); //Show button on typing
                     } else {
                         button.setVisibility(View.GONE);
                     }
@@ -509,32 +412,21 @@ public class ParentNodeActivity extends Activity {
                 @Override
                 public void beforeTextChanged(CharSequence arg0, int arg1,
                                               int arg2, int arg3) {
+                    //Do nothing
                 }
 
                 @Override
                 public void onTextChanged(CharSequence arg0, int arg1,
                                           int arg2, int arg3) {
+                    //Do nothing
                 }
             });
         }
 
         @Override
         public void onResume() {
-
             super.onResume();
             searchText.setText("");
-            // If the fragment restarts after an end action was performed,
-            // then start the survey activity
-//            if (endActionInitiated)
-//            {
-//
-//                Intent intent = new Intent(getActivity(), SurveyActivity.class);
-//
-//                intent.putExtra("company_id", chosenNode.getCompanyId());
-//                intent.putExtra("thisCall", ((ParentNodeActivity) this.getActivity()).thisCall);
-//
-//                this.startActivity(intent);
-//            }
         }
 
         @Override
@@ -543,28 +435,26 @@ public class ParentNodeActivity extends Activity {
             chosenNode = (ParentNode) getListView().getItemAtPosition(position);
 
             //Retrieve instruction tree for this parent node
-            // Get the nodes from Heroku
             RestAdapter restAdapter = new RestAdapter.Builder()
                     .setLogLevel(RestAdapter.LogLevel.FULL)
                     .setEndpoint("http://safe-hollows-9286.herokuapp.com")
                     .build();
             HerokuService nodeService = restAdapter.create(HerokuService.class);
-            //nodeService.nodes(this);
             Map options = new HashMap<String, Integer>();
             options.put("company_id", chosenNode.company_id);
             nodeService.getInstructionTree(options, this);
         }
 
-        public void failure(RetrofitError arg0) {
-            // Print the error and close the application
-            Log.e("Error getting instruction tree:", arg0.toString());
+        public void failure(RetrofitError arg0) { //Failed to get the instructions
+            Log.e("Can't get instructions:", arg0.toString());
         }
 
         @Override
-        public void success(InstructionTree myNodes, Response arg1) {
-            //Retrieved instruction tree for the given company
-            Node rootNode = myNodes.instruction_tree[0];
+        public void success(InstructionTree myNodes, Response arg1) { //Retrieved instruction tree for the given company, add to path and transition
 
+            endActionInitiated = true;
+
+            Node rootNode = myNodes.instruction_tree[0];
             ParentNodeActivity act = (ParentNodeActivity) getActivity();
             act.path.add(rootNode);
 
@@ -574,11 +464,13 @@ public class ParentNodeActivity extends Activity {
             dfUTC.setTimeZone(UTC);
             String start_time = dfUTC.format(new Date());
 
+            //Set call fields
             ((ParentNodeActivity) this.getActivity()).thisCall.company_id = chosenNode.company_id + "";
             ((ParentNodeActivity) this.getActivity()).thisCall.call_path = ((ParentNodeActivity)getActivity()).path;
             ((ParentNodeActivity) this.getActivity()).thisCall.start_time = start_time;
             ((ParentNodeActivity) this.getActivity()).thisCall.company_name = chosenNode.company_name;
 
+            //Determine the type of the tapped node
             if (rootNode.getNodeType().equals("BRANCH"))
             {
                 Intent intent = new Intent(getActivity(), SearchActivity.class);
@@ -595,38 +487,53 @@ public class ParentNodeActivity extends Activity {
                     Log.e("Added to Favorites", chosenNode.toString());
                 }
 
-                String stringPath = "";
-
                 //Create string representing the path of the chosen nodes
+                String stringPath = "";
                 for (Node n : ((ParentNodeActivity) getActivity()).path) {
                     stringPath = stringPath + " " + (getActivity()).getApplicationContext().getString(R.string.right_arrow) + " " + n.toString();
                 }
-
-                //stringPath = stringPath + " &#8594; " + chosenNode.toString();
                 stringPath = stringPath.substring(2);  //Cut-off initial arrow from string display
-
-
                 ((ParentNodeActivity) this.getActivity()).thisCall.call_path_string = stringPath;
 
                 Intent intent;
-
-                //Choose the right intent based on the type of end node reached
-                if (rootNode.getNodeType().equals("PHONE")) {
+                if (rootNode.getNodeType().equals("PHONE")) { //Choose the right intent based on the type of end node reached
                     intent = new Intent(getActivity(), PhoneActivity.class);
                 }
                 else {
                     intent = new Intent(getActivity(), TwilioActivity.class);
                 }
-
                 intent.putExtra("thisCall", (Serializable) ((ParentNodeActivity) this.getActivity()).thisCall);
-
                 String chosenPhoneNumber = PhoneNumberUtils.stripSeparators(rootNode.getPhoneNumber());
                 intent.putExtra("phone_number", chosenPhoneNumber);
 
-                endActionInitiated = true;
                 startActivity(intent);
             }
 
+        }
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.parent_node, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Log.e("Menu Item Id", item.getItemId()+"");
+        Intent intent;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                intent = new Intent(this, ParentNodeActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.call_log:
+                intent = new Intent(this, LogListActivity.class);
+                intent.putExtra("device_id", this.device_id);
+                startActivity(intent);
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

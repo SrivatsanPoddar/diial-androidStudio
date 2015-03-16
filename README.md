@@ -19,6 +19,7 @@ Diial is a mobile app that uses the capabilities of smartphones to make customer
 * Don't listen to awful-quality hold music
 
 ![Snake on Hold] (http://www.piyushpoddar.com/public/images/gifs/diial/android/play_snake.gif)
+
 ![Agent Side Connection] (http://www.piyushpoddar.com/public/images/gifs/diial/web/initial_connection.png)
 
 ###Parallel Voice and Data Channels
@@ -29,6 +30,7 @@ Diial is a mobile app that uses the capabilities of smartphones to make customer
 * Agent receives it instantly
 
 ![Auto-fill personal info] (http://www.piyushpoddar.com/public/images/gifs/diial/android/send_info.gif)
+
 ![Agent Side Receive Info] (http://www.piyushpoddar.com/public/images/gifs/diial/web/receive_info.png)
 
 ###Receive Images and Send text
@@ -36,13 +38,15 @@ Diial is a mobile app that uses the capabilities of smartphones to make customer
 * Send and store arbitrary text info (no need to scramble for a pen and paper)
 
 ![Agent Side Send Pic] (http://www.piyushpoddar.com/public/images/gifs/diial/web/send_image.png)
-![Receive Images] (http://www.piyushpoddar.com/public/images/gifs/matchflare/android/receive_images.gif)
+
+![Receive Images] (http://www.piyushpoddar.com/public/images/gifs/diial/android/receive_images.gif)
 
 ###Send pictures
 * Stop trying to explain cable layouts
 * Take and send in-call pictures in real-time
 
-![Payments] (http://www.piyushpoddar.com/public/images/gifs/matchflare/android/make_payments.gif)
+![Payments] (http://www.piyushpoddar.com/public/images/gifs/diial/android/make_payments.gif)
+
 ![Agent Side Receive Pic] (http://www.piyushpoddar.com/public/images/gifs/diial/web/receive_image.png)
 
 ###Make Instant Payments
@@ -50,16 +54,17 @@ Diial is a mobile app that uses the capabilities of smartphones to make customer
 * Instantly confirm payments
 
 ![Agent Side Request Payment] (http://www.piyushpoddar.com/public/images/gifs/diial/web/request_payment.png)
-![Payments] (http://www.piyushpoddar.com/public/images/gifs/matchflare/android/make_payments.gif)
+
+![Payments] (http://www.piyushpoddar.com/public/images/gifs/diial/android/make_payments.gif)
 
 ###Instant Surveys
 * Stop getting annoying post-call surveys calls
 * One question surveys immediately after the call
 * If you had a negative experience, get a promotion for an alternative offering
 
-![Surveys] (http://www.piyushpoddar.com/public/images/gifs/matchflare/android/survey_and_ad.gif)
+![Surveys] (http://www.piyushpoddar.com/public/images/gifs/diial/android/survey_and_ad.gif)
 
 ###Saved Calls
 * All call information stored automatically
 
-![Call Log] (http://www.piyushpoddar.com/public/images/gifs/matchflare/android/call_log.gif)
+![Call Log] (http://www.piyushpoddar.com/public/images/gifs/diial/android/call_log.gif)

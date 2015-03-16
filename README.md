@@ -45,7 +45,7 @@ Diial is a mobile app that uses the capabilities of smartphones to make customer
 * Stop trying to explain cable layouts
 * Take and send in-call pictures in real-time
 
-![Payments] (http://www.piyushpoddar.com/public/images/gifs/diial/android/make_payments.gif)
+![Payments] (http://www.piyushpoddar.com/public/images/gifs/diial/android/send_pic.gif)
 
 ![Agent Side Receive Pic] (http://www.piyushpoddar.com/public/images/gifs/diial/web/receive_image.png)
 
